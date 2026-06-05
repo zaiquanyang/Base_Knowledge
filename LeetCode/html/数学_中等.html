@@ -770,7 +770,7 @@ if __name__ == &quot;__main__&quot;:
           }
 
           if (className) {
-            result += <span class="token "></span>;
+            result += '<span class="token ' + className + '">' + escapeHtml(match) + '</span>';
           } else {
             result += escapeHtml(match);
           }

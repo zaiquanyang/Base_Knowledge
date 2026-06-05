@@ -340,7 +340,7 @@ $(($cards -join "`r`n"))
           }
 
           if (className) {
-            result += `<span class="token ${className}">${escapeHtml(match)}</span>`;
+            result += '<span class="token ' + className + '">' + escapeHtml(match) + '</span>';
           } else {
             result += escapeHtml(match);
           }
