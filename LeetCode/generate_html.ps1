@@ -18,7 +18,26 @@ function Get-HtmlEncoded {
     return [System.Net.WebUtility]::HtmlEncode($Text)
 }
 
-$root = Join-Path $PSScriptRoot '.'
+function Get-ProblemStem {
+    param([string]$ProblemText)
+
+    if ([string]::IsNullOrWhiteSpace($ProblemText)) {
+        return ''
+    }
+
+    $normalized = $ProblemText -replace "`r`n", "`n"
+    $descriptionMatch = [regex]::Match($normalized, '(?m)^##\s*题目描述\s*$')
+    if (-not $descriptionMatch.Success) {
+        return $ProblemText.Trim()
+    }
+
+    $body = $normalized.Substring($descriptionMatch.Index + $descriptionMatch.Length).Trim()
+    $splitPattern = "(?m)^(```|示例\s*\d+\s*[：:]|\*\*示例|\*\*提示|\*\*进阶|提示\s*$|进阶\s*$|##\s+提示)"
+    $parts = [regex]::Split($body, $splitPattern, 2)
+    return $parts[0].Trim()
+}
+
+$root = (Resolve-Path -LiteralPath $PSScriptRoot).Path
 $sourceDirs = @('Easy', 'Medium', 'Hard') | ForEach-Object { Join-Path $root $_ }
 $outputDir = Join-Path $root 'html'
 
@@ -49,6 +68,7 @@ foreach ($dir in $sourceDirs) {
 
         $solutionPath = Join-Path $problemDir.FullName 'solution.py'
         $problemText = Get-Content -LiteralPath $problemPath -Encoding UTF8 -Raw
+        $problemStem = Get-ProblemStem $problemText
         $solutionText = if (Test-Path -LiteralPath $solutionPath) {
             $raw = Get-Content -LiteralPath $solutionPath -Encoding UTF8 -Raw
             if ([string]::IsNullOrWhiteSpace($raw)) {
@@ -82,9 +102,9 @@ foreach ($dir in $sourceDirs) {
                 DifficultyEn = $difficultyEn
                 Title = $title
                 Link = $link
-                ProblemText = $problemText.Trim()
+                ProblemText = $problemStem
                 SolutionText = $solutionText
-                RelativePath = $problemDir.FullName.Substring($root.Length).TrimStart('\')
+                RelativePath = $problemDir.FullName.Replace($root + '\', '')
             })
         }
     }
@@ -320,4 +340,13 @@ $(($sections -join "`r`n"))
 
 Set-Content -LiteralPath (Join-Path $outputDir 'index.html') -Value $indexHtml -Encoding UTF8
 
-Write-Host ("Generated {0} html files in {1}" -f ($indexEntries.Count + 1), $outputDir)
+$repoRoot = Split-Path -Path $PSScriptRoot -Parent
+$docsDir = Join-Path $repoRoot 'docs'
+
+if (Test-Path -LiteralPath $docsDir) {
+    Remove-Item -LiteralPath $docsDir -Recurse -Force
+}
+
+Copy-Item -LiteralPath $outputDir -Destination $docsDir -Recurse -Force
+
+Write-Host ("Generated {0} html files in {1} and mirrored to {2}" -f ($indexEntries.Count + 1), $outputDir, $docsDir)
