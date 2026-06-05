@@ -192,7 +192,7 @@ foreach ($group in $groups) {
       <h3>题目内容</h3>
       <pre>$([System.Net.WebUtility]::HtmlEncode($item.ProblemText))</pre>
       <h3>解答方案</h3>
-      <pre><code>$([System.Net.WebUtility]::HtmlEncode($item.SolutionText))</code></pre>
+      <pre class="language-python"><code class="language-python">$([System.Net.WebUtility]::HtmlEncode($item.SolutionText))</code></pre>
     </section>
 "@
     }
