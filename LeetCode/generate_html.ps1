@@ -53,6 +53,65 @@ $difficultyMap = @{
     '困难' = 'Hard'
 }
 
+$tagPriority = @(
+    '数组',
+    '哈希表',
+    '字符串',
+    '双指针',
+    '滑动窗口',
+    '栈',
+    '队列',
+    '链表',
+    '二叉树',
+    '树',
+    '二叉搜索树',
+    '深度优先搜索',
+    '广度优先搜索',
+    '递归',
+    '回溯',
+    '动态规划',
+    '贪心',
+    '二分查找',
+    '排序',
+    '堆（优先队列）',
+    '图',
+    '拓扑排序',
+    '设计',
+    '矩阵',
+    '位运算',
+    '数学',
+    '模拟',
+    '前缀和',
+    '并查集',
+    '分治',
+    '字典树',
+    '单调栈',
+    '单调队列',
+    '记忆化',
+    '快速选择',
+    '归并排序',
+    '树状数组',
+    '线段树',
+    '数据流',
+    '随机化',
+    '迭代器',
+    '有序集合',
+    '扫描线',
+    '桶排序',
+    '组合数学',
+    '数论',
+    '枚举',
+    '双向链表',
+    '字符串匹配',
+    '交互',
+    '计数'
+)
+
+$tagOrder = @{}
+for ($i = 0; $i -lt $tagPriority.Count; $i++) {
+    $tagOrder[$tagPriority[$i]] = $i
+}
+
 $problems = New-Object System.Collections.Generic.List[object]
 
 foreach ($dir in $sourceDirs) {
@@ -236,7 +295,13 @@ $(($cards -join "`r`n"))
     })
 }
 
-$groupedIndex = $indexEntries | Group-Object Tag | Sort-Object Name
+$groupedIndex = $indexEntries | Group-Object Tag | Sort-Object @{
+    Expression = {
+        if ($tagOrder.ContainsKey($_.Name)) { $tagOrder[$_.Name] } else { 9999 }
+    }
+}, @{
+    Expression = { $_.Name }
+}
 $sections = foreach ($tagGroup in $groupedIndex) {
     $links = foreach ($entry in ($tagGroup.Group | Sort-Object DifficultyEn)) {
 @"
@@ -340,13 +405,4 @@ $(($sections -join "`r`n"))
 
 Set-Content -LiteralPath (Join-Path $outputDir 'index.html') -Value $indexHtml -Encoding UTF8
 
-$repoRoot = Split-Path -Path $PSScriptRoot -Parent
-$docsDir = Join-Path $repoRoot 'docs'
-
-if (Test-Path -LiteralPath $docsDir) {
-    Remove-Item -LiteralPath $docsDir -Recurse -Force
-}
-
-Copy-Item -LiteralPath $outputDir -Destination $docsDir -Recurse -Force
-
-Write-Host ("Generated {0} html files in {1} and mirrored to {2}" -f ($indexEntries.Count + 1), $outputDir, $docsDir)
+Write-Host ("Generated {0} html files in {1}" -f ($indexEntries.Count + 1), $outputDir)
