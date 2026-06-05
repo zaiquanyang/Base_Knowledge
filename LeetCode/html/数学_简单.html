@@ -1,0 +1,835 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数学 - 简单</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>数学 - 简单</h1>
+    <p class="summary">共 9 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>13. 罗马数字转整数</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\013_罗马数字转整数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/roman-to-integer/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 13. 罗马数字转整数
+
+**难度:** 简单  
+**标签:** 哈希表, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/roman-to-integer/)
+
+## 题目描述
+
+罗马数字包含以下七种字符:&#160;`I`，&#160;`V`，&#160;`X`，&#160;`L`，`C`，`D`&#160;和&#160;`M`。
+
+```
+
+**字符**          **数值**
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+例如， 罗马数字 `2` 写做&#160;`II`&#160;，即为两个并列的 1 。`12` 写做&#160;`XII`&#160;，即为&#160;`X`&#160;+&#160;`II`&#160;。 `27` 写做&#160;&#160;`XXVII`, 即为&#160;`XX`&#160;+&#160;`V`&#160;+&#160;`II`&#160;。
+
+通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做&#160;`IIII`，而是&#160;`IV`。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为&#160;`IX`。这个特殊的规则只适用于以下六种情况：
+
+	- `I`&#160;可以放在&#160;`V`&#160;(5) 和&#160;`X`&#160;(10) 的左边，来表示 4 和 9。
+	- `X`&#160;可以放在&#160;`L`&#160;(50) 和&#160;`C`&#160;(100) 的左边，来表示 40 和&#160;90。&#160;
+	- `C`&#160;可以放在&#160;`D`&#160;(500) 和&#160;`M`&#160;(1000) 的左边，来表示&#160;400 和&#160;900。
+
+给定一个罗马数字，将其转换成整数。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:**&#160;s = &quot;III&quot;
+**输出:** 3
+```
+
+**示例&#160;2:**
+
+```
+
+**输入:**&#160;s = &quot;IV&quot;
+**输出:** 4
+```
+
+**示例&#160;3:**
+
+```
+
+**输入:**&#160;s = &quot;IX&quot;
+**输出:** 9
+```
+
+**示例&#160;4:**
+
+```
+
+**输入:**&#160;s = &quot;LVIII&quot;
+**输出:** 58
+**解释:** L = 50, V= 5, III = 3.
+
+```
+
+**示例&#160;5:**
+
+```
+
+**输入:**&#160;s = &quot;MCMXCIV&quot;
+**输出:** 1994
+**解释:** M = 1000, CM = 900, XC = 90, IV = 4.
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 仅含字符 `(&#39;I&#39;, &#39;V&#39;, &#39;X&#39;, &#39;L&#39;, &#39;C&#39;, &#39;D&#39;, &#39;M&#39;)`
+	- 题目数据保证 `s` 是一个有效的罗马数字，且表示整数在范围 `[1, 3999]` 内
+	- 题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。
+	- IL 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。
+	- 关于罗马数字的详尽书写规则，可以参考 罗马数字 - 百度百科。
+
+## 提示
+
+1. Problem is simpler to solve by working the string from back to front and using a map.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def romanToInt(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>171. Excel 表列序号</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\171_Excel 表列序号</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/excel-sheet-column-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 171. Excel 表列序号
+
+**难度:** 简单  
+**标签:** 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/excel-sheet-column-number/)
+
+## 题目描述
+
+给你一个字符串&#160;`columnTitle` ，表示 Excel 表格中的列名称。返回 *该列名称对应的列序号*&#160;。
+
+例如：
+
+```
+
+A -&gt; 1
+B -&gt; 2
+C -&gt; 3
+...
+Z -&gt; 26
+AA -&gt; 27
+AB -&gt; 28 
+...
+```
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** columnTitle = &quot;A&quot;
+**输出:** 1
+
+```
+
+**示例&#160;2:**
+
+```
+
+**输入: **columnTitle = &quot;AB&quot;
+**输出:** 28
+
+```
+
+**示例&#160;3:**
+
+```
+
+**输入: **columnTitle = &quot;ZY&quot;
+**输出:** 701
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `columnTitle` 仅由大写英文组成
+	- `columnTitle` 在范围 `[&quot;A&quot;, &quot;FXSHRXW&quot;]` 内</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def titleToNumber(self, columnTitle: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>202. 快乐数</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\202_快乐数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/happy-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 202. 快乐数
+
+**难度:** 简单  
+**标签:** 哈希表, 数学, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/happy-number/)
+
+## 题目描述
+
+编写一个算法来判断一个数 `n` 是不是快乐数。
+
+**「快乐数」**&#160;定义为：
+
+	- 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+	- 然后重复这个过程直到这个数变为 1，也可能是 **无限循环** 但始终变不到 1。
+	- 如果这个过程 **结果为**&#160;1，那么这个数就是快乐数。
+
+如果 `n` 是 *快乐数* 就返回 `true` ；不是，则返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 19
+**输出：**true
+解释：
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 2
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isHappy(self, n: int) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>268. 丢失的数字</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\268_丢失的数字</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/missing-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 268. 丢失的数字
+
+**难度:** 简单  
+**标签:** 位运算, 数组, 哈希表, 数学, 二分查找, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/missing-number/)
+
+## 题目描述
+
+给定一个包含 `[0, n]`&#160;中&#160;`n`&#160;个数的数组 `nums` ，找出 `[0, n]` 这个范围内没有出现在数组中的那个数。
+
+&#160;
+
+**示例 1：**
+
+**输入：**nums = [3,0,1]
+
+**输出：**2
+
+解释：`n = 3`，因为有 3 个数字，所以所有的数字都在范围 `[0,3]` 内。2 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**示例 2：**
+
+**输入：**nums = [0,1]
+
+**输出：**2
+
+解释：`n = 2`，因为有 2 个数字，所以所有的数字都在范围 `[0,2]` 内。2 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**示例 3：**
+
+**输入：**nums = [9,6,4,2,3,5,7,0,1]
+
+**输出：**8
+
+解释：`n = 9`，因为有 9 个数字，所以所有的数字都在范围 `[0,9]` 内。8 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 4`
+	- `0 
+	- `nums` 中的所有数字都 **独一无二**
+
+&#160;
+
+**进阶：**你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>326. 3 的幂</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\326_3 的幂</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/power-of-three/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 326. 3 的幂
+
+**难度:** 简单  
+**标签:** 递归, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/power-of-three/)
+
+## 题目描述
+
+给定一个整数，写一个函数来判断它是否是 3&#160;的幂次方。如果是，返回 `true` ；否则，返回 `false` 。
+
+整数 `n` 是 3 的幂次方需满足：存在整数 `x` 使得 `n == 3x`
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 27
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 0
+**输出：**false
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**n = 9
+**输出：**true
+
+```
+
+**示例 4：**
+
+```
+
+**输入：**n = 45
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+
+&#160;
+
+**进阶：**你能不使用循环或者递归来完成本题吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isPowerOfThree(self, n: int) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>412. Fizz Buzz</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\412_Fizz Buzz</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/fizz-buzz/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 412. Fizz Buzz
+
+**难度:** 简单  
+**标签:** 数学, 字符串, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/fizz-buzz/)
+
+## 题目描述
+
+给你一个整数 `n` ，返回一个字符串数组 `answer`（**下标从 1 开始**），其中：
+
+	- `answer[i] == &quot;FizzBuzz&quot;` 如果 `i` 同时是 `3` 和 `5` 的倍数。
+	- `answer[i] == &quot;Fizz&quot;` 如果 `i` 是 `3` 的倍数。
+	- `answer[i] == &quot;Buzz&quot;` 如果 `i` 是 `5` 的倍数。
+	- `answer[i] == i` （以字符串形式）如果上述条件全不满足。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 3
+**输出：**[&quot;1&quot;,&quot;2&quot;,&quot;Fizz&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 5
+**输出：**[&quot;1&quot;,&quot;2&quot;,&quot;Fizz&quot;,&quot;4&quot;,&quot;Buzz&quot;]
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**n = 15
+**输出：**[&quot;1&quot;,&quot;2&quot;,&quot;Fizz&quot;,&quot;4&quot;,&quot;Buzz&quot;,&quot;Fizz&quot;,&quot;7&quot;,&quot;8&quot;,&quot;Fizz&quot;,&quot;Buzz&quot;,&quot;11&quot;,&quot;Fizz&quot;,&quot;13&quot;,&quot;14&quot;,&quot;FizzBuzz&quot;]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def fizzBuzz(self, n: int) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>66. 加一</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\066_加一</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/plus-one/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 66. 加一
+
+**难度:** 简单  
+**标签:** 数组, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/plus-one/)
+
+## 题目描述
+
+给定一个表示 **大整数** 的整数数组 `digits`，其中 `digits[i]` 是整数的第 `i` 位数字。这些数字按从左到右，从最高位到最低位排列。这个大整数不包含任何前导 `0`。
+
+将大整数加 1，并返回结果的数字数组。
+
+&#160;
+
+**示例&#160;1：**
+
+```
+
+**输入：**digits = [1,2,3]
+**输出：**[1,2,4]
+**解释：**输入数组表示数字 123。
+加 1 后得到 123 + 1 = 124。
+因此，结果应该是 [1,2,4]。
+
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**digits = [4,3,2,1]
+**输出：**[4,3,2,2]
+**解释：**输入数组表示数字 4321。
+加 1 后得到 4321 + 1 = 4322。
+因此，结果应该是 [4,3,2,2]。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**digits = [9]
+**输出：**[1,0]
+**解释：**输入数组表示数字 9。
+加 1 得到了 9 + 1 = 10。
+因此，结果应该是 [1,0]。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `digits`&#160;不包含任何前导 `0`。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>69. x 的平方根</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\069_x 的平方根</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sqrtx/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 69. x 的平方根 
+
+**难度:** 简单  
+**标签:** 数学, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sqrtx/)
+
+## 题目描述
+
+给你一个非负整数 `x` ，计算并返回&#160;`x`&#160;的 **算术平方根** 。
+
+由于返回类型是整数，结果只保留 **整数部分 **，小数部分将被 **舍去 。**
+
+**注意：**不允许使用任何内置指数函数和算符，例如 `pow(x, 0.5)` 或者 `x ** 0.5` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**x = 4
+**输出：**2
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**x = 8
+**输出：**2
+**解释：**8 的算术平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 31 - 1`
+
+## 提示
+
+1. Try exploring all integers. (Credits: @annujoshi)
+2. Use the sorted property of integers to reduced the search space. (Credits: @annujoshi)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def mySqrt(self, x: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>70. 爬楼梯</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：简单</span>
+        <span>目录：asy\070_爬楼梯</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/climbing-stairs/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 70. 爬楼梯
+
+**难度:** 简单  
+**标签:** 记忆化, 数学, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/climbing-stairs/)
+
+## 题目描述
+
+假设你正在爬楼梯。需要 `n`&#160;阶你才能到达楼顶。
+
+每次你可以爬 `1` 或 `2` 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 2
+**输出：**2
+**解释：**有两种方法可以爬到楼顶。
+1. 1 阶 + 1 阶
+2. 2 阶
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 3
+**输出：**3
+**解释：**有三种方法可以爬到楼顶。
+1. 1 阶 + 1 阶 + 1 阶
+2. 1 阶 + 2 阶
+3. 2 阶 + 1 阶
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1
+
+## 提示
+
+1. To reach nth step, what could have been your previous steps? (Think about the step sizes)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def climbStairs(self, n: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

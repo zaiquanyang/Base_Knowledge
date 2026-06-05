@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>前缀和 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>前缀和 - 中等</h1>
+    <p class="summary">共 2 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>238. 除了自身以外数组的乘积</h2>
+      <div class="meta">
+        <span>类型：前缀和</span>
+        <span>难度：中等</span>
+        <span>目录：edium\238_除了自身以外数组的乘积</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/product-of-array-except-self/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 238. 除了自身以外数组的乘积
+
+**难度:** 中等  
+**标签:** 数组, 前缀和
+
+**链接:** [LeetCode](https://leetcode.cn/problems/product-of-array-except-self/)
+
+## 题目描述
+
+给你一个整数数组&#160;`nums`，返回 数组&#160;`answer`&#160;，其中&#160;`answer[i]`&#160;等于&#160;`nums`&#160;中除了&#160;`nums[i]`&#160;之外其余各元素的乘积&#160;。
+
+题目数据 **保证** 数组&#160;`nums`之中任意元素的全部前缀元素和后缀的乘积都在&#160; **32 位** 整数范围内。
+
+请&#160;**不要使用除法，**且在&#160;`O(n)` 时间复杂度内完成此题。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** nums = `[1,2,3,4]`
+**输出:** `[24,12,8,6]`
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** nums = [-1,1,0,-3,3]
+**输出:** [0,0,9,0,0]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `2 5`
+	- `-30 
+	- 输入&#160;**保证** 数组&#160;`answer[i]`&#160;在&#160; **32 位** 整数范围内
+
+&#160;
+
+**进阶：**你可以在 `O(1)`&#160;的额外空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组&#160;**不被视为&#160;**额外空间。）
+
+## 提示
+
+1. Think how you can efficiently utilize prefix and suffix products to calculate the product of all elements except self for each index. Can you pre-compute the prefix and suffix products in linear time to avoid redundant calculations?
+2. Can you minimize additional space usage by reusing memory or modifying the input array to store intermediate results?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>253. 会议室 II</h2>
+      <div class="meta">
+        <span>类型：前缀和</span>
+        <span>难度：中等</span>
+        <span>目录：edium\253_会议室 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/meeting-rooms-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 253. 会议室 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针, 前缀和, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/meeting-rooms-ii/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Think about how we would approach this problem in a very simplistic way. We will allocate rooms to meetings that occur earlier in the day v/s the ones that occur later on, right?
+2. If you&#39;ve figured out that we have to sort the meetings by their start time, the next thing to think about is how do we do the allocation? There are two scenarios possible here for any meeting. Either there is no meeting room available and a new one has to be allocated, or a meeting room has freed up and this meeting can take place there.
+3. An important thing to note is that we don&#39;t really care which room gets freed up while allocating a room for the current meeting. As long as a room is free, our job is done. We already know the rooms we have allocated till now and we also know when are they due to get free because of the end times of the meetings going on in those rooms. We can simply check the room which is due to get vacated the earliest amongst all the allocated rooms.
+4. Following up on the previous hint, we can make use of a min-heap to store the end times of the meetings in various rooms. So, every time we want to check if any room is free or not, simply check the topmost element of the min heap as that would be the room that would get free the earliest out of all the other rooms currently occupied. If the room we extracted from the top of the min heap isn&#39;t free, then no other room is. So, we can save time here and simply allocate a new room.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        253. 会议室 II
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

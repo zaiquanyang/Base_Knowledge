@@ -1,0 +1,1536 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈希表 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>哈希表 - 中等</h1>
+    <p class="summary">共 18 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>105. 从前序与中序遍历序列构造二叉树</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\105_从前序与中序遍历序列构造二叉树</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 105. 从前序与中序遍历序列构造二叉树
+
+**难度:** 中等  
+**标签:** 树, 数组, 哈希表, 分治, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+## 题目描述
+
+给定两个整数数组&#160;`preorder` 和 `inorder`&#160;，其中&#160;`preorder` 是二叉树的**先序遍历**， `inorder`&#160;是同一棵树的**中序遍历**，请构造二叉树并返回其根节点。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入****:** preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+**输出:** [3,9,20,null,null,15,7]
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** preorder = [-1], inorder = [-1]
+**输出:** [-1]
+
+```
+
+&#160;
+
+**提示:**
+
+	- `1 
+	- `inorder.length == preorder.length`
+	- `-3000 
+	- `preorder`&#160;和&#160;`inorder`&#160;均 **无重复** 元素
+	- `inorder`&#160;均出现在&#160;`preorder`
+	- `preorder`&#160;**保证** 为二叉树的前序遍历序列
+	- `inorder`&#160;**保证** 为二叉树的中序遍历序列</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -&gt; Optional[TreeNode]:
+        in_order_map = {val: i for i, val in enumerate(inorder)}
+
+        self.pre_idx = 0
+        def build_helper(left, right):
+            if left&gt;right:
+                return None
+            
+            root_val = preorder[self.pre_idx]
+            root_idx = in_order_map[root_val]
+            root_node = TreeNode(root_val)
+            self.pre_idx += 1
+
+            root_node.left = build_helper(left, root_idx-1)
+            root_node.right = build_helper(root_idx+1, right)
+
+            
+            return root_node
+        
+        return build_helper(0, len(preorder)-1)
+            
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>128. 最长连续序列</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\128_最长连续序列</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-consecutive-sequence/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 128. 最长连续序列
+
+**难度:** 中等  
+**标签:** 并查集, 数组, 哈希表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-consecutive-sequence/)
+
+## 题目描述
+
+给定一个未排序的整数数组 `nums` ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
+
+请你设计并实现时间复杂度为&#160;`O(n)`* *的算法解决此问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [100,4,200,1,3,2]
+**输出：**4
+**解释：**最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [0,3,7,2,5,8,4,6,0,1]
+**输出：**9
+
+```
+
+示例 3：
+
+```
+
+**输入：**nums = [1,0,1,2]
+输出：3
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 5`
+	- `-109 9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -&gt; int:
+        nums_set = set(nums)
+
+        max_seq_len = 0
+        for num in nums_set:
+            if (num-1) not in nums_set:
+                current_num = num
+                sequence_len = 1
+
+                while current_num+1 in nums_set:
+                    current_num += 1
+                    sequence_len += 1
+
+                max_seq_len = max(max_seq_len, sequence_len)
+        return max_seq_len
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>138. 随机链表的复制</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\138_随机链表的复制</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 138. 随机链表的复制
+
+**难度:** 中等  
+**标签:** 哈希表, 链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/copy-list-with-random-pointer/)
+
+## 题目描述
+
+给你一个长度为 `n` 的链表，每个节点包含一个额外增加的随机指针 `random` ，该指针可以指向链表中的任何节点或空节点。
+
+构造这个链表的&#160;**深拷贝**。&#160;深拷贝应该正好由 `n` 个 **全新** 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 `next` 指针和 `random` 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。**复制链表中的指针都不应指向原链表中的节点 **。
+
+例如，如果原链表中有 `X` 和 `Y` 两个节点，其中 `X.random --&gt; Y` 。那么在复制链表中对应的两个节点 `x` 和 `y` ，同样有 `x.random --&gt; y` 。
+
+返回复制链表的头节点。
+
+用一个由&#160;`n`&#160;个节点组成的链表来表示输入/输出中的链表。每个节点用一个&#160;`[val, random_index]`&#160;表示：
+
+	- `val`：一个表示&#160;`Node.val`&#160;的整数。
+	- `random_index`：随机指针指向的节点索引（范围从&#160;`0`&#160;到&#160;`n-1`）；如果不指向任何节点，则为&#160;&#160;`null`&#160;。
+
+你的代码 **只** 接受原链表的头节点 `head` 作为传入参数。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+**输出：**[[7,null],[13,0],[11,4],[10,2],[1,0]]
+
+```
+
+示例 2：
+
+```
+
+**输入：**head = [[1,1],[2,1]]
+**输出：**[[1,1],[2,1]]
+
+```
+
+示例 3：
+
+****
+
+```
+
+**输入：**head = [[3,null],[3,0],[3,null]]
+**输出：**[[3,null],[3,0],[3,null]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 
+	- `-104&#160;4`
+	- `Node.random`&#160;为&#160;`null` 或指向链表中的节点。
+
+## 提示
+
+1. Just iterate the linked list and create copies of the nodes on the go. Since a node can be referenced from multiple nodes due to the random pointers, ensure you are not making multiple copies of the same node.
+2. You may want to use extra space to keep old_node ---&gt; new_node mapping to prevent creating multiple copies of the same node.
+3. We can avoid using extra space for old_node ---&gt; new_node mapping by tweaking the original linked list. Simply interweave the nodes of the old and copied list. For example: Old List: A --&gt; B --&gt; C --&gt; D InterWeaved List: A --&gt; A&#39; --&gt; B --&gt; B&#39; --&gt; C --&gt; C&#39; --&gt; D --&gt; D&#39;
+4. The interweaving is done using next pointers and we can make use of interweaved structure to get the correct reference nodes for random pointers.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, x: int, next: &#39;Node&#39; = None, random: &#39;Node&#39; = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>139. 单词拆分</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\139_单词拆分</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-break/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 139. 单词拆分
+
+**难度:** 中等  
+**标签:** 字典树, 记忆化, 数组, 哈希表, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-break/)
+
+## 题目描述
+
+给你一个字符串 `s` 和一个字符串列表 `wordDict` 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 `s`&#160;则返回 `true`。
+
+**注意：**不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]
+**输出:** true
+**解释:** 返回 true 因为 &quot;leetcode&quot; 可以由 &quot;leet&quot; 和 &quot;code&quot; 拼接成。
+
+```
+
+**示例 2：**
+
+```
+
+**输入:** s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]
+**输出:** true
+**解释:** 返回 true 因为 &quot;applepenapple&quot; 可以由 &quot;apple&quot; &quot;pen&quot; &quot;apple&quot; 拼接成。
+&#160;    注意，你可以重复使用字典中的单词。
+
+```
+
+**示例 3：**
+
+```
+
+**输入:** s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]
+**输出:** false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `1 
+	- `s` 和 `wordDict[i]` 仅由小写英文字母组成
+	- `wordDict` 中的所有字符串 **互不相同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>146. LRU 缓存</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\146_LRU 缓存</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/lru-cache/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 146. LRU 缓存
+
+**难度:** 中等  
+**标签:** 设计, 哈希表, 链表, 双向链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/lru-cache/)
+
+## 题目描述
+
+请你设计并实现一个满足&#160; LRU (最近最少使用) 缓存 约束的数据结构。
+
+实现 `LRUCache` 类：
+
+	- `LRUCache(int capacity)` 以 **正整数** 作为容量&#160;`capacity` 初始化 LRU 缓存
+	- `int get(int key)` 如果关键字 `key` 存在于缓存中，则返回关键字的值，否则返回 `-1` 。
+	- `void put(int key, int value)`&#160;如果关键字&#160;`key` 已经存在，则变更其数据值&#160;`value` ；如果不存在，则向缓存中插入该组&#160;`key-value` 。如果插入操作导致关键字数量超过&#160;`capacity` ，则应该 **逐出** 最久未使用的关键字。
+
+函数 `get` 和 `put` 必须以 `O(1)` 的平均时间复杂度运行。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
+[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+**输出**
+[null, null, null, 1, null, -1, null, -1, 3, 4]
+
+**解释**
+LRUCache lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // 缓存是 {1=1}
+lRUCache.put(2, 2); // 缓存是 {1=1, 2=2}
+lRUCache.get(1);    // 返回 1
+lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+lRUCache.get(2);    // 返回 -1 (未找到)
+lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+lRUCache.get(1);    // 返回 -1 (未找到)
+lRUCache.get(3);    // 返回 3
+lRUCache.get(4);    // 返回 4
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `0 5`
+	- 最多调用 `2 * 105` 次 `get` 和 `put`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, capacity: int):
+        
+
+    def get(self, key: int) -&gt; int:
+        
+
+    def put(self, key: int, value: int) -&gt; None:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>166. 分数到小数</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\166_分数到小数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/fraction-to-recurring-decimal/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 166. 分数到小数
+
+**难度:** 中等  
+**标签:** 哈希表, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/fraction-to-recurring-decimal/)
+
+## 题目描述
+
+给定两个整数，分别表示分数的分子&#160;`numerator` 和分母 `denominator`，以 **字符串形式返回小数** 。
+
+如果小数部分为循环小数，则将循环的部分括在括号内。
+
+如果存在多个答案，只需返回 **任意一个** 。
+
+对于所有给定的输入，**保证** 答案字符串的长度小于 `104` 。
+
+**注意**，如果分数可以表示为有限长度的字符串，则 **必须** 返回它。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**numerator = 1, denominator = 2
+**输出：**&quot;0.5&quot;
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**numerator = 2, denominator = 1
+**输出：**&quot;2&quot;
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**numerator = 4, denominator = 333
+**输出：**&quot;0.(012)&quot;
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- `denominator != 0`
+
+## 提示
+
+1. No scary math, just apply elementary math knowledge. Still remember how to perform a long division?
+2. Try a long division on 4/9, the repeating part is obvious. Now try 4/333. Do you see a pattern?
+3. Notice that once the remainder starts repeating, so does the divided result.
+4. Be wary of edge cases! List out as many test cases as you can think of and test your code thoroughly.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def fractionToDecimal(self, numerator: int, denominator: int) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>17. 电话号码的字母组合</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\017_电话号码的字母组合</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 17. 电话号码的字母组合
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
+
+## 题目描述
+
+给定一个仅包含数字&#160;`2-9`&#160;的字符串，返回所有它能表示的字母组合。答案可以按 **任意顺序** 返回。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**digits = &quot;23&quot;
+**输出：**[&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**digits = &quot;2&quot;
+**输出：**[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `digits[i]` 是范围 `[&#39;2&#39;, &#39;9&#39;]` 的一个数字。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def letterCombinations(self, digits: str) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>208. 实现 Trie (前缀树)</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\208_实现 Trie (前缀树)</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 208. 实现 Trie (前缀树)
+
+**难度:** 中等  
+**标签:** 设计, 字典树, 哈希表, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/implement-trie-prefix-tree/)
+
+## 题目描述
+
+**Trie**（发音类似 &quot;try&quot;）或者说 **前缀树** 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
+
+请你实现 Trie 类：
+
+	- `Trie()` 初始化前缀树对象。
+	- `void insert(String word)` 向前缀树中插入字符串 `word` 。
+	- `boolean search(String word)` 如果字符串 `word` 在前缀树中，返回 `true`（即，在检索之前已经插入）；否则，返回 `false` 。
+	- `boolean startsWith(String prefix)` 如果之前已经插入的字符串&#160;`word` 的前缀之一为 `prefix` ，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]
+[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]
+**输出**
+[null, null, true, false, true, null, true]
+
+**解释**
+Trie trie = new Trie();
+trie.insert(&quot;apple&quot;);
+trie.search(&quot;apple&quot;);   // 返回 True
+trie.search(&quot;app&quot;);     // 返回 False
+trie.startsWith(&quot;app&quot;); // 返回 True
+trie.insert(&quot;app&quot;);
+trie.search(&quot;app&quot;);     // 返回 True
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `word` 和 `prefix` 仅由小写英文字母组成
+	- `insert`、`search` 和 `startsWith` 调用次数 **总计** 不超过 `3 * 104` 次</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, word: str) -&gt; None:
+        
+
+    def search(self, word: str) -&gt; bool:
+        
+
+    def startsWith(self, prefix: str) -&gt; bool:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>3. 无重复字符的最长子串</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\003_无重复字符的最长子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 3. 无重复字符的最长子串
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+
+## 题目描述
+
+给定一个字符串 `s` ，请你找出其中不含有重复字符的&#160;**最长 子串****&#160;**的长度。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入: **s = &quot;abcabcbb&quot;
+**输出: **3 
+**解释:** 因为无重复字符的最长子串是 `&quot;abc&quot;`，所以其长度为 3。注意 &quot;bca&quot; 和 &quot;cab&quot; 也是正确答案。
+
+```
+
+**示例 2:**
+
+```
+
+**输入: **s = &quot;bbbbb&quot;
+**输出: **1
+**解释: **因为无重复字符的最长子串是 `&quot;b&quot;`，所以其长度为 1。
+
+```
+
+**示例 3:**
+
+```
+
+**输入: **s = &quot;pwwkew&quot;
+**输出: **3
+**解释: **因为无重复字符的最长子串是&#160;`&quot;wke&quot;`，所以其长度为 3。
+&#160;    请注意，你的答案必须是 **子串 **的长度，`&quot;pwke&quot;`&#160;是一个*子序列，*不是子串。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 4`
+	- `s`&#160;由英文字母、数字、符号和空格组成
+
+## 提示
+
+1. Since maximum string size is at most 26, generate and check all possible substrings with length at most 26.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>340. 至多包含 K 个不同字符的最长子串</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\340_至多包含 K 个不同字符的最长子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-substring-with-at-most-k-distinct-characters/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 340. 至多包含 K 个不同字符的最长子串
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-substring-with-at-most-k-distinct-characters/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        340. 至多包含 K 个不同字符的最长子串
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>347. 前 K 个高频元素</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\347_前 K 个高频元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/top-k-frequent-elements/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 347. 前 K 个高频元素
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 分治, 桶排序, 计数, 快速选择, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/top-k-frequent-elements/)
+
+## 题目描述
+
+给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。
+
+&#160;
+
+示例 1：
+
+输入：nums = [1,1,1,2,2,3], k = 2
+
+**输出：**[1,2]
+
+示例 2：
+
+输入：nums = [1], k = 1
+
+输出：[1]
+
+示例 3：
+
+输入：nums = [1,2,1,2,1,2,3,1,3,2], k = 2
+
+**输出：**[1,2]
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-104&#160;4`
+	- `k` 的取值范围是 `[1, 数组中不相同的元素的个数]`
+	- 题目数据保证答案唯一，换句话说，数组中前 `k` 个高频元素的集合是唯一的
+
+&#160;
+
+**进阶：**你所设计算法的时间复杂度 **必须** 优于 `O(n log n)` ，其中 `n`*&#160;*是数组大小。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>348. 设计井字棋</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\348_设计井字棋</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/design-tic-tac-toe/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 348. 设计井字棋
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/design-tic-tac-toe/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Could you trade extra space such that move() operation can be done in O(1)?
+2. You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        348. 设计井字棋
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>36. 有效的数独</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\036_有效的数独</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-sudoku/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 36. 有效的数独
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-sudoku/)
+
+## 题目描述
+
+请你判断一个&#160;`9 x 9` 的数独是否有效。只需要** 根据以下规则** ，验证已经填入的数字是否有效即可。
+
+	- 数字&#160;`1-9`&#160;在每一行只能出现一次。
+	- 数字&#160;`1-9`&#160;在每一列只能出现一次。
+	- 数字&#160;`1-9`&#160;在每一个以粗实线分隔的&#160;`3x3`&#160;宫内只能出现一次。（请参考示例图）
+
+&#160;
+
+**注意：**
+
+	- 一个有效的数独（部分已被填充）不一定是可解的。
+	- 只需要根据以上规则，验证已经填入的数字是否有效即可。
+	- 空白格用&#160;`&#39;.&#39;`&#160;表示。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = 
+[[&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]
+,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]
+,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]
+,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]
+,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = 
+[[&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]
+,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]
+,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]
+,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]
+,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]
+**输出：**false
+**解释：**除了第一行的第一个数字从** 5** 改为 **8 **以外，空格内其他数字均与 示例1 相同。 但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。
+```
+
+&#160;
+
+**提示：**
+
+	- `board.length == 9`
+	- `board[i].length == 9`
+	- `board[i][j]` 是一位数字（`1-9`）或者 `&#39;.&#39;`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -&gt; bool:
+
+        ans_dict_row = {}
+        ans_dict_col = {}
+        ans_dict_block = {}
+
+        for i in range(9):
+            ans_dict_row[i] = []
+            ans_dict_col[i] = []
+            ans_dict_block[i] = []
+
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == &quot;.&quot;:
+                    continue
+
+                k = i//3*3 + j//3
+                key = str(i) + str(j) + str(k)
+                
+                if (board[i][j] in ans_dict_row[i]) or (board[i][j] in ans_dict_col[j]) or (board[i][j] in ans_dict_block[k]):
+                    return False
+                else:
+                    ans_dict_row[i].append(board[i][j])
+                    ans_dict_col[j].append(board[i][j])
+                    ans_dict_block[k].append(board[i][j])
+
+                
+        return True
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>380. O(1) 时间插入、删除和获取随机元素</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\380_O(1) 时间插入、删除和获取随机元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/insert-delete-getrandom-o1/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 380. O(1) 时间插入、删除和获取随机元素
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 数学, 随机化
+
+**链接:** [LeetCode](https://leetcode.cn/problems/insert-delete-getrandom-o1/)
+
+## 题目描述
+
+实现`RandomizedSet` 类：
+
+	- `RandomizedSet()` 初始化 `RandomizedSet` 对象
+	- `bool insert(int val)` 当元素 `val` 不存在时，向集合中插入该项，并返回 `true` ；否则，返回 `false` 。
+	- `bool remove(int val)` 当元素 `val` 存在时，从集合中移除该项，并返回 `true` ；否则，返回 `false` 。
+	- `int getRandom()` 随机返回现有集合中的一项（测试用例保证调用此方法时集合中至少存在一个元素）。每个元素应该有 **相同的概率** 被返回。
+
+你必须实现类的所有函数，并满足每个函数的 **平均** 时间复杂度为 `O(1)` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;RandomizedSet&quot;, &quot;insert&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;]
+[[], [1], [2], [2], [], [1], [2], []]
+**输出**
+[null, true, false, true, 2, true, false, 2]
+
+**解释**
+RandomizedSet randomizedSet = new RandomizedSet();
+randomizedSet.insert(1); // 向集合中插入 1 。返回 true 表示 1 被成功地插入。
+randomizedSet.remove(2); // 返回 false ，表示集合中不存在 2 。
+randomizedSet.insert(2); // 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。
+randomizedSet.getRandom(); // getRandom 应随机返回 1 或 2 。
+randomizedSet.remove(1); // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。
+randomizedSet.insert(2); // 2 已在集合中，所以返回 false 。
+randomizedSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- 最多调用 `insert`、`remove` 和 `getRandom` 函数 `2 *&#160;``105` 次
+	- 在调用 `getRandom` 方法时，数据结构中 **至少存在一个** 元素。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, val: int) -&gt; bool:
+        
+
+    def remove(self, val: int) -&gt; bool:
+        
+
+    def getRandom(self) -&gt; int:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>395. 至少有 K 个重复字符的最长子串</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\395_至少有 K 个重复字符的最长子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 395. 至少有 K 个重复字符的最长子串
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 分治, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/)
+
+## 题目描述
+
+给你一个字符串 `s` 和一个整数 `k` ，请你找出 `s` 中的最长子串，&#160;要求该子串中的每一字符出现次数都不少于 `k` 。返回这一子串的长度。
+
+如果不存在这样的子字符串，则返回 0。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;aaabb&quot;, k = 3
+**输出：**3
+**解释：**最长子串为 &quot;aaa&quot; ，其中 &#39;a&#39; 重复了 3 次。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;ababbc&quot;, k = 2
+**输出：**5
+**解释：**最长子串为 &quot;ababb&quot; ，其中 &#39;a&#39; 重复了 2 次， &#39;b&#39; 重复了 3 次。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `s` 仅由小写英文字母组成
+	- `1 5`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestSubstring(self, s: str, k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>454. 四数相加 II</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\454_四数相加 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/4sum-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 454. 四数相加 II
+
+**难度:** 中等  
+**标签:** 数组, 哈希表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/4sum-ii/)
+
+## 题目描述
+
+给你四个整数数组 `nums1`、`nums2`、`nums3` 和 `nums4` ，数组长度都是 `n` ，请你计算有多少个元组 `(i, j, k, l)` 能满足：
+
+	- `0 
+	- `nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0`
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
+**输出：**2
+**解释：**
+两个元组如下：
+1. (0, 0, 0, 1) -&gt; nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
+2. (1, 1, 0, 0) -&gt; nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
+**输出：**1
+
+```
+
+&#160;
+
+&#160; **提示：**
+
+	- `n == nums1.length`
+	- `n == nums2.length`
+	- `n == nums3.length`
+	- `n == nums4.length`
+	- `1 
+	- `-228 28`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>49. 字母异位词分组</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\049_字母异位词分组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/group-anagrams/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 49. 字母异位词分组
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/group-anagrams/)
+
+## 题目描述
+
+给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+
+&#160;
+
+**示例 1:**
+
+**输入:** strs = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]
+
+**输出: **[[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]
+
+**解释：**
+
+	- 在 strs 中没有字符串可以通过重新排列来形成 `&quot;bat&quot;`。
+	- 字符串 `&quot;nat&quot;` 和 `&quot;tan&quot;` 是字母异位词，因为它们可以重新排列以形成彼此。
+	- 字符串 `&quot;ate&quot;`&#160;，`&quot;eat&quot;`&#160;和 `&quot;tea&quot;` 是字母异位词，因为它们可以重新排列以形成彼此。
+
+**示例 2:**
+
+**输入:** strs = [&quot;&quot;]
+
+**输出: **[[&quot;&quot;]]
+
+**示例 3:**
+
+**输入:** strs = [&quot;a&quot;]
+
+**输出: **[[&quot;a&quot;]]
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `0 
+	- `strs[i]`&#160;仅包含小写字母</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>73. 矩阵置零</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\073_矩阵置零</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/set-matrix-zeroes/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 73. 矩阵置零
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/set-matrix-zeroes/)
+
+## 题目描述
+
+给定一个&#160;`*m* x *n*` 的矩阵，如果一个元素为 **0 **，则将其所在行和列的所有元素都设为 **0** 。请使用 **原地** 算法**。**
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[1,1,1],[1,0,1],[1,1,1]]
+**输出：**[[1,0,1],[0,0,0],[1,0,1]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+**输出：**[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[0].length`
+	- `1 
+	- `-231 31 - 1`
+
+&#160;
+
+**进阶：**
+
+	- 一个直观的解决方案是使用 &#160;`O(*m**n*)`&#160;的额外空间，但这并不是一个好的解决方案。
+	- 一个简单的改进方案是使用 `O(*m*&#160;+&#160;*n*)` 的额外空间，但这仍然不是最好的解决方案。
+	- 你能想出一个仅使用常量空间的解决方案吗？
+
+## 提示
+
+1. If any cell of the matrix has a zero we can record its row and column number using additional memory. But if you don&#39;t want to use extra memory then you can manipulate the array instead. i.e. simulating exactly what the question says.
+2. Setting cell values to zero on the fly while iterating might lead to discrepancies. What if you use some other integer value as your marker? There is still a better approach for this problem with O(1) space.
+3. We could have used 2 sets to keep a record of rows/columns which need to be set to zero. But for an O(1) space solution, you can use one of the rows and and one of the columns to keep track of this information.
+4. We can use the first cell of every row and column as a flag. This flag would determine whether a row or column has been set to zero.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify matrix in-place instead.
+        &quot;&quot;&quot;
+        
+        first_row_zero, first_col_zero = False, False
+        m, n = len(matrix), len(matrix[0])
+
+        # 先检查第一行和第一列是否包含零元素，分别设置 first_row_zero, first_col_zero
+        for i in range(m):
+            if matrix[i][0] == 0:
+                first_col_zero = True
+                break
+        
+        for j in range(n):
+            if matrix[0][j] == 0:
+                first_row_zero = True
+                break
+        
+        # 开始遍历其他行其他列是否存在零元素，如果 matrix[i][j] == 0, 则 matrix[i][0]和matrix[0][j]都设置为0，
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][j] == 0:
+                    matrix[0][j] = 0
+                    matrix[i][0] = 0
+        # 遍历完成后，再根据首行和首列的元素值，将某些行或者列元素置0，
+        for i in range(1, m):
+            if matrix[i][0] == 0:
+                for j in range(1, n):
+                    matrix[i][j] = 0
+        for j in range(1, n):
+            if matrix[0][j] == 0:
+                for i in range(1, m):
+                    matrix[i][j] = 0
+        
+        # 最后再根据第一步的 first_row_zero, first_col_zero 选择是否要将首行首列置0
+        if first_col_zero:
+            for i in range(m):
+                matrix[i][0] = 0
+        if first_row_zero:
+            for j in range(n):
+                matrix[0][j] = 0
+        
+        return matrix
+        
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,896 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双指针 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>双指针 - 中等</h1>
+    <p class="summary">共 11 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>11. 盛最多水的容器</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\011_盛最多水的容器</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/container-with-most-water/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 11. 盛最多水的容器
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/container-with-most-water/)
+
+## 题目描述
+
+给定一个长度为 `n` 的整数数组&#160;`height`&#160;。有&#160;`n`&#160;条垂线，第 `i` 条线的两个端点是&#160;`(i, 0)`&#160;和&#160;`(i, height[i])`&#160;。
+
+找出其中的两条线，使得它们与&#160;`x`&#160;轴共同构成的容器可以容纳最多的水。
+
+返回容器可以储存的最大水量。
+
+**说明：**你不能倾斜容器。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**[1,8,6,2,5,4,8,3,7]
+**输出：**49 
+**解释：**图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为&#160;49。
+```
+
+**示例 2：**
+
+```
+
+**输入：**height = [1,1]
+**输出：**1
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == height.length`
+	- `2 5`
+	- `0 4`
+
+## 提示
+
+1. If you simulate the problem, it will be O(n^2) which is not efficient.
+2. Try to use two-pointers. Set one pointer to the left and one to the right of the array. Always move the pointer that points to the lower line.
+3. How can you calculate the amount of water at each step?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def maxArea(self, height: List[int]) -&gt; int:
+        # 核心思路是双指针，每次只移动较短的那个指针，因为移动高的指针，面积不会变大（容器高度取决于短板）
+        N = len(height)
+        left, right = 0, N-1
+        max_area = 0
+        while left &lt; right:
+            max_area = max(min(height[right], height[left])*(right-left), max_area)
+            if height[left] &lt; height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_area
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>148. 排序链表</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\148_排序链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sort-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 148. 排序链表
+
+**难度:** 中等  
+**标签:** 链表, 双指针, 分治, 排序, 归并排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sort-list/)
+
+## 题目描述
+
+给你链表的头结点&#160;`head`&#160;，请将其按 **升序** 排列并返回 **排序后的链表** 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+输入：head = [4,2,1,3]
+输出：[1,2,3,4]
+
+```
+
+**示例 2：**
+
+```
+
+输入：head = [-1,5,3,4,0]
+输出：[-1,0,3,4,5]
+
+```
+
+**示例 3：**
+
+```
+
+输入：head = []
+输出：[]
+
+```
+
+&#160;
+
+提示：
+
+	- 链表中节点的数目在范围&#160;`[0, 5 * 104]`&#160;内
+	- `-105&#160;5`
+
+&#160;
+
+进阶：你可以在&#160;`O(n&#160;log&#160;n)` 时间复杂度和常数级空间复杂度下，对链表进行排序吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>15. 三数之和</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\015_三数之和</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/3sum/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 15. 三数之和
+
+**难度:** 中等
+**标签:** 数组, 双指针, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/3sum/)
+
+## 题目描述
+
+给你一个整数数组 `nums` ，判断是否存在三元组 `[nums[i], nums[j], nums[k]]` 满足 `i != j`、`i != k` 且 `j != k` ，同时还满足 `nums[i] + nums[j] + nums[k] == 0` 。请你返回所有和为 `0` 且不重复的三元组。
+
+**注意：**答案中不可以包含重复的三元组。
+
+&#160;
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [-1,0,1,2,-1,-4]
+**输出：**[[-1,-1,2],[-1,0,1]]
+**解释：**
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+注意，输出的顺序和三元组的顺序并不重要。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [0,1,1]
+**输出：**[]
+**解释：**唯一可能的三元组和不为 0 。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**nums = [0,0,0]
+**输出：**[[0,0,0]]
+**解释：**唯一可能的三元组和为 0 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `3 
+	- `-105 5`
+
+## 提示
+
+1. So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!
+2. For the two-sum problem, if we fix one of the numbers, say x, we have to scan the entire array to find the next number y, which is value - x where value is the input parameter. Can we change our array somehow so that this search becomes faster?
+3. The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def threeSum(self, nums: list[int]) -&gt; list[list[int]]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>189. 轮转数组</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\189_轮转数组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/rotate-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 189. 轮转数组
+
+**难度:** 中等  
+**标签:** 数组, 数学, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/rotate-array/)
+
+## 题目描述
+
+给定一个整数数组 `nums`，将数组中的元素向右轮转 `k`*&#160;*个位置，其中&#160;`k`*&#160;*是非负数。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** nums = [1,2,3,4,5,6,7], k = 3
+**输出:** `[5,6,7,1,2,3,4]`
+**解释:**
+向右轮转 1 步: `[7,1,2,3,4,5,6]`
+向右轮转 2 步: [6,7,1,2,3,4,5]
+向右轮转 3 步: `[5,6,7,1,2,3,4]`
+
+```
+
+**示例&#160;2:**
+
+```
+
+**输入：**nums = [-1,-100,3,99], k = 2
+**输出：**[3,99,-1,-100]
+**解释:** 
+向右轮转 1 步: [99,-1,-100,3]
+向右轮转 2 步: [3,99,-1,-100]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-231 31 - 1`
+	- `0 5`
+
+&#160;
+
+**进阶：**
+
+	- 尽可能想出更多的解决方案，至少有 **三种** 不同的方法可以解决这个问题。
+	- 你可以使用空间复杂度为&#160;`O(1)` 的&#160;**原地&#160;**算法解决这个问题吗？
+
+## 提示
+
+1. The easiest solution would use additional memory and that is perfectly fine.
+2. The actual trick comes when trying to solve this problem without using any additional memory. This means you need to use the original array somehow to move the elements around. Now, we can place each element in its original location and shift all the elements around it to adjust as that would be too costly and most likely will time out on larger input arrays.
+3. One line of thought is based on reversing the array (or parts of it) to obtain the desired result. Think about how reversal might potentially help us out by using an example.
+4. The other line of thought is a tad bit complicated but essentially it builds on the idea of placing each element in its original position while keeping track of the element originally in that position. Basically, at every step, we place an element in its rightful position and keep track of the element already there or the one being overwritten in an additional variable. We can&#39;t do this in one linear pass and the idea here is based on cyclic-dependencies between elements.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>19. 删除链表的倒数第 N 个结点</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\019_删除链表的倒数第 N 个结点</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 19. 删除链表的倒数第 N 个结点
+
+**难度:** 中等  
+**标签:** 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+
+## 题目描述
+
+给你一个链表，删除链表的倒数第&#160;`n`*&#160;*个结点，并且返回链表的头结点。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**head = [1,2,3,4,5], n = 2
+**输出：**[1,2,3,5]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**head = [1], n = 1
+**输出：**[]
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**head = [1,2], n = 1
+**输出：**[1]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 链表中结点的数目为 `sz`
+	- `1 
+	- `0 
+	- `1 
+
+&#160;
+
+**进阶：**你能尝试使用一趟扫描实现吗？
+
+## 提示
+
+1. Maintain two pointers and update one with a delay of n steps.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>251. 展开二维向量</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\251_展开二维向量</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/flatten-2d-vector/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 251. 展开二维向量
+
+**难度:** 中等  
+**标签:** 设计, 数组, 双指针, 迭代器
+
+**链接:** [LeetCode](https://leetcode.cn/problems/flatten-2d-vector/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. How many variables do you need to keep track?
+2. Two variables is all you need. Try with x and y.
+3. Beware of empty rows. It could be the first few rows.
+4. To write correct code, think about the invariant to maintain. What is it?
+5. The invariant is x and y must always point to a valid point in the 2d vector. Should you maintain your invariant ahead of time or right when you need it?
+6. Not sure? Think about how you would implement hasNext(). Which is more complex?
+7. Common logic in two different places should be refactored into a common method.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        251. 展开二维向量
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>253. 会议室 II</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\253_会议室 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/meeting-rooms-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 253. 会议室 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针, 前缀和, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/meeting-rooms-ii/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Think about how we would approach this problem in a very simplistic way. We will allocate rooms to meetings that occur earlier in the day v/s the ones that occur later on, right?
+2. If you&#39;ve figured out that we have to sort the meetings by their start time, the next thing to think about is how do we do the allocation? There are two scenarios possible here for any meeting. Either there is no meeting room available and a new one has to be allocated, or a meeting room has freed up and this meeting can take place there.
+3. An important thing to note is that we don&#39;t really care which room gets freed up while allocating a room for the current meeting. As long as a room is free, our job is done. We already know the rooms we have allocated till now and we also know when are they due to get free because of the end times of the meetings going on in those rooms. We can simply check the room which is due to get vacated the earliest amongst all the allocated rooms.
+4. Following up on the previous hint, we can make use of a min-heap to store the end times of the meetings in various rooms. So, every time we want to check if any room is free or not, simply check the topmost element of the min heap as that would be the room that would get free the earliest out of all the other rooms currently occupied. If the room we extracted from the top of the min heap isn&#39;t free, then no other room is. So, we can save time here and simply allocate a new room.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        253. 会议室 II
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>277. 搜寻名人</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\277_搜寻名人</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-the-celebrity/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 277. 搜寻名人
+
+**难度:** 中等  
+**标签:** 图, 双指针, 交互
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-the-celebrity/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. The best hint for this problem can be provided by the following figure:
+2. Well, if you understood the gist of the above idea, you can extend it to find a candidate that can possibly be a celebrity. Why do we say a &quot;candidate&quot;? That is for you to think. This is clearly a greedy approach to find the answer. However, there is some information that would still remain to be verified without which we can&#39;t obtain an answer with certainty. To get that stake in the ground, we would need some more calls to the knows API.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        277. 搜寻名人
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>287. 寻找重复数</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\287_寻找重复数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-the-duplicate-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 287. 寻找重复数
+
+**难度:** 中等  
+**标签:** 位运算, 数组, 双指针, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-the-duplicate-number/)
+
+## 题目描述
+
+给定一个包含&#160;`n + 1` 个整数的数组&#160;`nums` ，其数字都在&#160;`[1, n]`&#160;范围内（包括 `1` 和 `n`），可知至少存在一个重复的整数。
+
+假设 `nums` 只有 **一个重复的整数** ，返回&#160;**这个重复的数** 。
+
+你设计的解决方案必须 **不修改** 数组 `nums` 且只用常量级 `O(1)` 的额外空间。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [1,3,4,2,2]
+**输出：**2
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [3,1,3,4,2]
+**输出：**3
+
+```
+
+**示例 3 :**
+
+```
+
+**输入：**nums = [3,3,3,3,3]
+**输出：**3
+
+```
+
+&#160;
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `nums.length == n + 1`
+	- `1 
+	- `nums` 中 **只有一个整数** 出现 **两次或多次** ，其余整数均只出现 **一次**
+
+&#160;
+
+进阶：
+
+	- 如何证明 `nums` 中至少存在一个重复的数字?
+	- 你可以设计一个线性级时间复杂度 `O(n)` 的解决方案吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>5. 最长回文子串</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\005_最长回文子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-palindromic-substring/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 5. 最长回文子串
+
+**难度:** 中等  
+**标签:** 双指针, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-palindromic-substring/)
+
+## 题目描述
+
+给你一个字符串 `s`，找到 `s` 中最长的 回文 子串。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;babad&quot;
+**输出：**&quot;bab&quot;
+**解释：**&quot;aba&quot; 同样是符合题意的答案。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;cbbd&quot;
+**输出：**&quot;bb&quot;
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 仅由数字和英文字母组成
+
+## 提示
+
+1. How can we reuse a previously computed palindrome to compute a larger palindrome?
+2. If “aba” is a palindrome, is “xabax” a palindrome? Similarly is “xabay” a palindrome?
+3. Complexity based hint: If we use brute-force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestPalindrome(self, s: str) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>75. 颜色分类</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：中等</span>
+        <span>目录：edium\075_颜色分类</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sort-colors/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 75. 颜色分类
+
+**难度:** 中等  
+**标签:** 数组, 双指针, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sort-colors/)
+
+## 题目描述
+
+给定一个包含红色、白色和蓝色、共&#160;`n`* *个元素的数组&#160;`nums`&#160;，**原地&#160;**对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
+
+我们使用整数 `0`、&#160;`1` 和 `2` 分别表示红色、白色和蓝色。
+
+必须在不使用库内置的 sort 函数的情况下解决这个问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [2,0,2,1,1,0]
+**输出：**[0,0,1,1,2,2]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [2,0,1]
+**输出：**[0,1,2]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 
+	- `nums[i]` 为 `0`、`1` 或 `2`
+
+&#160;
+
+**进阶：**
+
+	- 你能想出一个仅使用常数空间的一趟扫描算法吗？
+
+## 提示
+
+1. A rather straight forward solution is a two-pass algorithm using counting sort.
+2. Iterate the array counting number of 0&#39;s, 1&#39;s, and 2&#39;s.
+3. Overwrite array with the total number of 0&#39;s, then 1&#39;s and followed by 2&#39;s.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def sortColors(self, nums: List[int]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # 利用三指针进行单次遍历，把 0 统统交换到左边，把 2 统统交换到右边，中间自然就留下了 1。
+        left, current = 0, 0
+        right = len(nums) - 1
+
+        while current &lt;= right:
+            if nums[current]==0:
+                nums[current], nums[left] = nums[left], nums[current]
+                left += 1
+                current += 1
+            elif nums[current] == 1:
+                current += 1
+            elif nums[current] == 2:
+                nums[current], nums[right] = nums[right], nums[current]
+                right -= 1
+        
+        return nums
+        
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数 - 简单</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>计数 - 简单</h1>
+    <p class="summary">共 2 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>169. 多数元素</h2>
+      <div class="meta">
+        <span>类型：计数</span>
+        <span>难度：简单</span>
+        <span>目录：asy\169_多数元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/majority-element/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 169. 多数元素
+
+**难度:** 简单  
+**标签:** 数组, 哈希表, 分治, 计数, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/majority-element/)
+
+## 题目描述
+
+给定一个大小为 `n`* *的数组&#160;`nums` ，返回其中的多数元素。多数元素是指在数组中出现次数 **大于**&#160;`⌊ n/2 ⌋`&#160;的元素。
+
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+&#160;
+
+**示例&#160;1：**
+
+```
+
+**输入：**nums = [3,2,3]
+**输出：**3
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**nums = [2,2,1,1,1,2,2]
+**输出：**2
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 4`
+	- `-109 9`
+	- 输入保证数组中一定有一个多数元素。
+
+&#160;
+
+**进阶：**尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>387. 字符串中的第一个唯一字符</h2>
+      <div class="meta">
+        <span>类型：计数</span>
+        <span>难度：简单</span>
+        <span>目录：asy\387_字符串中的第一个唯一字符</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/first-unique-character-in-a-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 387. 字符串中的第一个唯一字符
+
+**难度:** 简单  
+**标签:** 队列, 哈希表, 字符串, 计数
+
+**链接:** [LeetCode](https://leetcode.cn/problems/first-unique-character-in-a-string/)
+
+## 题目描述
+
+给定一个字符串&#160;`s`&#160;，找到 *它的第一个不重复的字符，并返回它的索引* 。如果不存在，则返回 `-1`&#160;。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;leetcode&quot;
+**输出:** 0
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** s = &quot;loveleetcode&quot;
+**输出:** 2
+
+```
+
+**示例 3:**
+
+```
+
+**输入:** s = &quot;aabb&quot;
+**输出:** -1
+
+```
+
+&#160;
+
+**提示:**
+
+	- `1 5`
+	- `s`&#160;只包含小写字母</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def firstUniqChar(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

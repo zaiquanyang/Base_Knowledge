@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>模拟 - 中等</h1>
+    <p class="summary">共 3 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>289. 生命游戏</h2>
+      <div class="meta">
+        <span>类型：模拟</span>
+        <span>难度：中等</span>
+        <span>目录：edium\289_生命游戏</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/game-of-life/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 289. 生命游戏
+
+**难度:** 中等  
+**标签:** 数组, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/game-of-life/)
+
+## 题目描述
+
+根据&#160;百度百科&#160;，&#160;**生命游戏**&#160;，简称为 **生命** ，是英国数学家约翰&#183;何顿&#183;康威在 1970 年发明的细胞自动机。
+
+给定一个包含 `m &#215; n`&#160;个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态： `1` 即为 **活细胞** （live），或 `0` 即为 **死细胞** （dead）。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：
+
+	- 如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡；
+	- 如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；
+	- 如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡；
+	- 如果死细胞周围正好有三个活细胞，则该位置死细胞复活；
+
+下一个状态是通过将上述规则同时应用于当前状态下的每个细胞所形成的，其中细胞的出生和死亡是 **同时** 发生的。给你 `m x n` 网格面板 `board` 的当前状态，返回下一个状态。
+
+给定当前&#160;`board`&#160;的状态，**更新**&#160;`board`&#160;到下一个状态。
+
+**注意** 你不需要返回任何东西。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+**输出：**[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[1,1],[1,0]]
+**输出：**[[1,1],[1,1]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n == board[i].length`
+	- `1 
+	- `board[i][j]` 为 `0` 或 `1`
+
+&#160;
+
+**进阶：**
+
+	- 你可以使用原地算法解决本题吗？请注意，面板上所有格子需要同时被更新：你不能先更新某些格子，然后使用它们的更新后的值再更新其他格子。
+	- 本题中，我们使用二维数组来表示面板。原则上，面板是无限的，但当活细胞侵占了面板边界时会造成问题。你将如何解决这些问题？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify board in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>348. 设计井字棋</h2>
+      <div class="meta">
+        <span>类型：模拟</span>
+        <span>难度：中等</span>
+        <span>目录：edium\348_设计井字棋</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/design-tic-tac-toe/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 348. 设计井字棋
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/design-tic-tac-toe/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Could you trade extra space such that move() operation can be done in O(1)?
+2. You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        348. 设计井字棋
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>54. 螺旋矩阵</h2>
+      <div class="meta">
+        <span>类型：模拟</span>
+        <span>难度：中等</span>
+        <span>目录：edium\054_螺旋矩阵</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/spiral-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 54. 螺旋矩阵
+
+**难度:** 中等  
+**标签:** 数组, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/spiral-matrix/)
+
+## 题目描述
+
+给你一个 `m` 行 `n` 列的矩阵&#160;`matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[1,2,3],[4,5,6],[7,8,9]]
+**输出：**[1,2,3,6,9,8,7,4,5]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+**输出：**[1,2,3,4,8,12,11,10,9,5,6,7]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-100
+
+## 提示
+
+1. Well for some problems, the best way really is to come up with some algorithms for simulation. Basically, you need to simulate what the problem asks us to do.
+2. We go boundary by boundary and move inwards. That is the essential operation. First row, last column, last row, first column, and then we move inwards by 1 and repeat. That&#39;s all. That is all the simulation that we need.
+3. Think about when you want to switch the progress on one of the indexes. If you progress on i out of [i, j], you&#39;ll shift in the same column. Similarly, by changing values for j, you&#39;d be shifting in the same row. Also, keep track of the end of a boundary so that you can move inwards and then keep repeating. It&#39;s always best to simulate edge cases like a single column or a single row to see if anything breaks or not.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -&gt; List[int]:
+        
+        left_bound, right_bound, upper_bound, bottom_bound = 0, len(matrix[0])-1, 0, len(matrix)-1
+        ans = []
+        m, n = 0, 0
+        ans.append(matrix[m][n])
+        while upper_bound&lt;=bottom_bound and left_bound&lt;=right_bound:
+            # 往右走 
+            while n &lt; right_bound:
+                n += 1
+                ans.append(matrix[m][n])
+            upper_bound += 1
+            if upper_bound &gt; bottom_bound:
+                break
+            # print(&quot;往右走&quot;, ans) # 
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            # 往下走
+            while m&lt;bottom_bound:
+                m += 1
+                ans.append(matrix[m][n])
+            right_bound -= 1
+            if left_bound &gt; right_bound:
+                break
+            # print(&quot;往下走&quot;, ans)
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            # 往左走
+            while n &gt; left_bound:
+                n -= 1
+                ans.append(matrix[m][n])
+            bottom_bound -= 1
+            if upper_bound&gt;bottom_bound:
+                break
+            # print(&quot;往左走&quot;, ans)
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            # 往上走
+            while m &gt; upper_bound:
+                m -= 1
+                ans.append(matrix[m][n])
+            left_bound += 1
+            # print(&quot;往上走&quot;, ans)
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            if left_bound&gt;right_bound:
+                break
+        return ans
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

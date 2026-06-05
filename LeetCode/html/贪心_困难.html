@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贪心 - 困难</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>贪心 - 困难</h1>
+    <p class="summary">共 1 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>44. 通配符匹配</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：困难</span>
+        <span>目录：ard\044_通配符匹配</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/wildcard-matching/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 44. 通配符匹配
+
+**难度:** 困难  
+**标签:** 贪心, 递归, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/wildcard-matching/)
+
+## 题目描述
+
+给你一个输入字符串 (`s`) 和一个字符模式 (`p`) ，请你实现一个支持 `&#39;?&#39;` 和 `&#39;*&#39;` 匹配规则的通配符匹配：
+
+	`&#39;?&#39;` 可以匹配任何单个字符。
+	`&#39;*&#39;` 可以匹配任意字符序列（包括空字符序列）。
+
+判定匹配成功的充要条件是：字符模式必须能够 **完全匹配** 输入字符串（而不是部分匹配）。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**s = &quot;aa&quot;, p = &quot;a&quot;
+**输出：**false
+**解释：**&quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。
+
+```
+
+示例 2：
+
+```
+
+**输入：**s = &quot;aa&quot;, p = &quot;*&quot;
+**输出：**true
+**解释：**&#39;*&#39; 可以匹配任意字符串。
+
+```
+
+示例 3：
+
+```
+
+**输入：**s = &quot;cb&quot;, p = &quot;?a&quot;
+**输出：**false
+**解释：**&#39;?&#39; 可以匹配 &#39;c&#39;, 但第二个 &#39;a&#39; 无法匹配 &#39;b&#39;。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 
+	- `s` 仅由小写英文字母组成
+	- `p` 仅由小写英文字母、`&#39;?&#39;` 或 `&#39;*&#39;` 组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isMatch(self, s: str, p: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

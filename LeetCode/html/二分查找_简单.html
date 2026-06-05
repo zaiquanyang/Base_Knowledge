@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二分查找 - 简单</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>二分查找 - 简单</h1>
+    <p class="summary">共 3 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>268. 丢失的数字</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：简单</span>
+        <span>目录：asy\268_丢失的数字</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/missing-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 268. 丢失的数字
+
+**难度:** 简单  
+**标签:** 位运算, 数组, 哈希表, 数学, 二分查找, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/missing-number/)
+
+## 题目描述
+
+给定一个包含 `[0, n]`&#160;中&#160;`n`&#160;个数的数组 `nums` ，找出 `[0, n]` 这个范围内没有出现在数组中的那个数。
+
+&#160;
+
+**示例 1：**
+
+**输入：**nums = [3,0,1]
+
+**输出：**2
+
+解释：`n = 3`，因为有 3 个数字，所以所有的数字都在范围 `[0,3]` 内。2 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**示例 2：**
+
+**输入：**nums = [0,1]
+
+**输出：**2
+
+解释：`n = 2`，因为有 2 个数字，所以所有的数字都在范围 `[0,2]` 内。2 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**示例 3：**
+
+**输入：**nums = [9,6,4,2,3,5,7,0,1]
+
+**输出：**8
+
+解释：`n = 9`，因为有 9 个数字，所以所有的数字都在范围 `[0,9]` 内。8 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 4`
+	- `0 
+	- `nums` 中的所有数字都 **独一无二**
+
+&#160;
+
+**进阶：**你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>350. 两个数组的交集 II</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：简单</span>
+        <span>目录：asy\350_两个数组的交集 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/intersection-of-two-arrays-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 350. 两个数组的交集 II
+
+**难度:** 简单  
+**标签:** 数组, 哈希表, 双指针, 二分查找, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/intersection-of-two-arrays-ii/)
+
+## 题目描述
+
+给你两个整数数组&#160;`nums1` 和 `nums2` ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums1 = [1,2,2,1], nums2 = [2,2]
+**输出：**[2,2]
+
+```
+
+**示例 2:**
+
+```
+
+**输入：**nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+**输出：**[4,9]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+
+&#160;
+
+**进阶**：
+
+	- 如果给定的数组已经排好序呢？你将如何优化你的算法？
+	- 如果&#160;`nums1`*&#160;*的大小比&#160;`nums2` 小，哪种方法更优？
+	- 如果&#160;`nums2`*&#160;*的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>69. x 的平方根</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：简单</span>
+        <span>目录：asy\069_x 的平方根</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sqrtx/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 69. x 的平方根 
+
+**难度:** 简单  
+**标签:** 数学, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sqrtx/)
+
+## 题目描述
+
+给你一个非负整数 `x` ，计算并返回&#160;`x`&#160;的 **算术平方根** 。
+
+由于返回类型是整数，结果只保留 **整数部分 **，小数部分将被 **舍去 。**
+
+**注意：**不允许使用任何内置指数函数和算符，例如 `pow(x, 0.5)` 或者 `x ** 0.5` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**x = 4
+**输出：**2
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**x = 8
+**输出：**2
+**解释：**8 的算术平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 31 - 1`
+
+## 提示
+
+1. Try exploring all integers. (Credits: @annujoshi)
+2. Use the sorted property of integers to reduced the search space. (Credits: @annujoshi)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def mySqrt(self, x: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

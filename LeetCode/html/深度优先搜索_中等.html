@@ -1,0 +1,997 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深度优先搜索 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>深度优先搜索 - 中等</h1>
+    <p class="summary">共 11 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>116. 填充每个节点的下一个右侧节点指针</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\116_填充每个节点的下一个右侧节点指针</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 116. 填充每个节点的下一个右侧节点指针
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 广度优先搜索, 链表, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/)
+
+## 题目描述
+
+给定一个&#160;**完美二叉树&#160;**，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+
+```
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+```
+
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL`。
+
+初始状态下，所有&#160;next 指针都被设置为 `NULL`。
+
+&#160;
+
+**示例 1：**
+
+```
+
+输入：root = [1,2,3,4,5,6,7]
+输出：[1,#,2,3,#,4,5,6,7,#]
+解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，&#39;#&#39; 标志着每一层的结束。
+
+```
+
+**示例 2:**
+
+```
+
+输入：root = []
+输出：[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 树中节点的数量在&#160;`[0, 212&#160;- 1]`&#160;范围内
+	- `-1000 
+
+&#160;
+
+**进阶：**
+
+	- 你只能使用常量级额外空间。
+	- 使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, val: int = 0, left: &#39;Node&#39; = None, right: &#39;Node&#39; = None, next: &#39;Node&#39; = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>130. 被围绕的区域</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\130_被围绕的区域</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/surrounded-regions/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 130. 被围绕的区域
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 广度优先搜索, 并查集, 数组, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/surrounded-regions/)
+
+## 题目描述
+
+给你一个 `m x n` 的矩阵 `board` ，由若干字符 `&#39;X&#39;` 和 `&#39;O&#39;`&#160;组成，**捕获** 所有 **被围绕的区域**：
+
+	- **连接：**一个单元格与水平或垂直方向上相邻的单元格连接。
+	- **区域：连接所有&#160;**`&#39;O&#39;`&#160;的单元格来形成一个区域。
+	- **围绕：**如果一个区域中的所有 `&#39;O&#39;` 单元格都不在棋盘的边缘，则该区域被包围。这样的区域 **完全** 被 `&#39;X&#39;` 单元格包围。
+
+通过 **原地**&#160;将输入矩阵中的所有 `&#39;O&#39;`&#160;替换为 `&#39;X&#39;` 来 **捕获被围绕的区域**。你不需要返回任何值。
+
+&#160;
+
+示例 1：
+
+**输入：**board = [[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;O&#39;,&#39;O&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;X&#39;,&#39;O&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;O&#39;,&#39;X&#39;,&#39;X&#39;]]
+
+输出：[[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;O&#39;,&#39;X&#39;,&#39;X&#39;]]
+
+**解释：**
+
+在上图中，底部的区域没有被捕获，因为它在 board 的边缘并且不能被围绕。
+
+示例 2：
+
+**输入：**board = [[&#39;X&#39;]]
+
+**输出：**[[&#39;X&#39;]]
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n == board[i].length`
+	- `1 
+	- `board[i][j]` 为 `&#39;X&#39;` 或 `&#39;O&#39;`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self, board: List[List[str]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify board in-place instead.
+        &quot;&quot;&quot;
+        if not board:
+            return 
+        
+        m, n = len(board), len(board[0])
+
+        def dfs(s, k):
+            if s&lt;0 or s&gt;=m or k&lt;0 or k&gt;=n or board[s][k] != &#39;O&#39;:
+                return
+            board[s][k] = &#39;#&#39;
+
+            dfs(s+1, k)
+            dfs(s-1, k)
+            dfs(s, k+1)
+            dfs(s, k-1)
+        # 从左右两边的边界开始dfs
+        for s in range(m):
+            dfs(s, 0)
+            dfs(s, n-1)
+
+        # 从上下两行的边界开始dfs
+        for k in range(n):
+            dfs(0, k)
+            dfs(m-1, k)
+
+        for s in range(m):
+            for k in range(n):
+                if board[s][k] == &#39;O&#39;:
+                    board[s][k] = &#39;X&#39;
+                elif board[s][k] == &#39;#&#39;:
+                    board[s][k]=&#39;O&#39;
+
+        return board
+
+
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>200. 岛屿数量</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\200_岛屿数量</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/number-of-islands/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 200. 岛屿数量
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 广度优先搜索, 并查集, 数组, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/number-of-islands/)
+
+## 题目描述
+
+给你一个由&#160;`&#39;1&#39;`（陆地）和 `&#39;0&#39;`（水）组成的的二维网格，请你计算网格中岛屿的数量。
+
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+
+此外，你可以假设该网格的四条边均被水包围。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**grid = [
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;1&#39;,&#39;1&#39;,&#39;0&#39;],
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;1&#39;,&#39;0&#39;],
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;0&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;]
+]
+**输出：**1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**grid = [
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;0&#39;,&#39;0&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;0&#39;,&#39;0&#39;,&#39;0&#39;,&#39;1&#39;,&#39;1&#39;]
+]
+**输出：**3
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == grid.length`
+	- `n == grid[i].length`
+	- `1 
+	- `grid[i][j]` 的值为 `&#39;0&#39;` 或 `&#39;1&#39;`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>207. 课程表</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\207_课程表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/course-schedule/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 207. 课程表
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 广度优先搜索, 图, 拓扑排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/course-schedule/)
+
+## 题目描述
+
+你这个学期必须选修 `numCourses` 门课程，记为&#160;`0`&#160;到&#160;`numCourses - 1` 。
+
+在选修某些课程之前需要一些先修课程。 先修课程按数组&#160;`prerequisites` 给出，其中&#160;`prerequisites[i] = [ai, bi]` ，表示如果要学习课程&#160;`ai` 则 **必须** 先学习课程&#160; `bi` 。
+
+	- 例如，先修课程对&#160;`[0, 1]` 表示：想要学习课程 `0` ，你需要先完成课程 `1` 。
+
+请你判断是否可能完成所有课程的学习？如果可以，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**numCourses = 2, prerequisites = [[1,0]]
+**输出：**true
+**解释：**总共有 2 门课程。学习课程 1 之前，你需要完成课程 0 。这是可能的。
+```
+
+**示例 2：**
+
+```
+
+**输入：**numCourses = 2, prerequisites = [[1,0],[0,1]]
+**输出：**false
+**解释：**总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0 ；并且学习课程 0 之前，你还应先完成课程 1 。这是不可能的。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `prerequisites[i].length == 2`
+	- `0 i, bi 
+	- `prerequisites[i]` 中的所有课程对 **互不相同**
+
+## 提示
+
+1. This problem is equivalent to finding if a cycle exists in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.
+2. Topological Sort via DFS - A great tutorial explaining the basic concepts of Topological Sort.
+3. Topological sort could also be done via BFS.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>210. 课程表 II</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\210_课程表 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/course-schedule-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 210. 课程表 II
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 广度优先搜索, 图, 拓扑排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/course-schedule-ii/)
+
+## 题目描述
+
+现在你总共有 `numCourses` 门课需要选，记为&#160;`0`&#160;到&#160;`numCourses - 1`。给你一个数组&#160;`prerequisites` ，其中 `prerequisites[i] = [ai, bi]` ，表示在选修课程 `ai` 前 **必须** 先选修&#160;`bi` 。
+
+	- 例如，想要学习课程 `0` ，你需要先完成课程&#160;`1` ，我们用一个匹配来表示：`[0,1]` 。
+
+返回你为了学完所有课程所安排的学习顺序。可能会有多个正确的顺序，你只要返回 **任意一种** 就可以了。如果不可能完成所有课程，返回 **一个空数组** 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**numCourses = 2, prerequisites = [[1,0]]
+**输出：**[0,1]
+**解释：**总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 `[0,1] 。`
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+**输出：**[0,2,1,3]
+**解释：**总共有 4 门课程。要学习课程 3，你应该先完成课程 1 和课程 2。并且课程 1 和课程 2 都应该排在课程 0 之后。
+因此，一个正确的课程顺序是&#160;`[0,1,2,3]` 。另一个正确的排序是&#160;`[0,2,1,3]` 。
+```
+
+**示例 3：**
+
+```
+
+**输入：**numCourses = 1, prerequisites = []
+**输出：**[0]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `prerequisites[i].length == 2`
+	- `0 i, bi 
+	- `ai != bi`
+	- 所有`[ai, bi]` **互不相同**
+
+## 提示
+
+1. This problem is equivalent to finding the topological order in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.
+2. Topological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.
+3. Topological sort could also be done via BFS.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>230. 二叉搜索树中第 K 小的元素</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\230_二叉搜索树中第 K 小的元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 230. 二叉搜索树中第 K 小的元素
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉搜索树, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
+
+## 题目描述
+
+给定一个二叉搜索树的根节点 `root` ，和一个整数 `k` ，请你设计一个算法查找其中第&#160;`k`**&#160;**小的元素（`k` 从 1 开始计数）。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**root = [3,1,4,null,2], k = 1
+**输出：**1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**root = [5,3,6,2,4,null,null,1], k = 3
+**输出：**3
+
+```
+
+&#160;
+
+&#160;
+
+**提示：**
+
+	- 树中的节点数为 `n` 。
+	- `1 4`
+	- `0 4`
+
+&#160;
+
+**进阶：**如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 `k` 小的值，你将如何优化算法？
+
+## 提示
+
+1. Try to utilize the property of a BST.
+2. Try in-order traversal. (Credits to @chan13)
+3. What if you could modify the BST node&#39;s structure?
+4. The optimal runtime complexity is O(height of BST).</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, left=None, right=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>236. 二叉树的最近公共祖先</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\236_二叉树的最近公共祖先</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 236. 二叉树的最近公共祖先
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+## 题目描述
+
+给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+
+百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（**一个节点也可以是它自己的祖先**）。”
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+**输出：**3
+**解释：**节点 `5 `和节点 `1 `的最近公共祖先是节点 `3 。`
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+**输出：**5
+**解释：**节点 `5 `和节点 `4 `的最近公共祖先是节点 `5 。`因为根据定义最近公共祖先节点可以为节点本身。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**root = [1,2], p = 1, q = 2
+**输出：**1
+
+```
+
+&#160;
+
+**提示：**
+
+	- 树中节点数目在范围 `[2, 105]` 内。
+	- `-109 9`
+	- 所有 `Node.val` `互不相同` 。
+	- `p != q`
+	- `p` 和 `q` 均存在于给定的二叉树中。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>285. 二叉搜索树中的中序后继</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\285_二叉搜索树中的中序后继</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/inorder-successor-in-bst/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 285. 二叉搜索树中的中序后继
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉搜索树, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/inorder-successor-in-bst/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        285. 二叉搜索树中的中序后继
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>341. 扁平化嵌套列表迭代器</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\341_扁平化嵌套列表迭代器</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/flatten-nested-list-iterator/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 341. 扁平化嵌套列表迭代器
+
+**难度:** 中等  
+**标签:** 栈, 树, 深度优先搜索, 设计, 队列, 迭代器
+
+**链接:** [LeetCode](https://leetcode.cn/problems/flatten-nested-list-iterator/)
+
+## 题目描述
+
+给你一个嵌套的整数列表 `nestedList` 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。
+
+实现扁平迭代器类 `NestedIterator` ：
+
+	- `NestedIterator(List nestedList)` 用嵌套列表 `nestedList` 初始化迭代器。
+	- `int next()` 返回嵌套列表的下一个整数。
+	- `boolean hasNext()` 如果仍然存在待迭代的整数，返回 `true` ；否则，返回 `false` 。
+
+你的代码将会用下述伪代码检测：
+
+```
+
+initialize iterator with nestedList
+res = []
+while iterator.hasNext()
+    append iterator.next() to the end of res
+return res
+```
+
+如果 `res` 与预期的扁平化列表匹配，那么你的代码将会被判为正确。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nestedList = [[1,1],2,[1,1]]
+**输出：**[1,1,2,1,1]
+**解释：**通过重复调用&#160;*next *直到&#160;*hasNex*t 返回 false，*next&#160;*返回的元素的顺序应该是: `[1,1,2,1,1]`。
+```
+
+**示例 2：**
+
+```
+
+**输入：**nestedList = [1,[4,[6]]]
+**输出：**[1,4,6]
+**解释：**通过重复调用&#160;*next&#160;*直到&#160;*hasNex*t 返回 false，*next&#160;*返回的元素的顺序应该是: `[1,4,6]`。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- 嵌套列表中的整数值在范围 `[-106, 106]` 内</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#    def isInteger(self) -&gt; bool:
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>79. 单词搜索</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\079_单词搜索</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-search/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 79. 单词搜索
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 数组, 字符串, 回溯, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-search/)
+
+## 题目描述
+
+给定一个&#160;`m x n` 二维字符网格&#160;`board` 和一个字符串单词&#160;`word` 。如果&#160;`word` 存在于网格中，返回 `true` ；否则，返回 `false` 。
+
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;ABCCED&quot;
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;SEE&quot;
+**输出：**true
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;ABCB&quot;
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n = board[i].length`
+	- `1 
+	- `1 
+	- `board` 和 `word` 仅由大小写英文字母组成
+
+&#160;
+
+**进阶：**你可以使用搜索剪枝的技术来优化解决方案，使其在 `board` 更大的情况下可以更快解决问题？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -&gt; bool:
+        
+        m, n = len(board), len(board[0])
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        def back_track(s, k, path_len):
+            # 如果找到符合 word 内容的路径，返回 True
+            if path_len == len(word):
+                return True
+            # 把已经添加到 path 的board[s][k]暂时置为 #， 避免
+            tmp = board[s][k]
+            board[s][k] = &#39;#&#39;
+
+            for sk in directions:
+                s_, k_ = s+sk[0], k+sk[1]
+                if 0&lt;=s_&lt;m and 0&lt;=k_&lt;n and board[s_][k_] == word[path_len]:
+                    if back_track(s_, k_, path_len+1):
+                        return True
+            # 四个方向的遍历结果都没合适的
+            board[s][k] = tmp
+
+            return False
+
+        # 遍历整个 board, 查找第一个开头字符匹配字符串的位置开始回溯
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    if back_track(i, j, 1):
+                        return True
+        
+        return False
+
+
+
+        
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>98. 验证二叉搜索树</h2>
+      <div class="meta">
+        <span>类型：深度优先搜索</span>
+        <span>难度：中等</span>
+        <span>目录：edium\098_验证二叉搜索树</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/validate-binary-search-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 98. 验证二叉搜索树
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉搜索树, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/validate-binary-search-tree/)
+
+## 题目描述
+
+给你一个二叉树的根节点 `root` ，判断其是否是一个有效的二叉搜索树。
+
+**有效** 二叉搜索树定义如下：
+
+	- 节点的左子树只包含**&#160;严格小于 **当前节点的数。
+	- 节点的右子树只包含 **严格大于** 当前节点的数。
+	- 所有左子树和右子树自身必须也是二叉搜索树。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**root = [2,1,3]
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**root = [5,1,4,null,null,3,6]
+**输出：**false
+**解释：**根节点的值是 5 ，但是右子节点的值是 4 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- 树中节点数目范围在`[1, 104]` 内
+	- `-231 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -&gt; bool:
+        
+        def dfs(node, left, right):
+            if node is None:
+                return True
+            
+            if not (left&lt; node.val&lt; right):
+                return False
+
+            return dfs(node.left, left, node.val) and dfs(node.right, node.val, right)
+        
+        return dfs(root, float(&#39;-inf&#39;), float(&#39;inf&#39;))
+
+
+
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

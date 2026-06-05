@@ -1,0 +1,1479 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>字符串 - 中等</h1>
+    <p class="summary">共 17 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>131. 分割回文串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\131_分割回文串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/palindrome-partitioning/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 131. 分割回文串
+
+**难度:** 中等  
+**标签:** 字符串, 动态规划, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/palindrome-partitioning/)
+
+## 题目描述
+
+给你一个字符串 `s`，请你将* *`s`* *分割成一些 子串，使每个子串都是 **回文串** 。返回 `s` 所有可能的分割方案。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;aab&quot;
+**输出：**[[&quot;a&quot;,&quot;a&quot;,&quot;b&quot;],[&quot;aa&quot;,&quot;b&quot;]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;a&quot;
+**输出：**[[&quot;a&quot;]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 仅由小写英文字母组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def partition(self, s: str) -&gt; List[List[str]]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>139. 单词拆分</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\139_单词拆分</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-break/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 139. 单词拆分
+
+**难度:** 中等  
+**标签:** 字典树, 记忆化, 数组, 哈希表, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-break/)
+
+## 题目描述
+
+给你一个字符串 `s` 和一个字符串列表 `wordDict` 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 `s`&#160;则返回 `true`。
+
+**注意：**不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]
+**输出:** true
+**解释:** 返回 true 因为 &quot;leetcode&quot; 可以由 &quot;leet&quot; 和 &quot;code&quot; 拼接成。
+
+```
+
+**示例 2：**
+
+```
+
+**输入:** s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]
+**输出:** true
+**解释:** 返回 true 因为 &quot;applepenapple&quot; 可以由 &quot;apple&quot; &quot;pen&quot; &quot;apple&quot; 拼接成。
+&#160;    注意，你可以重复使用字典中的单词。
+
+```
+
+**示例 3：**
+
+```
+
+**输入:** s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]
+**输出:** false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `1 
+	- `s` 和 `wordDict[i]` 仅由小写英文字母组成
+	- `wordDict` 中的所有字符串 **互不相同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>166. 分数到小数</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\166_分数到小数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/fraction-to-recurring-decimal/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 166. 分数到小数
+
+**难度:** 中等  
+**标签:** 哈希表, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/fraction-to-recurring-decimal/)
+
+## 题目描述
+
+给定两个整数，分别表示分数的分子&#160;`numerator` 和分母 `denominator`，以 **字符串形式返回小数** 。
+
+如果小数部分为循环小数，则将循环的部分括在括号内。
+
+如果存在多个答案，只需返回 **任意一个** 。
+
+对于所有给定的输入，**保证** 答案字符串的长度小于 `104` 。
+
+**注意**，如果分数可以表示为有限长度的字符串，则 **必须** 返回它。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**numerator = 1, denominator = 2
+**输出：**&quot;0.5&quot;
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**numerator = 2, denominator = 1
+**输出：**&quot;2&quot;
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**numerator = 4, denominator = 333
+**输出：**&quot;0.(012)&quot;
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- `denominator != 0`
+
+## 提示
+
+1. No scary math, just apply elementary math knowledge. Still remember how to perform a long division?
+2. Try a long division on 4/9, the repeating part is obvious. Now try 4/333. Do you see a pattern?
+3. Notice that once the remainder starts repeating, so does the divided result.
+4. Be wary of edge cases! List out as many test cases as you can think of and test your code thoroughly.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def fractionToDecimal(self, numerator: int, denominator: int) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>17. 电话号码的字母组合</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\017_电话号码的字母组合</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 17. 电话号码的字母组合
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
+
+## 题目描述
+
+给定一个仅包含数字&#160;`2-9`&#160;的字符串，返回所有它能表示的字母组合。答案可以按 **任意顺序** 返回。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**digits = &quot;23&quot;
+**输出：**[&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**digits = &quot;2&quot;
+**输出：**[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `digits[i]` 是范围 `[&#39;2&#39;, &#39;9&#39;]` 的一个数字。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def letterCombinations(self, digits: str) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>179. 最大数</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\179_最大数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/largest-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 179. 最大数
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/largest-number/)
+
+## 题目描述
+
+给定一组非负整数 `nums`，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。
+
+**注意：**输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入`：`**`nums = [10,2]`
+**输出：**`&quot;210&quot;`
+```
+
+**示例&#160;2：**
+
+```
+
+**输入`：`**`nums = [3,30,34,5,9]`
+**输出：**`&quot;9534330&quot;`
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>208. 实现 Trie (前缀树)</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\208_实现 Trie (前缀树)</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 208. 实现 Trie (前缀树)
+
+**难度:** 中等  
+**标签:** 设计, 字典树, 哈希表, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/implement-trie-prefix-tree/)
+
+## 题目描述
+
+**Trie**（发音类似 &quot;try&quot;）或者说 **前缀树** 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
+
+请你实现 Trie 类：
+
+	- `Trie()` 初始化前缀树对象。
+	- `void insert(String word)` 向前缀树中插入字符串 `word` 。
+	- `boolean search(String word)` 如果字符串 `word` 在前缀树中，返回 `true`（即，在检索之前已经插入）；否则，返回 `false` 。
+	- `boolean startsWith(String prefix)` 如果之前已经插入的字符串&#160;`word` 的前缀之一为 `prefix` ，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]
+[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]
+**输出**
+[null, null, true, false, true, null, true]
+
+**解释**
+Trie trie = new Trie();
+trie.insert(&quot;apple&quot;);
+trie.search(&quot;apple&quot;);   // 返回 True
+trie.search(&quot;app&quot;);     // 返回 False
+trie.startsWith(&quot;app&quot;); // 返回 True
+trie.insert(&quot;app&quot;);
+trie.search(&quot;app&quot;);     // 返回 True
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `word` 和 `prefix` 仅由小写英文字母组成
+	- `insert`、`search` 和 `startsWith` 调用次数 **总计** 不超过 `3 * 104` 次</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, word: str) -&gt; None:
+        
+
+    def search(self, word: str) -&gt; bool:
+        
+
+    def startsWith(self, prefix: str) -&gt; bool:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>22. 括号生成</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\022_括号生成</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/generate-parentheses/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 22. 括号生成
+
+**难度:** 中等  
+**标签:** 字符串, 动态规划, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/generate-parentheses/)
+
+## 题目描述
+
+数字 `n`&#160;代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 **有效的 **括号组合。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 3
+**输出：**[&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 1
+**输出：**[&quot;()&quot;]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def generateParenthesis(self, n: int) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>227. 基本计算器 II</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\227_基本计算器 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/basic-calculator-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 227. 基本计算器 II
+
+**难度:** 中等  
+**标签:** 栈, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/basic-calculator-ii/)
+
+## 题目描述
+
+给你一个字符串表达式 `s` ，请你实现一个基本计算器来计算并返回它的值。
+
+整数除法仅保留整数部分。
+
+你可以假设给定的表达式总是有效的。所有中间结果将在&#160;`[-231, 231&#160;- 1]` 的范围内。
+
+**注意：**不允许使用任何将字符串作为数学表达式计算的内置函数，比如 `eval()` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;3+2*2&quot;
+**输出：**7
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot; 3/2 &quot;
+**输出：**1
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**s = &quot; 3+5 / 2 &quot;
+**输出：**5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `s` 由整数和算符 `(&#39;+&#39;, &#39;-&#39;, &#39;*&#39;, &#39;/&#39;)` 组成，中间由一些空格隔开
+	- `s` 表示一个 **有效表达式**
+	- 表达式中的所有整数都是非负整数，且在范围 `[0, 231 - 1]` 内
+	- 题目数据保证答案是一个 **32-bit 整数**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def calculate(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>3. 无重复字符的最长子串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\003_无重复字符的最长子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 3. 无重复字符的最长子串
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+
+## 题目描述
+
+给定一个字符串 `s` ，请你找出其中不含有重复字符的&#160;**最长 子串****&#160;**的长度。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入: **s = &quot;abcabcbb&quot;
+**输出: **3 
+**解释:** 因为无重复字符的最长子串是 `&quot;abc&quot;`，所以其长度为 3。注意 &quot;bca&quot; 和 &quot;cab&quot; 也是正确答案。
+
+```
+
+**示例 2:**
+
+```
+
+**输入: **s = &quot;bbbbb&quot;
+**输出: **1
+**解释: **因为无重复字符的最长子串是 `&quot;b&quot;`，所以其长度为 1。
+
+```
+
+**示例 3:**
+
+```
+
+**输入: **s = &quot;pwwkew&quot;
+**输出: **3
+**解释: **因为无重复字符的最长子串是&#160;`&quot;wke&quot;`，所以其长度为 3。
+&#160;    请注意，你的答案必须是 **子串 **的长度，`&quot;pwke&quot;`&#160;是一个*子序列，*不是子串。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 4`
+	- `s`&#160;由英文字母、数字、符号和空格组成
+
+## 提示
+
+1. Since maximum string size is at most 26, generate and check all possible substrings with length at most 26.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>340. 至多包含 K 个不同字符的最长子串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\340_至多包含 K 个不同字符的最长子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-substring-with-at-most-k-distinct-characters/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 340. 至多包含 K 个不同字符的最长子串
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-substring-with-at-most-k-distinct-characters/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        340. 至多包含 K 个不同字符的最长子串
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>38. 外观数列</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\038_外观数列</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/count-and-say/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 38. 外观数列
+
+**难度:** 中等  
+**标签:** 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/count-and-say/)
+
+## 题目描述
+
+「外观数列」是一个数位字符串序列，由递归公式定义：
+
+	- `countAndSay(1) = &quot;1&quot;`
+	- `countAndSay(n)` 是&#160;`countAndSay(n-1)` 的行程长度编码。
+
+&#160;
+
+行程长度编码（RLE）是一种字符串压缩方法，其工作原理是通过将连续相同字符（重复两次或更多次）替换为字符重复次数（运行长度）和字符的串联。例如，要压缩字符串&#160;`&quot;3322251&quot;`&#160;，我们将&#160;`&quot;33&quot;`&#160;用&#160;`&quot;23&quot;`&#160;替换，将&#160;`&quot;222&quot;`&#160;用&#160;`&quot;32&quot;`&#160;替换，将&#160;`&quot;5&quot;`&#160;用&#160;`&quot;15&quot;`&#160;替换并将&#160;`&quot;1&quot;`&#160;用&#160;`&quot;11&quot;`&#160;替换。因此压缩后字符串变为 `&quot;23321511&quot;`。
+
+给定一个整数&#160;`n`&#160;，返回&#160;**外观数列**&#160;的第&#160;`n`&#160;个元素。
+
+**示例 1：**
+
+**输入：**n = 4
+
+**输出：**&quot;1211&quot;
+
+**解释：**
+
+countAndSay(1) = &quot;1&quot;
+
+countAndSay(2) = &quot;1&quot; 的行程长度编码 = &quot;11&quot;
+
+countAndSay(3) = &quot;11&quot; 的行程长度编码 = &quot;21&quot;
+
+countAndSay(4) = &quot;21&quot; 的行程长度编码 = &quot;1211&quot;
+
+示例 2：
+
+**输入：**n = 1
+
+**输出：**&quot;1&quot;
+
+**解释：**
+
+这是基本情况。
+
+&#160;
+
+**提示：**
+
+	- `1 
+
+&#160;
+
+**进阶：**你能迭代解决该问题吗？
+
+## 提示
+
+1. Create a helper function that maps an integer to pairs of its digits and their frequencies. For example, if you call this function with &quot;223314444411&quot;, then it maps it to an array of pairs [[2,2], [3,2], [1,1], [4,5], [1, 2]].
+2. Create another helper function that takes the array of pairs and creates a new integer. For example, if you call this function with [[2,2], [3,2], [1,1], [4,5], [1, 2]], it should create &quot;22&quot;+&quot;23&quot;+&quot;11&quot;+&quot;54&quot;+&quot;21&quot; = &quot;2223115421&quot;.
+3. Now, with the two helper functions, you can start with &quot;1&quot; and call the two functions alternatively n-1 times. The answer is the last integer you will obtain.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def countAndSay(self, n: int) -&gt; str:
+        if n == 1:
+            return &quot;1&quot;
+        
+        # 计算 n-1
+        pre_str_list=self.countAndSay(n-1)
+
+        cur_str_list = []
+        cur_str = &quot;&quot;
+        cur_num = 0
+        for i in range(len(pre_str_list)):
+            if pre_str_list[i] != cur_str:
+                if cur_str != &quot;&quot;:
+                    cur_str_list.append(str(cur_num))
+                    cur_str_list.append(cur_str)
+                cur_str = pre_str_list[i]
+                cur_num = 1
+            else:
+                cur_num += 1
+        
+        cur_str_list.append(str(cur_num))
+        cur_str_list.append(cur_str)
+        # print(n, &quot;&quot;.join(cur_str_list))
+        return &quot;&quot;.join(cur_str_list)
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>395. 至少有 K 个重复字符的最长子串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\395_至少有 K 个重复字符的最长子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 395. 至少有 K 个重复字符的最长子串
+
+**难度:** 中等  
+**标签:** 哈希表, 字符串, 分治, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/)
+
+## 题目描述
+
+给你一个字符串 `s` 和一个整数 `k` ，请你找出 `s` 中的最长子串，&#160;要求该子串中的每一字符出现次数都不少于 `k` 。返回这一子串的长度。
+
+如果不存在这样的子字符串，则返回 0。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;aaabb&quot;, k = 3
+**输出：**3
+**解释：**最长子串为 &quot;aaa&quot; ，其中 &#39;a&#39; 重复了 3 次。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;ababbc&quot;, k = 2
+**输出：**5
+**解释：**最长子串为 &quot;ababb&quot; ，其中 &#39;a&#39; 重复了 2 次， &#39;b&#39; 重复了 3 次。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `s` 仅由小写英文字母组成
+	- `1 5`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestSubstring(self, s: str, k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>49. 字母异位词分组</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\049_字母异位词分组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/group-anagrams/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 49. 字母异位词分组
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/group-anagrams/)
+
+## 题目描述
+
+给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+
+&#160;
+
+**示例 1:**
+
+**输入:** strs = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]
+
+**输出: **[[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]
+
+**解释：**
+
+	- 在 strs 中没有字符串可以通过重新排列来形成 `&quot;bat&quot;`。
+	- 字符串 `&quot;nat&quot;` 和 `&quot;tan&quot;` 是字母异位词，因为它们可以重新排列以形成彼此。
+	- 字符串 `&quot;ate&quot;`&#160;，`&quot;eat&quot;`&#160;和 `&quot;tea&quot;` 是字母异位词，因为它们可以重新排列以形成彼此。
+
+**示例 2:**
+
+**输入:** strs = [&quot;&quot;]
+
+**输出: **[[&quot;&quot;]]
+
+**示例 3:**
+
+**输入:** strs = [&quot;a&quot;]
+
+**输出: **[[&quot;a&quot;]]
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `0 
+	- `strs[i]`&#160;仅包含小写字母</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>5. 最长回文子串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\005_最长回文子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-palindromic-substring/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 5. 最长回文子串
+
+**难度:** 中等  
+**标签:** 双指针, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-palindromic-substring/)
+
+## 题目描述
+
+给你一个字符串 `s`，找到 `s` 中最长的 回文 子串。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;babad&quot;
+**输出：**&quot;bab&quot;
+**解释：**&quot;aba&quot; 同样是符合题意的答案。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;cbbd&quot;
+**输出：**&quot;bb&quot;
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 仅由数字和英文字母组成
+
+## 提示
+
+1. How can we reuse a previously computed palindrome to compute a larger palindrome?
+2. If “aba” is a palindrome, is “xabax” a palindrome? Similarly is “xabay” a palindrome?
+3. Complexity based hint: If we use brute-force and check whether for every start and end position a substring is a palindrome we have O(n^2) start - end pairs and O(n) palindromic checks. Can we reduce the time for palindromic checks to O(1) by reusing some previous computation.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestPalindrome(self, s: str) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>79. 单词搜索</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\079_单词搜索</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-search/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 79. 单词搜索
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 数组, 字符串, 回溯, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-search/)
+
+## 题目描述
+
+给定一个&#160;`m x n` 二维字符网格&#160;`board` 和一个字符串单词&#160;`word` 。如果&#160;`word` 存在于网格中，返回 `true` ；否则，返回 `false` 。
+
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;ABCCED&quot;
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;SEE&quot;
+**输出：**true
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;ABCB&quot;
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n = board[i].length`
+	- `1 
+	- `1 
+	- `board` 和 `word` 仅由大小写英文字母组成
+
+&#160;
+
+**进阶：**你可以使用搜索剪枝的技术来优化解决方案，使其在 `board` 更大的情况下可以更快解决问题？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -&gt; bool:
+        
+        m, n = len(board), len(board[0])
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        def back_track(s, k, path_len):
+            # 如果找到符合 word 内容的路径，返回 True
+            if path_len == len(word):
+                return True
+            # 把已经添加到 path 的board[s][k]暂时置为 #， 避免
+            tmp = board[s][k]
+            board[s][k] = &#39;#&#39;
+
+            for sk in directions:
+                s_, k_ = s+sk[0], k+sk[1]
+                if 0&lt;=s_&lt;m and 0&lt;=k_&lt;n and board[s_][k_] == word[path_len]:
+                    if back_track(s_, k_, path_len+1):
+                        return True
+            # 四个方向的遍历结果都没合适的
+            board[s][k] = tmp
+
+            return False
+
+        # 遍历整个 board, 查找第一个开头字符匹配字符串的位置开始回溯
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    if back_track(i, j, 1):
+                        return True
+        
+        return False
+
+
+
+        
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>8. 字符串转换整数 (atoi)</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\008_字符串转换整数 (atoi)</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/string-to-integer-atoi/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 8. 字符串转换整数 (atoi)
+
+**难度:** 中等  
+**标签:** 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/string-to-integer-atoi/)
+
+## 题目描述
+
+请你来实现一个&#160;`myAtoi(string s)`&#160;函数，使其能将字符串转换成一个 32 位有符号整数。
+
+函数&#160;`myAtoi(string s)` 的算法如下：
+
+	- **空格：**读入字符串并丢弃无用的前导空格（`&quot; &quot;`）
+	- **符号：**检查下一个字符（假设还未到字符末尾）为&#160;`&#39;-&#39;` 还是 `&#39;+&#39;`。如果两者都不存在，则假定结果为正。
+	- **转换：**通过跳过前置零来读取该整数，直到遇到非数字字符或到达字符串的结尾。如果没有读取数字，则结果为0。
+	- 舍入：如果整数数超过 32 位有符号整数范围 `[−231,&#160; 231&#160;− 1]` ，需要截断这个整数，使其保持在这个范围内。具体来说，小于 `−231` 的整数应该被舍入为 `−231` ，大于 `231&#160;− 1` 的整数应该被舍入为 `231&#160;− 1` 。
+
+返回整数作为最终结果。
+
+&#160;
+
+示例&#160;1：
+
+**输入：**s = &quot;42&quot;
+
+**输出：**42
+
+**解释：**加粗的字符串为已经读入的字符，插入符号是当前读取的字符。
+
+```
+
+带下划线线的字符是所读的内容，插入符号是当前读入位置。
+第 1 步：&quot;42&quot;（当前没有读入字符，因为没有前导空格）
+         ^
+第 2 步：&quot;42&quot;（当前没有读入字符，因为这里不存在 &#39;-&#39; 或者 &#39;+&#39;）
+         ^
+第 3 步：&quot;42&quot;（读入 &quot;42&quot;）
+           ^
+
+```
+
+示例&#160;2：
+
+**输入：**s = &quot; -042&quot;
+
+**输出：**-42
+
+**解释：**
+
+```
+
+第 1 步：&quot;**   **-042&quot;（读入前导空格，但忽视掉）
+            ^
+第 2 步：&quot;   -042&quot;（读入 &#39;-&#39; 字符，所以结果应该是负数）
+             ^
+第 3 步：&quot;   -042&quot;（读入 &quot;042&quot;，在结果中忽略前导零）
+               ^
+
+```
+
+示例&#160;3：
+
+**输入：**s = &quot;1337c0d3&quot;
+
+**输出：**1337
+
+**解释：**
+
+```
+
+第 1 步：&quot;1337c0d3&quot;（当前没有读入字符，因为没有前导空格）
+         ^
+第 2 步：&quot;1337c0d3&quot;（当前没有读入字符，因为这里不存在 &#39;-&#39; 或者 &#39;+&#39;）
+         ^
+第 3 步：&quot;1337c0d3&quot;（读入 &quot;1337&quot;；由于下一个字符不是一个数字，所以读入停止）
+             ^
+
+```
+
+示例 4：
+
+**输入：**s = &quot;0-1&quot;
+
+输出：0
+
+**解释：**
+
+```
+
+第 1 步：&quot;0-1&quot; (当前没有读入字符，因为没有前导空格)
+         ^
+第 2 步：&quot;0-1&quot; (当前没有读入字符，因为这里不存在 &#39;-&#39; 或者 &#39;+&#39;)
+         ^
+第 3 步：&quot;0-1&quot; (读入 &quot;0&quot;；由于下一个字符不是一个数字，所以读入停止)
+          ^
+
+```
+
+示例 5：
+
+**输入：**s = &quot;words and 987&quot;
+
+**输出：**0
+
+**解释：**
+
+读取在第一个非数字字符“w”处停止。
+
+&#160;
+
+**提示：**
+
+	- `0 
+	- `s` 由英文字母（大写和小写）、数字（`0-9`）、`&#39; &#39;`、`&#39;+&#39;`、`&#39;-&#39;` 和 `&#39;.&#39;` 组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def myAtoi(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>91. 解码方法</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：中等</span>
+        <span>目录：edium\091_解码方法</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/decode-ways/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 91. 解码方法
+
+**难度:** 中等  
+**标签:** 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/decode-ways/)
+
+## 题目描述
+
+一条包含字母&#160;`A-Z` 的消息通过以下映射进行了 **编码** ：
+
+&quot;1&quot; -&gt; &#39;A&#39;
+
+&quot;2&quot; -&gt; &#39;B&#39;
+
+...
+
+&quot;25&quot; -&gt; &#39;Y&#39;
+
+&quot;26&quot; -&gt; &#39;Z&#39;
+
+然而，在&#160;**解码** 已编码的消息时，你意识到有许多不同的方式来解码，因为有些编码被包含在其它编码当中（`&quot;2&quot;` 和 `&quot;5&quot;` 与 `&quot;25&quot;`）。
+
+例如，`&quot;11106&quot;` 可以映射为：
+
+	- `&quot;AAJF&quot;` ，将消息分组为 `(1, 1, 10, 6)`
+	- `&quot;KJF&quot;` ，将消息分组为 `(11, 10, 6)`
+	- 消息不能分组为&#160; `(1, 11, 06)` ，因为 `&quot;06&quot;`&#160;不是一个合法编码（只有 &quot;6&quot; 是合法的）。
+
+注意，可能存在无法解码的字符串。
+
+给你一个只含数字的 **非空 **字符串 `s` ，请计算并返回 **解码** 方法的 **总数** 。如果没有合法的方式解码整个字符串，返回 `0`。
+
+题目数据保证答案肯定是一个 **32 位** 的整数。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;12&quot;
+**输出：**2
+**解释：**它可以解码为 &quot;AB&quot;（1 2）或者 &quot;L&quot;（12）。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;226&quot;
+**输出：**3
+**解释：**它可以解码为 &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), 或者 &quot;BBF&quot; (2 2 6) 。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**s = &quot;06&quot;
+**输出：**0
+**解释：**&quot;06&quot; 无法映射到 &quot;F&quot; ，因为存在前导零（&quot;6&quot; 和 &quot;06&quot; 并不等价）。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 只包含数字，并且可能包含前导零。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def numDecodings(self, s: str) -&gt; int:
+        if s[0] == &#39;0&#39;:
+            return 0
+        # 动态规划， dp[i] = dp[i-1] + dp[i-2], dp[i] 表示前 i 个字符串的切割方法
+        n = len(s)
+        dp = [0] * (n+1)
+
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2, n+1):
+            # 最后一个字符串单独映射
+            if s[i-1]!=&#39;0&#39;:
+                dp[i] += dp[i-1]
+            
+            # 最后两个字符串一起映射
+            if 10&lt;=int(s[i-2:i])&lt;=26:
+                dp[i] += dp[i-2]
+        # print(dp)
+        return dp[n]
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

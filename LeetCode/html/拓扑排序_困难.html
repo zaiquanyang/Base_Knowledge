@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拓扑排序 - 困难</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>拓扑排序 - 困难</h1>
+    <p class="summary">共 2 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>269. 火星词典</h2>
+      <div class="meta">
+        <span>类型：拓扑排序</span>
+        <span>难度：困难</span>
+        <span>目录：ard\269_火星词典</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/alien-dictionary/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 269. 火星词典
+
+**难度:** 困难  
+**标签:** 深度优先搜索, 广度优先搜索, 图, 拓扑排序, 数组, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/alien-dictionary/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        269. 火星词典
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>329. 矩阵中的最长递增路径</h2>
+      <div class="meta">
+        <span>类型：拓扑排序</span>
+        <span>难度：困难</span>
+        <span>目录：ard\329_矩阵中的最长递增路径</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 329. 矩阵中的最长递增路径
+
+**难度:** 困难  
+**标签:** 深度优先搜索, 广度优先搜索, 图, 拓扑排序, 记忆化, 数组, 动态规划, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/)
+
+## 题目描述
+
+给定一个&#160;`m x n` 整数矩阵&#160;`matrix` ，找出其中 **最长递增路径** 的长度。
+
+对于每个单元格，你可以往上，下，左，右四个方向移动。 你 **不能** 在 **对角线** 方向上移动或移动到 **边界外**（即不允许环绕）。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[9,9,4],[6,6,8],[2,1,1]]
+**输出：**4 
+**解释：**最长递增路径为&#160;`[1, 2, 6, 9]`。
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[3,4,5],[3,2,6],[2,2,1]]
+**输出：**4 
+**解释：**最长递增路径是&#160;`[3, 4, 5, 6]`。注意不允许在对角线方向上移动。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**matrix = [[1]]
+**输出：**1
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `0 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

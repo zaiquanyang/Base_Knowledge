@@ -1,0 +1,973 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双指针 - 简单</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>双指针 - 简单</h1>
+    <p class="summary">共 11 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>125. 验证回文串</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\125_验证回文串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-palindrome/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 125. 验证回文串
+
+**难度:** 简单  
+**标签:** 双指针, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-palindrome/)
+
+## 题目描述
+
+如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样。则可以认为该短语是一个 **回文串** 。
+
+字母和数字都属于字母数字字符。
+
+给你一个字符串 `s`，如果它是 **回文串** ，返回 `true`* *；否则，返回* *`false`* *。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;A man, a plan, a canal: Panama&quot;
+**输出：**true
+**解释：**&quot;amanaplanacanalpanama&quot; 是回文串。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;race a car&quot;
+**输出：**false
+**解释：**&quot;raceacar&quot; 不是回文串。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**s = &quot; &quot;
+**输出：**true
+**解释：**在移除非字母数字字符之后，s 是一个空字符串 &quot;&quot; 。
+由于空字符串正着反着读都一样，所以是回文串。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `s` 仅由可打印的 ASCII 字符组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isPalindrome(self, s: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>141. 环形链表</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\141_环形链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/linked-list-cycle/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 141. 环形链表
+
+**难度:** 简单  
+**标签:** 哈希表, 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/linked-list-cycle/)
+
+## 题目描述
+
+给你一个链表的头节点 `head` ，判断链表中是否有环。
+
+如果链表中有某个节点，可以通过连续跟踪 `next` 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 `pos` 来表示链表尾连接到链表中的位置（索引从 0 开始）。**注意：`pos` 不作为参数进行传递&#160;**。仅仅是为了标识链表的实际情况。
+
+*如果链表中存在环*&#160;，则返回 `true` 。 否则，返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**head = [3,2,0,-4], pos = 1
+**输出：**true
+**解释：**链表中有一个环，其尾部连接到第二个节点。
+
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**head = [1,2], pos = 0
+**输出：**true
+**解释：**链表中有一个环，其尾部连接到第一个节点。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**head = [1], pos = -1
+**输出：**false
+**解释：**链表中没有环。
+
+```
+
+&#160;
+
+**提示：**
+
+	- 链表中节点的数目范围是 `[0, 104]`
+	- `-105 5`
+	- `pos` 为 `-1` 或者链表中的一个 **有效索引** 。
+
+&#160;
+
+**进阶：**你能用 `O(1)`（即，常量）内存解决此问题吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>160. 相交链表</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\160_相交链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 160. 相交链表
+
+**难度:** 简单  
+**标签:** 哈希表, 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
+
+## 题目描述
+
+给你两个单链表的头节点&#160;`headA` 和 `headB` ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 `null` 。
+
+图示两个链表在节点 `c1` 开始相交**：**
+
+题目数据 **保证** 整个链式结构中不存在环。
+
+**注意**，函数返回结果后，链表必须 **保持其原始结构** 。
+
+**自定义评测：**
+
+**评测系统** 的输入如下（你设计的程序 **不适用** 此输入）：
+
+	- `intersectVal` - 相交的起始节点的值。如果不存在相交节点，这一值为 `0`
+	- `listA` - 第一个链表
+	- `listB` - 第二个链表
+	- `skipA` - 在 `listA` 中（从头节点开始）跳到交叉节点的节点数
+	- `skipB` - 在 `listB` 中（从头节点开始）跳到交叉节点的节点数
+
+评测系统将根据这些输入创建链式数据结构，并将两个头节点 `headA` 和 `headB` 传递给你的程序。如果程序能够正确返回相交节点，那么你的解决方案将被 **视作正确答案** 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+**输出：**Intersected at &#39;8&#39;
+**解释：**相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。
+
+```
+
+&#160;
+
+**示例&#160;2：**
+
+```
+
+**输入：**intersectVal&#160;= 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+**输出：**Intersected at &#39;2&#39;
+**解释：**相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [1,9,1,2,4]，链表 B 为 [3,2,4]。
+在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+
+```
+
+**示例&#160;3：**
+
+```
+
+**输入：**intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+**输出：**No intersection
+**解释：**从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
+由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+这两个链表不相交，因此返回 null 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `listA` 中节点数目为 `m`
+	- `listB` 中节点数目为 `n`
+	- `1 4`
+	- `1 5`
+	- `0 
+	- `0 
+	- 如果 `listA` 和 `listB` 没有交点，`intersectVal` 为 `0`
+	- 如果 `listA` 和 `listB` 有交点，`intersectVal == listA[skipA] == listB[skipB]`
+
+&#160;
+
+**进阶：**你能否设计一个时间复杂度 `O(m + n)` 、仅用 `O(1)` 内存的解决方案？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>202. 快乐数</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\202_快乐数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/happy-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 202. 快乐数
+
+**难度:** 简单  
+**标签:** 哈希表, 数学, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/happy-number/)
+
+## 题目描述
+
+编写一个算法来判断一个数 `n` 是不是快乐数。
+
+**「快乐数」**&#160;定义为：
+
+	- 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+	- 然后重复这个过程直到这个数变为 1，也可能是 **无限循环** 但始终变不到 1。
+	- 如果这个过程 **结果为**&#160;1，那么这个数就是快乐数。
+
+如果 `n` 是 *快乐数* 就返回 `true` ；不是，则返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 19
+**输出：**true
+解释：
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 2
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isHappy(self, n: int) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>234. 回文链表</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\234_回文链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/palindrome-linked-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 234. 回文链表
+
+**难度:** 简单  
+**标签:** 栈, 递归, 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/palindrome-linked-list/)
+
+## 题目描述
+
+给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**head = [1,2,2,1]
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**head = [1,2]
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- 链表中节点数目在范围`[1, 105]` 内
+	- `0 
+
+&#160;
+
+**进阶：**你能否用&#160;`O(n)` 时间复杂度和 `O(1)` 空间复杂度解决此题？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>26. 删除有序数组中的重复项</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\026_删除有序数组中的重复项</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 26. 删除有序数组中的重复项
+
+**难度:** 简单  
+**标签:** 数组, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+
+## 题目描述
+
+给你一个 **非严格递增排列** 的数组 `nums` ，请你** 原地** 删除重复出现的元素，使每个元素 **只出现一次** ，返回删除后数组的新长度。元素的 **相对顺序** 应该保持 **一致** 。然后返回 `nums` 中唯一元素的个数。
+
+考虑 `nums` 的唯一元素的数量为 `k`。去重后，返回唯一元素的数量 `k`。
+
+`nums` 的前 `k` 个元素应包含 **排序后** 的唯一数字。下标&#160;`k - 1` 之后的剩余元素可以忽略。
+
+**判题标准:**
+
+系统会用下面的代码来测试你的题解:
+
+```
+
+int[] nums = [...]; // 输入数组
+int[] expectedNums = [...]; // 长度正确的期望答案
+
+int k = removeDuplicates(nums); // 调用
+
+assert k == expectedNums.length;
+for (int i = 0; i 示例 1：
+
+```
+
+**输入：**nums = [1,1,2]
+**输出：**2, nums = [1,2,_]
+**解释：**函数应该返回新的长度 **`2`** ，并且原数组 *nums *的前两个元素被修改为 **`1`**, **`2 `**`。`不需要考虑数组中超出新长度后面的元素。
+
+```
+
+示例 2：
+
+```
+
+**输入：**nums = [0,0,1,1,1,2,2,3,3,4]
+**输出：**5, nums = [0,1,2,3,4,_,_,_,_,_]
+**解释：**函数应该返回新的长度 **`5`** ， 并且原数组 *nums *的前五个元素被修改为 **`0`**, **`1`**, **`2`**, **`3`**, **`4`** 。不需要考虑数组中超出新长度后面的元素。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `-100&#160;0`
+	- `nums` 已按 **非递减**&#160;顺序排列。
+
+## 提示
+
+1. In this problem, the key point to focus on is the input array being sorted. As far as duplicate elements are concerned, what is their positioning in the array when the given array is sorted? Look at the image below for the answer. If we know the position of one of the elements, do we also know the positioning of all the duplicate elements?
+2. We need to modify the array in-place and the size of the final array would potentially be smaller than the size of the input array. So, we ought to use a two-pointer approach here. One, that would keep track of the current element in the original array and another one for just the unique elements.
+3. Essentially, once an element is encountered, you simply need to bypass its duplicates and move on to the next unique element.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>28. 找出字符串中第一个匹配项的下标</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\028_找出字符串中第一个匹配项的下标</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 28. 找出字符串中第一个匹配项的下标
+
+**难度:** 简单  
+**标签:** 双指针, 字符串, 字符串匹配
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+## 题目描述
+
+给你两个字符串&#160;`haystack` 和 `needle` ，请你在 `haystack` 字符串中找出 `needle` 字符串的第一个匹配项的下标（下标从 0 开始）。如果&#160;`needle` 不是 `haystack` 的一部分，则返回&#160; `-1`** **。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**haystack = &quot;sadbutsad&quot;, needle = &quot;sad&quot;
+**输出：**0
+**解释：**&quot;sad&quot; 在下标 0 和 6 处匹配。
+第一个匹配项的下标是 0 ，所以返回 0 。
+
+```
+
+示例 2：
+
+```
+
+**输入：**haystack = &quot;leetcode&quot;, needle = &quot;leeto&quot;
+**输出：**-1
+**解释：**&quot;leeto&quot; 没有在 &quot;leetcode&quot; 中出现，所以返回 -1 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `haystack` 和 `needle` 仅由小写英文字符组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def strStr(self, haystack: str, needle: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>283. 移动零</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\283_移动零</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/move-zeroes/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 283. 移动零
+
+**难度:** 简单  
+**标签:** 数组, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/move-zeroes/)
+
+## 题目描述
+
+给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
+
+**请注意**&#160;，必须在不复制数组的情况下原地对数组进行操作。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** nums = `[0,1,0,3,12]`
+**输出:** `[1,3,12,0,0]`
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** nums = `[0]`
+**输出:** `[0]`
+```
+
+&#160;
+
+**提示**:
+
+	- `1 4`
+	- `-231&#160;31&#160;- 1`
+
+&#160;
+
+进阶：你能尽量减少完成的操作次数吗？
+
+## 提示
+
+1. In-place means we should not be allocating any space for extra array. But we are allowed to modify the existing array. However, as a first step, try coming up with a solution that makes use of additional space. For this problem as well, first apply the idea discussed using an additional array and the in-place solution will pop up eventually.
+2. A two-pointer approach could be helpful here. The idea would be to have one pointer for iterating the array and another pointer that just works on the non-zero elements of the array.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>344. 反转字符串</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\344_反转字符串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/reverse-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 344. 反转字符串
+
+**难度:** 简单  
+**标签:** 双指针, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/reverse-string/)
+
+## 题目描述
+
+编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 `s` 的形式给出。
+
+不要给另外的数组分配额外的空间，你必须**原地修改输入数组**、使用 O(1) 的额外空间解决这一问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = [&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
+**输出：**[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = [&quot;H&quot;,&quot;a&quot;,&quot;n&quot;,&quot;n&quot;,&quot;a&quot;,&quot;h&quot;]
+**输出：**[&quot;h&quot;,&quot;a&quot;,&quot;n&quot;,&quot;n&quot;,&quot;a&quot;,&quot;H&quot;]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `s[i]` 都是 ASCII 码表中的可打印字符
+
+## 提示
+
+1. The entire logic for reversing a string is based on using the opposite directional two-pointer approach!</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def reverseString(self, s: List[str]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify s in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>350. 两个数组的交集 II</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\350_两个数组的交集 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/intersection-of-two-arrays-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 350. 两个数组的交集 II
+
+**难度:** 简单  
+**标签:** 数组, 哈希表, 双指针, 二分查找, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/intersection-of-two-arrays-ii/)
+
+## 题目描述
+
+给你两个整数数组&#160;`nums1` 和 `nums2` ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums1 = [1,2,2,1], nums2 = [2,2]
+**输出：**[2,2]
+
+```
+
+**示例 2:**
+
+```
+
+**输入：**nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+**输出：**[4,9]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+
+&#160;
+
+**进阶**：
+
+	- 如果给定的数组已经排好序呢？你将如何优化你的算法？
+	- 如果&#160;`nums1`*&#160;*的大小比&#160;`nums2` 小，哪种方法更优？
+	- 如果&#160;`nums2`*&#160;*的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>88. 合并两个有序数组</h2>
+      <div class="meta">
+        <span>类型：双指针</span>
+        <span>难度：简单</span>
+        <span>目录：asy\088_合并两个有序数组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/merge-sorted-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 88. 合并两个有序数组
+
+**难度:** 简单  
+**标签:** 数组, 双指针, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/merge-sorted-array/)
+
+## 题目描述
+
+给你两个按 **非递减顺序** 排列的整数数组&#160;`nums1`* *和 `nums2`，另有两个整数 `m` 和 `n` ，分别表示 `nums1` 和 `nums2` 中的元素数目。
+
+请你 **合并** `nums2`* *到 `nums1` 中，使合并后的数组同样按 **非递减顺序** 排列。
+
+**注意：**最终，合并后数组不应由函数返回，而是存储在数组 `nums1` 中。为了应对这种情况，`nums1` 的初始长度为 `m + n`，其中前 `m` 个元素表示应合并的元素，后 `n` 个元素为 `0` ，应忽略。`nums2` 的长度为 `n` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+**输出：**[1,2,2,3,5,6]
+**解释：**需要合并 [1,2,3] 和 [2,5,6] 。
+合并结果是 [***1***,***2***,2,***3***,5,6] ，其中斜体加粗标注的为 nums1 中的元素。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums1 = [1], m = 1, nums2 = [], n = 0
+**输出：**[1]
+**解释：**需要合并 [1] 和 [] 。
+合并结果是 [1] 。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**nums1 = [0], m = 0, nums2 = [1], n = 1
+**输出：**[1]
+**解释：**需要合并的数组是 [] 和 [1] 。
+合并结果是 [1] 。
+注意，因为 m = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `nums1.length == m + n`
+	- `nums2.length == n`
+	- `0 
+	- `1 
+	- `-109 9`
+
+&#160;
+
+**进阶：**你可以设计实现一个时间复杂度为 `O(m + n)` 的算法解决此问题吗？
+
+## 提示
+
+1. You can easily solve this problem if you simply think about two elements at a time rather than two arrays. We know that each of the individual arrays is sorted. What we don&#39;t know is how they will intertwine. Can we take a local decision and arrive at an optimal solution?
+2. If you simply consider one element each at a time from the two arrays and make a decision and proceed accordingly, you will arrive at the optimal solution.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums1 in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

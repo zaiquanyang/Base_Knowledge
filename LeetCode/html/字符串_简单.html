@@ -1,0 +1,879 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串 - 简单</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>字符串 - 简单</h1>
+    <p class="summary">共 10 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>125. 验证回文串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\125_验证回文串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-palindrome/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 125. 验证回文串
+
+**难度:** 简单  
+**标签:** 双指针, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-palindrome/)
+
+## 题目描述
+
+如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样。则可以认为该短语是一个 **回文串** 。
+
+字母和数字都属于字母数字字符。
+
+给你一个字符串 `s`，如果它是 **回文串** ，返回 `true`* *；否则，返回* *`false`* *。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;A man, a plan, a canal: Panama&quot;
+**输出：**true
+**解释：**&quot;amanaplanacanalpanama&quot; 是回文串。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;race a car&quot;
+**输出：**false
+**解释：**&quot;raceacar&quot; 不是回文串。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**s = &quot; &quot;
+**输出：**true
+**解释：**在移除非字母数字字符之后，s 是一个空字符串 &quot;&quot; 。
+由于空字符串正着反着读都一样，所以是回文串。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `s` 仅由可打印的 ASCII 字符组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isPalindrome(self, s: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>13. 罗马数字转整数</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\013_罗马数字转整数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/roman-to-integer/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 13. 罗马数字转整数
+
+**难度:** 简单  
+**标签:** 哈希表, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/roman-to-integer/)
+
+## 题目描述
+
+罗马数字包含以下七种字符:&#160;`I`，&#160;`V`，&#160;`X`，&#160;`L`，`C`，`D`&#160;和&#160;`M`。
+
+```
+
+**字符**          **数值**
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+例如， 罗马数字 `2` 写做&#160;`II`&#160;，即为两个并列的 1 。`12` 写做&#160;`XII`&#160;，即为&#160;`X`&#160;+&#160;`II`&#160;。 `27` 写做&#160;&#160;`XXVII`, 即为&#160;`XX`&#160;+&#160;`V`&#160;+&#160;`II`&#160;。
+
+通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做&#160;`IIII`，而是&#160;`IV`。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为&#160;`IX`。这个特殊的规则只适用于以下六种情况：
+
+	- `I`&#160;可以放在&#160;`V`&#160;(5) 和&#160;`X`&#160;(10) 的左边，来表示 4 和 9。
+	- `X`&#160;可以放在&#160;`L`&#160;(50) 和&#160;`C`&#160;(100) 的左边，来表示 40 和&#160;90。&#160;
+	- `C`&#160;可以放在&#160;`D`&#160;(500) 和&#160;`M`&#160;(1000) 的左边，来表示&#160;400 和&#160;900。
+
+给定一个罗马数字，将其转换成整数。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:**&#160;s = &quot;III&quot;
+**输出:** 3
+```
+
+**示例&#160;2:**
+
+```
+
+**输入:**&#160;s = &quot;IV&quot;
+**输出:** 4
+```
+
+**示例&#160;3:**
+
+```
+
+**输入:**&#160;s = &quot;IX&quot;
+**输出:** 9
+```
+
+**示例&#160;4:**
+
+```
+
+**输入:**&#160;s = &quot;LVIII&quot;
+**输出:** 58
+**解释:** L = 50, V= 5, III = 3.
+
+```
+
+**示例&#160;5:**
+
+```
+
+**输入:**&#160;s = &quot;MCMXCIV&quot;
+**输出:** 1994
+**解释:** M = 1000, CM = 900, XC = 90, IV = 4.
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 仅含字符 `(&#39;I&#39;, &#39;V&#39;, &#39;X&#39;, &#39;L&#39;, &#39;C&#39;, &#39;D&#39;, &#39;M&#39;)`
+	- 题目数据保证 `s` 是一个有效的罗马数字，且表示整数在范围 `[1, 3999]` 内
+	- 题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。
+	- IL 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。
+	- 关于罗马数字的详尽书写规则，可以参考 罗马数字 - 百度百科。
+
+## 提示
+
+1. Problem is simpler to solve by working the string from back to front and using a map.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def romanToInt(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>14. 最长公共前缀</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\014_最长公共前缀</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-common-prefix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 14. 最长公共前缀
+
+**难度:** 简单  
+**标签:** 字典树, 数组, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-common-prefix/)
+
+## 题目描述
+
+编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串&#160;`&quot;&quot;`。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**strs = [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+**输出：**&quot;fl&quot;
+
+```
+
+示例 2：
+
+```
+
+**输入：**strs = [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+**输出：**&quot;&quot;
+**解释：**输入不存在公共前缀。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `strs[i]`&#160;如果非空，则仅由小写英文字母组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>171. Excel 表列序号</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\171_Excel 表列序号</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/excel-sheet-column-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 171. Excel 表列序号
+
+**难度:** 简单  
+**标签:** 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/excel-sheet-column-number/)
+
+## 题目描述
+
+给你一个字符串&#160;`columnTitle` ，表示 Excel 表格中的列名称。返回 *该列名称对应的列序号*&#160;。
+
+例如：
+
+```
+
+A -&gt; 1
+B -&gt; 2
+C -&gt; 3
+...
+Z -&gt; 26
+AA -&gt; 27
+AB -&gt; 28 
+...
+```
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** columnTitle = &quot;A&quot;
+**输出:** 1
+
+```
+
+**示例&#160;2:**
+
+```
+
+**输入: **columnTitle = &quot;AB&quot;
+**输出:** 28
+
+```
+
+**示例&#160;3:**
+
+```
+
+**输入: **columnTitle = &quot;ZY&quot;
+**输出:** 701
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `columnTitle` 仅由大写英文组成
+	- `columnTitle` 在范围 `[&quot;A&quot;, &quot;FXSHRXW&quot;]` 内</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def titleToNumber(self, columnTitle: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>20. 有效的括号</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\020_有效的括号</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-parentheses/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 20. 有效的括号
+
+**难度:** 简单  
+**标签:** 栈, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-parentheses/)
+
+## 题目描述
+
+给定一个只包括 `&#39;(&#39;`，`&#39;)&#39;`，`&#39;{&#39;`，`&#39;}&#39;`，`&#39;[&#39;`，`&#39;]&#39;`&#160;的字符串 `s` ，判断字符串是否有效。
+
+有效字符串需满足：
+
+	- 左括号必须用相同类型的右括号闭合。
+	- 左括号必须以正确的顺序闭合。
+	- 每个右括号都有一个对应的相同类型的左括号。
+
+&#160;
+
+示例 1：
+
+输入：s = &quot;()&quot;
+
+输出：true
+
+示例 2：
+
+输入：s = &quot;()[]{}&quot;
+
+输出：true
+
+示例 3：
+
+输入：s = &quot;(]&quot;
+
+输出：false
+
+示例 4：
+
+输入：s = &quot;([])&quot;
+
+输出：true
+
+示例 5：
+
+输入：s = &quot;([)]&quot;
+
+输出：false
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `s` 仅由括号 `&#39;()[]{}&#39;` 组成
+
+## 提示
+
+1. Use a stack of characters.
+2. When you encounter an opening bracket, push it to the top of the stack.
+3. When you encounter a closing bracket, check if the top of the stack was the opening for it. If yes, pop it from the stack. Otherwise, return false.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isValid(self, s: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>242. 有效的字母异位词</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\242_有效的字母异位词</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-anagram/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 242. 有效的字母异位词
+
+**难度:** 简单  
+**标签:** 哈希表, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-anagram/)
+
+## 题目描述
+
+给定两个字符串 `s` 和 `t` ，编写一个函数来判断 `t` 是否是 `s` 的 字母异位词。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:** s = &quot;anagram&quot;, t = &quot;nagaram&quot;
+**输出:** true
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** s = &quot;rat&quot;, t = &quot;car&quot;
+**输出: **false
+```
+
+&#160;
+
+**提示:**
+
+	- `1 4`
+	- `s` 和 `t`&#160;仅包含小写字母
+
+&#160;
+
+**进阶:&#160;**如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>28. 找出字符串中第一个匹配项的下标</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\028_找出字符串中第一个匹配项的下标</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 28. 找出字符串中第一个匹配项的下标
+
+**难度:** 简单  
+**标签:** 双指针, 字符串, 字符串匹配
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+## 题目描述
+
+给你两个字符串&#160;`haystack` 和 `needle` ，请你在 `haystack` 字符串中找出 `needle` 字符串的第一个匹配项的下标（下标从 0 开始）。如果&#160;`needle` 不是 `haystack` 的一部分，则返回&#160; `-1`** **。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**haystack = &quot;sadbutsad&quot;, needle = &quot;sad&quot;
+**输出：**0
+**解释：**&quot;sad&quot; 在下标 0 和 6 处匹配。
+第一个匹配项的下标是 0 ，所以返回 0 。
+
+```
+
+示例 2：
+
+```
+
+**输入：**haystack = &quot;leetcode&quot;, needle = &quot;leeto&quot;
+**输出：**-1
+**解释：**&quot;leeto&quot; 没有在 &quot;leetcode&quot; 中出现，所以返回 -1 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `haystack` 和 `needle` 仅由小写英文字符组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def strStr(self, haystack: str, needle: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>344. 反转字符串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\344_反转字符串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/reverse-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 344. 反转字符串
+
+**难度:** 简单  
+**标签:** 双指针, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/reverse-string/)
+
+## 题目描述
+
+编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 `s` 的形式给出。
+
+不要给另外的数组分配额外的空间，你必须**原地修改输入数组**、使用 O(1) 的额外空间解决这一问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = [&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
+**输出：**[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = [&quot;H&quot;,&quot;a&quot;,&quot;n&quot;,&quot;n&quot;,&quot;a&quot;,&quot;h&quot;]
+**输出：**[&quot;h&quot;,&quot;a&quot;,&quot;n&quot;,&quot;n&quot;,&quot;a&quot;,&quot;H&quot;]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `s[i]` 都是 ASCII 码表中的可打印字符
+
+## 提示
+
+1. The entire logic for reversing a string is based on using the opposite directional two-pointer approach!</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def reverseString(self, s: List[str]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify s in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>387. 字符串中的第一个唯一字符</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\387_字符串中的第一个唯一字符</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/first-unique-character-in-a-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 387. 字符串中的第一个唯一字符
+
+**难度:** 简单  
+**标签:** 队列, 哈希表, 字符串, 计数
+
+**链接:** [LeetCode](https://leetcode.cn/problems/first-unique-character-in-a-string/)
+
+## 题目描述
+
+给定一个字符串&#160;`s`&#160;，找到 *它的第一个不重复的字符，并返回它的索引* 。如果不存在，则返回 `-1`&#160;。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;leetcode&quot;
+**输出:** 0
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** s = &quot;loveleetcode&quot;
+**输出:** 2
+
+```
+
+**示例 3:**
+
+```
+
+**输入:** s = &quot;aabb&quot;
+**输出:** -1
+
+```
+
+&#160;
+
+**提示:**
+
+	- `1 5`
+	- `s`&#160;只包含小写字母</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def firstUniqChar(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>412. Fizz Buzz</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：简单</span>
+        <span>目录：asy\412_Fizz Buzz</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/fizz-buzz/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 412. Fizz Buzz
+
+**难度:** 简单  
+**标签:** 数学, 字符串, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/fizz-buzz/)
+
+## 题目描述
+
+给你一个整数 `n` ，返回一个字符串数组 `answer`（**下标从 1 开始**），其中：
+
+	- `answer[i] == &quot;FizzBuzz&quot;` 如果 `i` 同时是 `3` 和 `5` 的倍数。
+	- `answer[i] == &quot;Fizz&quot;` 如果 `i` 是 `3` 的倍数。
+	- `answer[i] == &quot;Buzz&quot;` 如果 `i` 是 `5` 的倍数。
+	- `answer[i] == i` （以字符串形式）如果上述条件全不满足。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 3
+**输出：**[&quot;1&quot;,&quot;2&quot;,&quot;Fizz&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 5
+**输出：**[&quot;1&quot;,&quot;2&quot;,&quot;Fizz&quot;,&quot;4&quot;,&quot;Buzz&quot;]
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**n = 15
+**输出：**[&quot;1&quot;,&quot;2&quot;,&quot;Fizz&quot;,&quot;4&quot;,&quot;Buzz&quot;,&quot;Fizz&quot;,&quot;7&quot;,&quot;8&quot;,&quot;Fizz&quot;,&quot;Buzz&quot;,&quot;11&quot;,&quot;Fizz&quot;,&quot;13&quot;,&quot;14&quot;,&quot;FizzBuzz&quot;]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def fizzBuzz(self, n: int) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

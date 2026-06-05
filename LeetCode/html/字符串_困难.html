@@ -1,0 +1,693 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串 - 困难</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>字符串 - 困难</h1>
+    <p class="summary">共 8 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>10. 正则表达式匹配</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\010_正则表达式匹配</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/regular-expression-matching/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 10. 正则表达式匹配
+
+**难度:** 困难  
+**标签:** 递归, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/regular-expression-matching/)
+
+## 题目描述
+
+给你一个字符串&#160;`s`&#160;和一个字符规律&#160;`p`，请你来实现一个支持 `&#39;.&#39;`&#160;和&#160;`&#39;*&#39;`&#160;的正则表达式匹配。
+
+	- `&#39;.&#39;` 匹配任意单个字符
+	- `&#39;*&#39;` 匹配零个或多个前面的那一个元素
+
+返回一个布尔值，表示匹配是否覆盖整个输入字符串（而非部分）。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;aa&quot;, p = &quot;a&quot;
+**输出：**false
+**解释：**&quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。
+
+```
+
+**示例 2:**
+
+```
+
+**输入：**s = &quot;aa&quot;, p = &quot;a*&quot;
+**输出：**true
+**解释：**因为 &#39;*&#39; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &#39;a&#39;。因此，字符串 &quot;aa&quot; 可被视为 &#39;a&#39; 重复了一次。
+
+```
+
+**示例&#160;3：**
+
+```
+
+**输入：**s = &quot;ab&quot;, p = &quot;.*&quot;
+**输出：**true
+**解释：**&quot;.*&quot; 表示可匹配零个或多个（&#39;*&#39;）任意字符（&#39;.&#39;）。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `s`&#160;只包含从&#160;`a-z`&#160;的小写字母。
+	- `p`&#160;只包含从&#160;`a-z`&#160;的小写字母，以及字符&#160;`.`&#160;和&#160;`*`。
+	- 保证每次出现字符&#160;`*` 时，前面都匹配到有效的字符</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isMatch(self, s: str, p: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>127. 单词接龙</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\127_单词接龙</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-ladder/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 127. 单词接龙
+
+**难度:** 困难  
+**标签:** 广度优先搜索, 哈希表, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-ladder/)
+
+## 题目描述
+
+字典&#160;`wordList` 中从单词 `beginWord`*&#160;*到&#160;`endWord` 的 **转换序列 **是一个按下述规格形成的序列&#160;`beginWord -&gt; s1&#160;-&gt; s2&#160;-&gt; ... -&gt; sk`：
+
+	- 每一对相邻的单词只差一个字母。
+	- &#160;对于&#160;`1 &#160;`si`&#160;都在&#160;`wordList`&#160;中。注意， `beginWord`*&#160;*不需要在&#160;`wordList`&#160;中。
+	- `sk&#160;== endWord`
+
+给你两个单词* *`beginWord`*&#160;*和 `endWord` 和一个字典 `wordList` ，返回 *从&#160;`beginWord` 到&#160;`endWord` 的 **最短转换序列** 中的 **单词数目*** 。如果不存在这样的转换序列，返回 `0` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
+**输出：**5
+**解释：**一个最短转换序列是 &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;, 返回它的长度 5。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
+**输出：**0
+**解释：**endWord &quot;cog&quot; 不在字典中，所以无法进行转换。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `endWord.length == beginWord.length`
+	- `1 
+	- `wordList[i].length == beginWord.length`
+	- `beginWord`、`endWord` 和 `wordList[i]` 由小写英文字母组成
+	- `beginWord != endWord`
+	- `wordList` 中的所有字符串 **互不相同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>140. 单词拆分 II</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\140_单词拆分 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-break-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 140. 单词拆分 II
+
+**难度:** 困难  
+**标签:** 字典树, 记忆化, 数组, 哈希表, 字符串, 动态规划, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-break-ii/)
+
+## 题目描述
+
+给定一个字符串 `s` 和一个字符串字典&#160;`wordDict`&#160;，在字符串&#160;`s`&#160;中增加空格来构建一个句子，使得句子中所有的单词都在词典中。**以任意顺序** 返回所有这些可能的句子。
+
+**注意：**词典中的同一个单词可能在分段中被重复使用多次。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入:**s = &quot;catsanddog&quot;, wordDict = [&quot;cat&quot;,&quot;cats&quot;,&quot;and&quot;,&quot;sand&quot;,&quot;dog&quot;]
+**输出:**[&quot;cats and dog&quot;,&quot;cat sand dog&quot;]
+
+```
+
+示例 2：
+
+```
+
+**输入:**s = &quot;pineapplepenapple&quot;, wordDict = [&quot;apple&quot;,&quot;pen&quot;,&quot;applepen&quot;,&quot;pine&quot;,&quot;pineapple&quot;]
+**输出:**[&quot;pine apple pen apple&quot;,&quot;pineapple pen apple&quot;,&quot;pine applepen apple&quot;]
+**解释:** 注意你可以重复使用字典中的单词。
+
+```
+
+示例&#160;3：
+
+```
+
+**输入:**s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;,&quot;dog&quot;,&quot;sand&quot;,&quot;and&quot;,&quot;cat&quot;]
+**输出:**[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `1 
+	- `s`&#160;和&#160;`wordDict[i]`&#160;仅有小写英文字母组成
+	- `wordDict`&#160;中所有字符串都 **不同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>212. 单词搜索 II</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\212_单词搜索 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-search-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 212. 单词搜索 II
+
+**难度:** 困难  
+**标签:** 字典树, 数组, 字符串, 回溯, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-search-ii/)
+
+## 题目描述
+
+给定一个&#160;`m x n` 二维字符网格&#160;`board`**&#160;**和一个单词（字符串）列表 `words`，&#160;*返回所有二维网格上的单词*&#160;。
+
+单词必须按照字母顺序，通过 **相邻的单元格** 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[&quot;o&quot;,&quot;a&quot;,&quot;a&quot;,&quot;n&quot;],[&quot;e&quot;,&quot;t&quot;,&quot;a&quot;,&quot;e&quot;],[&quot;i&quot;,&quot;h&quot;,&quot;k&quot;,&quot;r&quot;],[&quot;i&quot;,&quot;f&quot;,&quot;l&quot;,&quot;v&quot;]], words = [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]
+**输出：**[&quot;eat&quot;,&quot;oath&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[&quot;a&quot;,&quot;b&quot;],[&quot;c&quot;,&quot;d&quot;]], words = [&quot;abcb&quot;]
+**输出：**[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n == board[i].length`
+	- `1 
+	- `board[i][j]` 是一个小写英文字母
+	- `1 4`
+	- `1 
+	- `words[i]` 由小写英文字母组成
+	- `words` 中的所有字符串互不相同
+
+## 提示
+
+1. You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?
+2. If the current candidate does not exist in all words&#39; prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie? If you would like to learn how to implement a basic trie, please work on this problem: Implement Trie (Prefix Tree) first.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>269. 火星词典</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\269_火星词典</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/alien-dictionary/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 269. 火星词典
+
+**难度:** 困难  
+**标签:** 深度优先搜索, 广度优先搜索, 图, 拓扑排序, 数组, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/alien-dictionary/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        269. 火星词典
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>297. 二叉树的序列化与反序列化</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\297_二叉树的序列化与反序列化</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 297. 二叉树的序列化与反序列化
+
+**难度:** 困难  
+**标签:** 树, 深度优先搜索, 广度优先搜索, 设计, 字符串, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)
+
+## 题目描述
+
+序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。
+
+请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
+
+**提示: **输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅&#160;LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**root = [1,2,3,null,null,4,5]
+**输出：**[1,2,3,null,null,4,5]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**root = []
+**输出：**[]
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**root = [1]
+**输出：**[1]
+
+```
+
+**示例 4：**
+
+```
+
+**输入：**root = [1,2]
+**输出：**[1,2]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 树中结点数在范围 `[0, 104]` 内
+	- `-1000</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>44. 通配符匹配</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\044_通配符匹配</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/wildcard-matching/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 44. 通配符匹配
+
+**难度:** 困难  
+**标签:** 贪心, 递归, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/wildcard-matching/)
+
+## 题目描述
+
+给你一个输入字符串 (`s`) 和一个字符模式 (`p`) ，请你实现一个支持 `&#39;?&#39;` 和 `&#39;*&#39;` 匹配规则的通配符匹配：
+
+	`&#39;?&#39;` 可以匹配任何单个字符。
+	`&#39;*&#39;` 可以匹配任意字符序列（包括空字符序列）。
+
+判定匹配成功的充要条件是：字符模式必须能够 **完全匹配** 输入字符串（而不是部分匹配）。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**s = &quot;aa&quot;, p = &quot;a&quot;
+**输出：**false
+**解释：**&quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。
+
+```
+
+示例 2：
+
+```
+
+**输入：**s = &quot;aa&quot;, p = &quot;*&quot;
+**输出：**true
+**解释：**&#39;*&#39; 可以匹配任意字符串。
+
+```
+
+示例 3：
+
+```
+
+**输入：**s = &quot;cb&quot;, p = &quot;?a&quot;
+**输出：**false
+**解释：**&#39;?&#39; 可以匹配 &#39;c&#39;, 但第二个 &#39;a&#39; 无法匹配 &#39;b&#39;。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 
+	- `s` 仅由小写英文字母组成
+	- `p` 仅由小写英文字母、`&#39;?&#39;` 或 `&#39;*&#39;` 组成</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isMatch(self, s: str, p: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>76. 最小覆盖子串</h2>
+      <div class="meta">
+        <span>类型：字符串</span>
+        <span>难度：困难</span>
+        <span>目录：ard\076_最小覆盖子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/minimum-window-substring/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 76. 最小覆盖子串
+
+**难度:** 困难  
+**标签:** 哈希表, 字符串, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/minimum-window-substring/)
+
+## 题目描述
+
+给定两个字符串&#160;`s` 和&#160;`t`，长度分别是&#160;`m` 和&#160;`n`，返回 s 中的&#160;**最短窗口 子串**，使得该子串包含 `t` 中的每一个字符（**包括重复字符**）。如果没有这样的子串，返回空字符串*&#160;*`&quot;&quot;`。
+
+测试用例保证答案唯一。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;ADOBECODEBANC&quot;, t = &quot;ABC&quot;
+**输出：**&quot;BANC&quot;
+**解释：**最小覆盖子串 &quot;BANC&quot; 包含来自字符串 t 的 &#39;A&#39;、&#39;B&#39; 和 &#39;C&#39;。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;a&quot;, t = &quot;a&quot;
+**输出：**&quot;a&quot;
+**解释：**整个字符串 s 是最小覆盖子串。
+
+```
+
+**示例 3:**
+
+```
+
+**输入:** s = &quot;a&quot;, t = &quot;aa&quot;
+**输出:** &quot;&quot;
+**解释:** t 中两个字符 &#39;a&#39; 均应包含在 s 的子串中，
+因此没有符合条件的子字符串，返回空字符串。
+```
+
+&#160;
+
+**提示：**
+
+	- `m == s.length`
+	- `n == t.length`
+	- `1 5`
+	- `s` 和 `t` 由英文字母组成
+
+&#160;
+
+**进阶：**你能设计一个在 `O(m + n)` 时间内解决此问题的算法吗？
+
+## 提示
+
+1. Use two pointers to create a window of letters in s, which would have all the characters from t.
+2. Expand the right pointer until all the characters of t are covered.
+3. Once all the characters are covered, move the left pointer and ensure that all the characters are still covered to minimize the subarray size.
+4. Continue expanding the right and left pointers until you reach the end of s.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def minWindow(self, s: str, t: str) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

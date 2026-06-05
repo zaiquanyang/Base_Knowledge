@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贪心 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>贪心 - 中等</h1>
+    <p class="summary">共 8 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>11. 盛最多水的容器</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\011_盛最多水的容器</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/container-with-most-water/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 11. 盛最多水的容器
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/container-with-most-water/)
+
+## 题目描述
+
+给定一个长度为 `n` 的整数数组&#160;`height`&#160;。有&#160;`n`&#160;条垂线，第 `i` 条线的两个端点是&#160;`(i, 0)`&#160;和&#160;`(i, height[i])`&#160;。
+
+找出其中的两条线，使得它们与&#160;`x`&#160;轴共同构成的容器可以容纳最多的水。
+
+返回容器可以储存的最大水量。
+
+**说明：**你不能倾斜容器。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**[1,8,6,2,5,4,8,3,7]
+**输出：**49 
+**解释：**图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为&#160;49。
+```
+
+**示例 2：**
+
+```
+
+**输入：**height = [1,1]
+**输出：**1
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == height.length`
+	- `2 5`
+	- `0 4`
+
+## 提示
+
+1. If you simulate the problem, it will be O(n^2) which is not efficient.
+2. Try to use two-pointers. Set one pointer to the left and one to the right of the array. Always move the pointer that points to the lower line.
+3. How can you calculate the amount of water at each step?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def maxArea(self, height: List[int]) -&gt; int:
+        # 核心思路是双指针，每次只移动较短的那个指针，因为移动高的指针，面积不会变大（容器高度取决于短板）
+        N = len(height)
+        left, right = 0, N-1
+        max_area = 0
+        while left &lt; right:
+            max_area = max(min(height[right], height[left])*(right-left), max_area)
+            if height[left] &lt; height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_area
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>122. 买卖股票的最佳时机 II</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\122_买卖股票的最佳时机 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 122. 买卖股票的最佳时机 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
+
+## 题目描述
+
+给你一个整数数组 `prices` ，其中&#160;`prices[i]` 表示某支股票第 `i` 天的价格。
+
+在每一天，你可以决定是否购买和/或出售股票。你在任何时候&#160;**最多**&#160;只能持有 **一股** 股票。然而，你可以在 **同一天** 多次买卖该股票，但要确保你持有的股票不超过一股。
+
+返回 *你能获得的 **最大** 利润*&#160;。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**prices = [7,1,5,3,6,4]
+**输出：**7
+**解释：**在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4。
+随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6 - 3 = 3。
+最大总利润为 4 + 3 = 7 。
+```
+
+**示例 2：**
+
+```
+
+**输入：**prices = [1,2,3,4,5]
+**输出：**4
+**解释：**在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4。
+最大总利润为 4 。
+```
+
+**示例&#160;3：**
+
+```
+
+**输入：**prices = [7,6,4,3,1]
+**输出：**0
+**解释：**在这种情况下, 交易无法获得正利润，所以不参与交易可以获得最大利润，最大利润为 0。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `0 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>134. 加油站</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\134_加油站</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/gas-station/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 134. 加油站
+
+**难度:** 中等  
+**标签:** 贪心, 数组
+
+**链接:** [LeetCode](https://leetcode.cn/problems/gas-station/)
+
+## 题目描述
+
+在一条环路上有 `n`&#160;个加油站，其中第 `i`&#160;个加油站有汽油&#160;`gas[i]`*&#160;*升。
+
+你有一辆油箱容量无限的的汽车，从第* *`i`* *个加油站开往第* *`i+1`*&#160;*个加油站需要消耗汽油&#160;`cost[i]`*&#160;*升。你从其中的一个加油站出发，开始时油箱为空。
+
+给定两个整数数组 `gas` 和 `cost` ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 `-1` 。如果存在解，则 **保证** 它是 **唯一** 的。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:** gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+**输出:** 3
+解释:
+从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油
+开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油
+开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油
+开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油
+开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油
+开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。
+因此，3 可为起始索引。
+```
+
+**示例 2:**
+
+```
+
+**输入:** gas = [2,3,4], cost = [3,4,3]
+**输出:** -1
+解释:
+你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。
+我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油
+开往 0 号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油
+开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油
+你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。
+因此，无论怎样，你都不可能绕环路行驶一周。
+```
+
+&#160;
+
+**提示:**
+
+	- `n == gas.length == cost.length`
+	- `1 5`
+	- `0 4`
+	- 输入保证答案唯一。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>179. 最大数</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\179_最大数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/largest-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 179. 最大数
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/largest-number/)
+
+## 题目描述
+
+给定一组非负整数 `nums`，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。
+
+**注意：**输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入`：`**`nums = [10,2]`
+**输出：**`&quot;210&quot;`
+```
+
+**示例&#160;2：**
+
+```
+
+**输入`：`**`nums = [3,30,34,5,9]`
+**输出：**`&quot;9534330&quot;`
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>253. 会议室 II</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\253_会议室 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/meeting-rooms-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 253. 会议室 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针, 前缀和, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/meeting-rooms-ii/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Think about how we would approach this problem in a very simplistic way. We will allocate rooms to meetings that occur earlier in the day v/s the ones that occur later on, right?
+2. If you&#39;ve figured out that we have to sort the meetings by their start time, the next thing to think about is how do we do the allocation? There are two scenarios possible here for any meeting. Either there is no meeting room available and a new one has to be allocated, or a meeting room has freed up and this meeting can take place there.
+3. An important thing to note is that we don&#39;t really care which room gets freed up while allocating a room for the current meeting. As long as a room is free, our job is done. We already know the rooms we have allocated till now and we also know when are they due to get free because of the end times of the meetings going on in those rooms. We can simply check the room which is due to get vacated the earliest amongst all the allocated rooms.
+4. Following up on the previous hint, we can make use of a min-heap to store the end times of the meetings in various rooms. So, every time we want to check if any room is free or not, simply check the topmost element of the min heap as that would be the room that would get free the earliest out of all the other rooms currently occupied. If the room we extracted from the top of the min heap isn&#39;t free, then no other room is. So, we can save time here and simply allocate a new room.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        253. 会议室 II
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>324. 摆动排序 II</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\324_摆动排序 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/wiggle-sort-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 324. 摆动排序 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 分治, 快速选择, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/wiggle-sort-ii/)
+
+## 题目描述
+
+给你一个整数数组&#160;`nums`，将它重新排列成&#160;`nums[0]  nums[2] 
+	- `1 4`
+	- `0 
+	- 题目数据保证，对于给定的输入 `nums` ，总能产生满足题目要求的结果
+
+&#160;
+
+**进阶：**你能用&#160;O(n) 时间复杂度和 / 或原地 O(1) 额外空间来实现吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wiggleSort(self, nums: List[int]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>334. 递增的三元子序列</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\334_递增的三元子序列</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/increasing-triplet-subsequence/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 334. 递增的三元子序列
+
+**难度:** 中等  
+**标签:** 贪心, 数组
+
+**链接:** [LeetCode](https://leetcode.cn/problems/increasing-triplet-subsequence/)
+
+## 题目描述
+
+给你一个整数数组&#160;`nums` ，判断这个数组中是否存在长度为 `3` 的递增子序列。
+
+如果存在这样的三元组下标 `(i, j, k)`&#160;且满足 `i 
+	- `1 5`
+	- `-231 31 - 1`
+
+&#160;
+
+**进阶：**你能实现时间复杂度为 `O(n)` ，空间复杂度为 `O(1)` 的解决方案吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>55. 跳跃游戏</h2>
+      <div class="meta">
+        <span>类型：贪心</span>
+        <span>难度：中等</span>
+        <span>目录：edium\055_跳跃游戏</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/jump-game/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 55. 跳跃游戏
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/jump-game/)
+
+## 题目描述
+
+给你一个非负整数数组&#160;`nums` ，你最初位于数组的 **第一个下标** 。数组中的每个元素代表你在该位置可以跳跃的最大长度。
+
+判断你是否能够到达最后一个下标，如果可以，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例&#160;1：**
+
+```
+
+**输入：**nums = [2,3,1,1,4]
+**输出：**true
+**解释：**可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
+
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**nums = [3,2,1,0,4]
+**输出：**false
+**解释：**无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ， 所以永远不可能到达最后一个下标。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `0 5`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def canJump(self, nums: List[int]) -&gt; bool:
+        max_jump = 0
+
+        for i in range(len(nums)):
+            if i &gt; max_jump:
+                return False
+            
+            max_jump = max(max_jump, i+nums[i])
+            if max_jump &gt;= len(nums)-1:
+                return True
+        
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,992 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈希表 - 简单</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>哈希表 - 简单</h1>
+    <p class="summary">共 11 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>1. 两数之和</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\001_两数之和</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/two-sum/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 1. 两数之和
+
+**难度:** 简单  
+**标签:** 数组, 哈希表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/two-sum/)
+
+## 题目描述
+
+给定一个整数数组 `nums`&#160;和一个整数目标值 `target`，请你在该数组中找出 **和为目标值 ***`target`*&#160; 的那&#160;**两个**&#160;整数，并返回它们的数组下标。
+
+你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。
+
+你可以按任意顺序返回答案。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**nums = [2,7,11,15], target = 9
+**输出：**[0,1]
+**解释：**因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+
+```
+
+示例 2：
+
+```
+
+**输入：**nums = [3,2,4], target = 6
+**输出：**[1,2]
+
+```
+
+示例 3：
+
+```
+
+**输入：**nums = [3,3], target = 6
+**输出：**[0,1]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `2 4`
+	- `-109 9`
+	- `-109 9`
+	- **只会存在一个有效答案**
+
+&#160;
+
+**进阶：**你可以想出一个时间复杂度小于 `O(n2)` 的算法吗？
+
+## 提示
+
+1. A really brute force way would be to search for all possible pairs of numbers but that would be too slow. Again, it&#39;s best to try out brute force solutions just for completeness. It is from these brute force solutions that you can come up with optimizations.
+2. So, if we fix one of the numbers, say x, we have to scan the entire array to find the next number y which is value - x where value is the input parameter. Can we change our array somehow so that this search becomes faster?
+3. The second train of thought is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>13. 罗马数字转整数</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\013_罗马数字转整数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/roman-to-integer/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 13. 罗马数字转整数
+
+**难度:** 简单  
+**标签:** 哈希表, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/roman-to-integer/)
+
+## 题目描述
+
+罗马数字包含以下七种字符:&#160;`I`，&#160;`V`，&#160;`X`，&#160;`L`，`C`，`D`&#160;和&#160;`M`。
+
+```
+
+**字符**          **数值**
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+例如， 罗马数字 `2` 写做&#160;`II`&#160;，即为两个并列的 1 。`12` 写做&#160;`XII`&#160;，即为&#160;`X`&#160;+&#160;`II`&#160;。 `27` 写做&#160;&#160;`XXVII`, 即为&#160;`XX`&#160;+&#160;`V`&#160;+&#160;`II`&#160;。
+
+通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做&#160;`IIII`，而是&#160;`IV`。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为&#160;`IX`。这个特殊的规则只适用于以下六种情况：
+
+	- `I`&#160;可以放在&#160;`V`&#160;(5) 和&#160;`X`&#160;(10) 的左边，来表示 4 和 9。
+	- `X`&#160;可以放在&#160;`L`&#160;(50) 和&#160;`C`&#160;(100) 的左边，来表示 40 和&#160;90。&#160;
+	- `C`&#160;可以放在&#160;`D`&#160;(500) 和&#160;`M`&#160;(1000) 的左边，来表示&#160;400 和&#160;900。
+
+给定一个罗马数字，将其转换成整数。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:**&#160;s = &quot;III&quot;
+**输出:** 3
+```
+
+**示例&#160;2:**
+
+```
+
+**输入:**&#160;s = &quot;IV&quot;
+**输出:** 4
+```
+
+**示例&#160;3:**
+
+```
+
+**输入:**&#160;s = &quot;IX&quot;
+**输出:** 9
+```
+
+**示例&#160;4:**
+
+```
+
+**输入:**&#160;s = &quot;LVIII&quot;
+**输出:** 58
+**解释:** L = 50, V= 5, III = 3.
+
+```
+
+**示例&#160;5:**
+
+```
+
+**输入:**&#160;s = &quot;MCMXCIV&quot;
+**输出:** 1994
+**解释:** M = 1000, CM = 900, XC = 90, IV = 4.
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `s` 仅含字符 `(&#39;I&#39;, &#39;V&#39;, &#39;X&#39;, &#39;L&#39;, &#39;C&#39;, &#39;D&#39;, &#39;M&#39;)`
+	- 题目数据保证 `s` 是一个有效的罗马数字，且表示整数在范围 `[1, 3999]` 内
+	- 题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。
+	- IL 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。
+	- 关于罗马数字的详尽书写规则，可以参考 罗马数字 - 百度百科。
+
+## 提示
+
+1. Problem is simpler to solve by working the string from back to front and using a map.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def romanToInt(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>141. 环形链表</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\141_环形链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/linked-list-cycle/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 141. 环形链表
+
+**难度:** 简单  
+**标签:** 哈希表, 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/linked-list-cycle/)
+
+## 题目描述
+
+给你一个链表的头节点 `head` ，判断链表中是否有环。
+
+如果链表中有某个节点，可以通过连续跟踪 `next` 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 `pos` 来表示链表尾连接到链表中的位置（索引从 0 开始）。**注意：`pos` 不作为参数进行传递&#160;**。仅仅是为了标识链表的实际情况。
+
+*如果链表中存在环*&#160;，则返回 `true` 。 否则，返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**head = [3,2,0,-4], pos = 1
+**输出：**true
+**解释：**链表中有一个环，其尾部连接到第二个节点。
+
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**head = [1,2], pos = 0
+**输出：**true
+**解释：**链表中有一个环，其尾部连接到第一个节点。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**head = [1], pos = -1
+**输出：**false
+**解释：**链表中没有环。
+
+```
+
+&#160;
+
+**提示：**
+
+	- 链表中节点的数目范围是 `[0, 104]`
+	- `-105 5`
+	- `pos` 为 `-1` 或者链表中的一个 **有效索引** 。
+
+&#160;
+
+**进阶：**你能用 `O(1)`（即，常量）内存解决此问题吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>160. 相交链表</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\160_相交链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 160. 相交链表
+
+**难度:** 简单  
+**标签:** 哈希表, 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
+
+## 题目描述
+
+给你两个单链表的头节点&#160;`headA` 和 `headB` ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 `null` 。
+
+图示两个链表在节点 `c1` 开始相交**：**
+
+题目数据 **保证** 整个链式结构中不存在环。
+
+**注意**，函数返回结果后，链表必须 **保持其原始结构** 。
+
+**自定义评测：**
+
+**评测系统** 的输入如下（你设计的程序 **不适用** 此输入）：
+
+	- `intersectVal` - 相交的起始节点的值。如果不存在相交节点，这一值为 `0`
+	- `listA` - 第一个链表
+	- `listB` - 第二个链表
+	- `skipA` - 在 `listA` 中（从头节点开始）跳到交叉节点的节点数
+	- `skipB` - 在 `listB` 中（从头节点开始）跳到交叉节点的节点数
+
+评测系统将根据这些输入创建链式数据结构，并将两个头节点 `headA` 和 `headB` 传递给你的程序。如果程序能够正确返回相交节点，那么你的解决方案将被 **视作正确答案** 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+**输出：**Intersected at &#39;8&#39;
+**解释：**相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。
+
+```
+
+&#160;
+
+**示例&#160;2：**
+
+```
+
+**输入：**intersectVal&#160;= 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+**输出：**Intersected at &#39;2&#39;
+**解释：**相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [1,9,1,2,4]，链表 B 为 [3,2,4]。
+在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+
+```
+
+**示例&#160;3：**
+
+```
+
+**输入：**intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+**输出：**No intersection
+**解释：**从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
+由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+这两个链表不相交，因此返回 null 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `listA` 中节点数目为 `m`
+	- `listB` 中节点数目为 `n`
+	- `1 4`
+	- `1 5`
+	- `0 
+	- `0 
+	- 如果 `listA` 和 `listB` 没有交点，`intersectVal` 为 `0`
+	- 如果 `listA` 和 `listB` 有交点，`intersectVal == listA[skipA] == listB[skipB]`
+
+&#160;
+
+**进阶：**你能否设计一个时间复杂度 `O(m + n)` 、仅用 `O(1)` 内存的解决方案？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>169. 多数元素</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\169_多数元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/majority-element/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 169. 多数元素
+
+**难度:** 简单  
+**标签:** 数组, 哈希表, 分治, 计数, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/majority-element/)
+
+## 题目描述
+
+给定一个大小为 `n`* *的数组&#160;`nums` ，返回其中的多数元素。多数元素是指在数组中出现次数 **大于**&#160;`⌊ n/2 ⌋`&#160;的元素。
+
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+&#160;
+
+**示例&#160;1：**
+
+```
+
+**输入：**nums = [3,2,3]
+**输出：**3
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**nums = [2,2,1,1,1,2,2]
+**输出：**2
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 4`
+	- `-109 9`
+	- 输入保证数组中一定有一个多数元素。
+
+&#160;
+
+**进阶：**尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>202. 快乐数</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\202_快乐数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/happy-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 202. 快乐数
+
+**难度:** 简单  
+**标签:** 哈希表, 数学, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/happy-number/)
+
+## 题目描述
+
+编写一个算法来判断一个数 `n` 是不是快乐数。
+
+**「快乐数」**&#160;定义为：
+
+	- 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+	- 然后重复这个过程直到这个数变为 1，也可能是 **无限循环** 但始终变不到 1。
+	- 如果这个过程 **结果为**&#160;1，那么这个数就是快乐数。
+
+如果 `n` 是 *快乐数* 就返回 `true` ；不是，则返回 `false` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 19
+**输出：**true
+解释：
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 2
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isHappy(self, n: int) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>217. 存在重复元素</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\217_存在重复元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/contains-duplicate/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 217. 存在重复元素
+
+**难度:** 简单  
+**标签:** 数组, 哈希表, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/contains-duplicate/)
+
+## 题目描述
+
+给你一个整数数组 `nums` 。如果任一值在数组中出现 **至少两次** ，返回 `true` ；如果数组中每个元素互不相同，返回 `false` 。
+
+&#160;
+
+示例 1：
+
+输入：nums = [1,2,3,1]
+
+输出：true
+
+**解释：**
+
+元素 1 在下标 0 和 3 出现。
+
+示例 2：
+
+输入：nums = [1,2,3,4]
+
+输出：false
+
+**解释：**
+
+所有元素都不同。
+
+示例 3：
+
+输入：nums = [1,1,1,3,3,4,3,2,4,2]
+
+输出：true
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-109 9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>242. 有效的字母异位词</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\242_有效的字母异位词</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-anagram/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 242. 有效的字母异位词
+
+**难度:** 简单  
+**标签:** 哈希表, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-anagram/)
+
+## 题目描述
+
+给定两个字符串 `s` 和 `t` ，编写一个函数来判断 `t` 是否是 `s` 的 字母异位词。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:** s = &quot;anagram&quot;, t = &quot;nagaram&quot;
+**输出:** true
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** s = &quot;rat&quot;, t = &quot;car&quot;
+**输出: **false
+```
+
+&#160;
+
+**提示:**
+
+	- `1 4`
+	- `s` 和 `t`&#160;仅包含小写字母
+
+&#160;
+
+**进阶:&#160;**如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>268. 丢失的数字</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\268_丢失的数字</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/missing-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 268. 丢失的数字
+
+**难度:** 简单  
+**标签:** 位运算, 数组, 哈希表, 数学, 二分查找, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/missing-number/)
+
+## 题目描述
+
+给定一个包含 `[0, n]`&#160;中&#160;`n`&#160;个数的数组 `nums` ，找出 `[0, n]` 这个范围内没有出现在数组中的那个数。
+
+&#160;
+
+**示例 1：**
+
+**输入：**nums = [3,0,1]
+
+**输出：**2
+
+解释：`n = 3`，因为有 3 个数字，所以所有的数字都在范围 `[0,3]` 内。2 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**示例 2：**
+
+**输入：**nums = [0,1]
+
+**输出：**2
+
+解释：`n = 2`，因为有 2 个数字，所以所有的数字都在范围 `[0,2]` 内。2 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**示例 3：**
+
+**输入：**nums = [9,6,4,2,3,5,7,0,1]
+
+**输出：**8
+
+解释：`n = 9`，因为有 9 个数字，所以所有的数字都在范围 `[0,9]` 内。8 是丢失的数字，因为它没有出现在 `nums` 中。
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 4`
+	- `0 
+	- `nums` 中的所有数字都 **独一无二**
+
+&#160;
+
+**进阶：**你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>350. 两个数组的交集 II</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\350_两个数组的交集 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/intersection-of-two-arrays-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 350. 两个数组的交集 II
+
+**难度:** 简单  
+**标签:** 数组, 哈希表, 双指针, 二分查找, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/intersection-of-two-arrays-ii/)
+
+## 题目描述
+
+给你两个整数数组&#160;`nums1` 和 `nums2` ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums1 = [1,2,2,1], nums2 = [2,2]
+**输出：**[2,2]
+
+```
+
+**示例 2:**
+
+```
+
+**输入：**nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+**输出：**[4,9]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+
+&#160;
+
+**进阶**：
+
+	- 如果给定的数组已经排好序呢？你将如何优化你的算法？
+	- 如果&#160;`nums1`*&#160;*的大小比&#160;`nums2` 小，哪种方法更优？
+	- 如果&#160;`nums2`*&#160;*的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>387. 字符串中的第一个唯一字符</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：简单</span>
+        <span>目录：asy\387_字符串中的第一个唯一字符</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/first-unique-character-in-a-string/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 387. 字符串中的第一个唯一字符
+
+**难度:** 简单  
+**标签:** 队列, 哈希表, 字符串, 计数
+
+**链接:** [LeetCode](https://leetcode.cn/problems/first-unique-character-in-a-string/)
+
+## 题目描述
+
+给定一个字符串&#160;`s`&#160;，找到 *它的第一个不重复的字符，并返回它的索引* 。如果不存在，则返回 `-1`&#160;。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;leetcode&quot;
+**输出:** 0
+
+```
+
+**示例 2:**
+
+```
+
+**输入:** s = &quot;loveleetcode&quot;
+**输出:** 2
+
+```
+
+**示例 3:**
+
+```
+
+**输入:** s = &quot;aabb&quot;
+**输出:** -1
+
+```
+
+&#160;
+
+**提示:**
+
+	- `1 5`
+	- `s`&#160;只包含小写字母</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def firstUniqChar(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

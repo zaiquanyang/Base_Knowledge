@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>链表 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>链表 - 中等</h1>
+    <p class="summary">共 8 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>116. 填充每个节点的下一个右侧节点指针</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\116_填充每个节点的下一个右侧节点指针</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 116. 填充每个节点的下一个右侧节点指针
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 广度优先搜索, 链表, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/)
+
+## 题目描述
+
+给定一个&#160;**完美二叉树&#160;**，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+
+```
+
+struct Node {
+  int val;
+  Node *left;
+  Node *right;
+  Node *next;
+}
+```
+
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL`。
+
+初始状态下，所有&#160;next 指针都被设置为 `NULL`。
+
+&#160;
+
+**示例 1：**
+
+```
+
+输入：root = [1,2,3,4,5,6,7]
+输出：[1,#,2,3,#,4,5,6,7,#]
+解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，&#39;#&#39; 标志着每一层的结束。
+
+```
+
+**示例 2:**
+
+```
+
+输入：root = []
+输出：[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 树中节点的数量在&#160;`[0, 212&#160;- 1]`&#160;范围内
+	- `-1000 
+
+&#160;
+
+**进阶：**
+
+	- 你只能使用常量级额外空间。
+	- 使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, val: int = 0, left: &#39;Node&#39; = None, right: &#39;Node&#39; = None, next: &#39;Node&#39; = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>138. 随机链表的复制</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\138_随机链表的复制</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 138. 随机链表的复制
+
+**难度:** 中等  
+**标签:** 哈希表, 链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/copy-list-with-random-pointer/)
+
+## 题目描述
+
+给你一个长度为 `n` 的链表，每个节点包含一个额外增加的随机指针 `random` ，该指针可以指向链表中的任何节点或空节点。
+
+构造这个链表的&#160;**深拷贝**。&#160;深拷贝应该正好由 `n` 个 **全新** 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 `next` 指针和 `random` 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。**复制链表中的指针都不应指向原链表中的节点 **。
+
+例如，如果原链表中有 `X` 和 `Y` 两个节点，其中 `X.random --&gt; Y` 。那么在复制链表中对应的两个节点 `x` 和 `y` ，同样有 `x.random --&gt; y` 。
+
+返回复制链表的头节点。
+
+用一个由&#160;`n`&#160;个节点组成的链表来表示输入/输出中的链表。每个节点用一个&#160;`[val, random_index]`&#160;表示：
+
+	- `val`：一个表示&#160;`Node.val`&#160;的整数。
+	- `random_index`：随机指针指向的节点索引（范围从&#160;`0`&#160;到&#160;`n-1`）；如果不指向任何节点，则为&#160;&#160;`null`&#160;。
+
+你的代码 **只** 接受原链表的头节点 `head` 作为传入参数。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+**输出：**[[7,null],[13,0],[11,4],[10,2],[1,0]]
+
+```
+
+示例 2：
+
+```
+
+**输入：**head = [[1,1],[2,1]]
+**输出：**[[1,1],[2,1]]
+
+```
+
+示例 3：
+
+****
+
+```
+
+**输入：**head = [[3,null],[3,0],[3,null]]
+**输出：**[[3,null],[3,0],[3,null]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 
+	- `-104&#160;4`
+	- `Node.random`&#160;为&#160;`null` 或指向链表中的节点。
+
+## 提示
+
+1. Just iterate the linked list and create copies of the nodes on the go. Since a node can be referenced from multiple nodes due to the random pointers, ensure you are not making multiple copies of the same node.
+2. You may want to use extra space to keep old_node ---&gt; new_node mapping to prevent creating multiple copies of the same node.
+3. We can avoid using extra space for old_node ---&gt; new_node mapping by tweaking the original linked list. Simply interweave the nodes of the old and copied list. For example: Old List: A --&gt; B --&gt; C --&gt; D InterWeaved List: A --&gt; A&#39; --&gt; B --&gt; B&#39; --&gt; C --&gt; C&#39; --&gt; D --&gt; D&#39;
+4. The interweaving is done using next pointers and we can make use of interweaved structure to get the correct reference nodes for random pointers.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, x: int, next: &#39;Node&#39; = None, random: &#39;Node&#39; = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>146. LRU 缓存</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\146_LRU 缓存</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/lru-cache/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 146. LRU 缓存
+
+**难度:** 中等  
+**标签:** 设计, 哈希表, 链表, 双向链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/lru-cache/)
+
+## 题目描述
+
+请你设计并实现一个满足&#160; LRU (最近最少使用) 缓存 约束的数据结构。
+
+实现 `LRUCache` 类：
+
+	- `LRUCache(int capacity)` 以 **正整数** 作为容量&#160;`capacity` 初始化 LRU 缓存
+	- `int get(int key)` 如果关键字 `key` 存在于缓存中，则返回关键字的值，否则返回 `-1` 。
+	- `void put(int key, int value)`&#160;如果关键字&#160;`key` 已经存在，则变更其数据值&#160;`value` ；如果不存在，则向缓存中插入该组&#160;`key-value` 。如果插入操作导致关键字数量超过&#160;`capacity` ，则应该 **逐出** 最久未使用的关键字。
+
+函数 `get` 和 `put` 必须以 `O(1)` 的平均时间复杂度运行。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
+[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+**输出**
+[null, null, null, 1, null, -1, null, -1, 3, 4]
+
+**解释**
+LRUCache lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // 缓存是 {1=1}
+lRUCache.put(2, 2); // 缓存是 {1=1, 2=2}
+lRUCache.get(1);    // 返回 1
+lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+lRUCache.get(2);    // 返回 -1 (未找到)
+lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+lRUCache.get(1);    // 返回 -1 (未找到)
+lRUCache.get(3);    // 返回 3
+lRUCache.get(4);    // 返回 4
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `0 5`
+	- 最多调用 `2 * 105` 次 `get` 和 `put`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, capacity: int):
+        
+
+    def get(self, key: int) -&gt; int:
+        
+
+    def put(self, key: int, value: int) -&gt; None:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>148. 排序链表</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\148_排序链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sort-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 148. 排序链表
+
+**难度:** 中等  
+**标签:** 链表, 双指针, 分治, 排序, 归并排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sort-list/)
+
+## 题目描述
+
+给你链表的头结点&#160;`head`&#160;，请将其按 **升序** 排列并返回 **排序后的链表** 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+输入：head = [4,2,1,3]
+输出：[1,2,3,4]
+
+```
+
+**示例 2：**
+
+```
+
+输入：head = [-1,5,3,4,0]
+输出：[-1,0,3,4,5]
+
+```
+
+**示例 3：**
+
+```
+
+输入：head = []
+输出：[]
+
+```
+
+&#160;
+
+提示：
+
+	- 链表中节点的数目在范围&#160;`[0, 5 * 104]`&#160;内
+	- `-105&#160;5`
+
+&#160;
+
+进阶：你可以在&#160;`O(n&#160;log&#160;n)` 时间复杂度和常数级空间复杂度下，对链表进行排序吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>19. 删除链表的倒数第 N 个结点</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\019_删除链表的倒数第 N 个结点</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 19. 删除链表的倒数第 N 个结点
+
+**难度:** 中等  
+**标签:** 链表, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+
+## 题目描述
+
+给你一个链表，删除链表的倒数第&#160;`n`*&#160;*个结点，并且返回链表的头结点。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**head = [1,2,3,4,5], n = 2
+**输出：**[1,2,3,5]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**head = [1], n = 1
+**输出：**[]
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**head = [1,2], n = 1
+**输出：**[1]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 链表中结点的数目为 `sz`
+	- `1 
+	- `0 
+	- `1 
+
+&#160;
+
+**进阶：**你能尝试使用一趟扫描实现吗？
+
+## 提示
+
+1. Maintain two pointers and update one with a delay of n steps.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>2. 两数相加</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\002_两数相加</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/add-two-numbers/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 2. 两数相加
+
+**难度:** 中等  
+**标签:** 递归, 链表, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/add-two-numbers/)
+
+## 题目描述
+
+给你两个&#160;**非空** 的链表，表示两个非负的整数。它们每位数字都是按照&#160;**逆序**&#160;的方式存储的，并且每个节点只能存储&#160;**一位**&#160;数字。
+
+请你将两个数相加，并以相同形式返回一个表示和的链表。
+
+你可以假设除了数字 0 之外，这两个数都不会以 0&#160;开头。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**l1 = [2,4,3], l2 = [5,6,4]
+**输出：**[7,0,8]
+**解释：**342 + 465 = 807.
+
+```
+
+示例 2：
+
+```
+
+**输入：**l1 = [0], l2 = [0]
+**输出：**[0]
+
+```
+
+示例 3：
+
+```
+
+**输入：**l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+**输出：**[8,9,9,9,0,0,0,1]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 每个链表中的节点数在范围 `[1, 100]` 内
+	- `0 
+	- 题目数据保证列表表示的数字不含前导零</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import Optional
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -&gt; Optional[ListNode]:
+        dummy = ListNode(0)
+        curr = dummy
+        carry = 0
+
+        while l1 or l2 or carry:
+            val = carry
+            if l1:
+                val += l1.val
+                l1 = l1.next
+            if l2:
+                val += l2.val
+                l2 = l2.next
+            carry, val = divmod(val, 10)
+            curr.next = ListNode(val)
+            curr = curr.next
+
+        return dummy.next
+
+
+# 测试辅助函数
+def make_list(nums):
+    dummy = ListNode()
+    curr = dummy
+    for n in nums:
+        curr.next = ListNode(n)
+        curr = curr.next
+    return dummy.next
+
+def list_to_array(node):
+    result = []
+    while node:
+        result.append(node.val)
+        node = node.next
+    return result
+
+
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+
+    # 示例 1: 342 + 465 = 807 → [7,0,8]
+    l1 = make_list([2, 4, 3])
+    l2 = make_list([5, 6, 4])
+    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [7, 0, 8]
+
+    # 示例 2: 0 + 0 = 0 → [0]
+    l1 = make_list([0])
+    l2 = make_list([0])
+    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [0]
+
+    # 示例 3: 9999999 + 9999 = 10009998 → [8,9,9,9,0,0,0,1]
+    l1 = make_list([9, 9, 9, 9, 9, 9, 9])
+    l2 = make_list([9, 9, 9, 9])
+    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [8, 9, 9, 9, 0, 0, 0, 1]</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>237. 删除链表中的节点</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\237_删除链表中的节点</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/delete-node-in-a-linked-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 237. 删除链表中的节点
+
+**难度:** 中等  
+**标签:** 链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/delete-node-in-a-linked-list/)
+
+## 题目描述
+
+有一个单链表的&#160;`head`，我们想删除它其中的一个节点&#160;`node`。
+
+给你一个需要删除的节点&#160;`node`&#160;。你将&#160;**无法访问**&#160;第一个节点&#160;&#160;`head`。
+
+链表的所有值都是 唯一的，并且保证给定的节点&#160;`node`&#160;不是链表中的最后一个节点。
+
+删除给定的节点。注意，删除节点并不是指从内存中删除它。这里的意思是：
+
+	- 给定节点的值不应该存在于链表中。
+	- 链表中的节点数应该减少 1。
+	- `node`&#160;前面的所有值顺序相同。
+	- `node`&#160;后面的所有值顺序相同。
+
+**自定义测试：**
+
+	- 对于输入，你应该提供整个链表&#160;`head`&#160;和要给出的节点&#160;`node`。`node`&#160;不应该是链表的最后一个节点，而应该是链表中的一个实际节点。
+	- 我们将构建链表，并将节点传递给你的函数。
+	- 输出将是调用你函数后的整个链表。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**head = [4,5,1,9], node = 5
+**输出：**[4,1,9]
+**解释：**指定链表中值为&#160;5&#160;的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**head = [4,5,1,9], node = 1
+**输出：**[4,5,9]
+**解释：**指定链表中值为&#160;1&#160;的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9
+```
+
+&#160;
+
+**提示：**
+
+	- 链表中节点的数目范围是 `[2, 1000]`
+	- `-1000 
+	- 链表中每个节点的值都是 **唯一** 的
+	- 需要删除的节点 `node` 是 **链表中的节点** ，且 **不是末尾节点**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, x):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>328. 奇偶链表</h2>
+      <div class="meta">
+        <span>类型：链表</span>
+        <span>难度：中等</span>
+        <span>目录：edium\328_奇偶链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/odd-even-linked-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 328. 奇偶链表
+
+**难度:** 中等  
+**标签:** 链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/odd-even-linked-list/)
+
+## 题目描述
+
+给定单链表的头节点&#160;`head`&#160;，将所有索引为奇数的节点和索引为偶数的节点分别分组，保持它们原有的相对顺序，然后把偶数索引节点分组连接到奇数索引节点分组之后，返回重新排序的链表。
+
+**第一个**节点的索引被认为是 **奇数** ， **第二个**节点的索引为&#160;**偶数** ，以此类推。
+
+请注意，偶数组和奇数组内部的相对顺序应该与输入时保持一致。
+
+你必须在&#160;`O(1)`&#160;的额外空间复杂度和&#160;`O(n)`&#160;的时间复杂度下解决这个问题。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入: **head = [1,2,3,4,5]
+**输出:**&#160;[1,3,5,2,4]
+```
+
+**示例 2:**
+
+```
+
+**输入:** head = [2,1,3,5,6,4,7]
+**输出:** [2,3,6,7,1,5,4]
+```
+
+&#160;
+
+**提示:**
+
+	- `n ==&#160;` 链表中的节点数
+	- `0 4`
+	- `-106&#160;6`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

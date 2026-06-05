@@ -1,0 +1,1134 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>矩阵 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>矩阵 - 中等</h1>
+    <p class="summary">共 12 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>130. 被围绕的区域</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\130_被围绕的区域</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/surrounded-regions/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 130. 被围绕的区域
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 广度优先搜索, 并查集, 数组, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/surrounded-regions/)
+
+## 题目描述
+
+给你一个 `m x n` 的矩阵 `board` ，由若干字符 `&#39;X&#39;` 和 `&#39;O&#39;`&#160;组成，**捕获** 所有 **被围绕的区域**：
+
+	- **连接：**一个单元格与水平或垂直方向上相邻的单元格连接。
+	- **区域：连接所有&#160;**`&#39;O&#39;`&#160;的单元格来形成一个区域。
+	- **围绕：**如果一个区域中的所有 `&#39;O&#39;` 单元格都不在棋盘的边缘，则该区域被包围。这样的区域 **完全** 被 `&#39;X&#39;` 单元格包围。
+
+通过 **原地**&#160;将输入矩阵中的所有 `&#39;O&#39;`&#160;替换为 `&#39;X&#39;` 来 **捕获被围绕的区域**。你不需要返回任何值。
+
+&#160;
+
+示例 1：
+
+**输入：**board = [[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;O&#39;,&#39;O&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;X&#39;,&#39;O&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;O&#39;,&#39;X&#39;,&#39;X&#39;]]
+
+输出：[[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;X&#39;,&#39;X&#39;,&#39;X&#39;],[&#39;X&#39;,&#39;O&#39;,&#39;X&#39;,&#39;X&#39;]]
+
+**解释：**
+
+在上图中，底部的区域没有被捕获，因为它在 board 的边缘并且不能被围绕。
+
+示例 2：
+
+**输入：**board = [[&#39;X&#39;]]
+
+**输出：**[[&#39;X&#39;]]
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n == board[i].length`
+	- `1 
+	- `board[i][j]` 为 `&#39;X&#39;` 或 `&#39;O&#39;`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self, board: List[List[str]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify board in-place instead.
+        &quot;&quot;&quot;
+        if not board:
+            return 
+        
+        m, n = len(board), len(board[0])
+
+        def dfs(s, k):
+            if s&lt;0 or s&gt;=m or k&lt;0 or k&gt;=n or board[s][k] != &#39;O&#39;:
+                return
+            board[s][k] = &#39;#&#39;
+
+            dfs(s+1, k)
+            dfs(s-1, k)
+            dfs(s, k+1)
+            dfs(s, k-1)
+        # 从左右两边的边界开始dfs
+        for s in range(m):
+            dfs(s, 0)
+            dfs(s, n-1)
+
+        # 从上下两行的边界开始dfs
+        for k in range(n):
+            dfs(0, k)
+            dfs(m-1, k)
+
+        for s in range(m):
+            for k in range(n):
+                if board[s][k] == &#39;O&#39;:
+                    board[s][k] = &#39;X&#39;
+                elif board[s][k] == &#39;#&#39;:
+                    board[s][k]=&#39;O&#39;
+
+        return board
+
+
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>200. 岛屿数量</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\200_岛屿数量</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/number-of-islands/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 200. 岛屿数量
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 广度优先搜索, 并查集, 数组, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/number-of-islands/)
+
+## 题目描述
+
+给你一个由&#160;`&#39;1&#39;`（陆地）和 `&#39;0&#39;`（水）组成的的二维网格，请你计算网格中岛屿的数量。
+
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+
+此外，你可以假设该网格的四条边均被水包围。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**grid = [
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;1&#39;,&#39;1&#39;,&#39;0&#39;],
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;1&#39;,&#39;0&#39;],
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;0&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;]
+]
+**输出：**1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**grid = [
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;1&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;0&#39;,&#39;0&#39;,&#39;1&#39;,&#39;0&#39;,&#39;0&#39;],
+&#160; [&#39;0&#39;,&#39;0&#39;,&#39;0&#39;,&#39;1&#39;,&#39;1&#39;]
+]
+**输出：**3
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == grid.length`
+	- `n == grid[i].length`
+	- `1 
+	- `grid[i][j]` 的值为 `&#39;0&#39;` 或 `&#39;1&#39;`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>240. 搜索二维矩阵 II</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\240_搜索二维矩阵 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/search-a-2d-matrix-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 240. 搜索二维矩阵 II
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 分治, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/search-a-2d-matrix-ii/)
+
+## 题目描述
+
+编写一个高效的算法来搜索&#160;`*m*&#160;x&#160;*n*`&#160;矩阵 `matrix` 中的一个目标值 `target` 。该矩阵具有以下特性：
+
+	- 每行的元素从左到右升序排列。
+	- 每列的元素从上到下升序排列。
+
+&#160;
+
+示例 1：
+
+```
+
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+输出：true
+
+```
+
+示例 2：
+
+```
+
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+输出：false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-109&#160;9`
+	- 每行的所有元素从左到右升序排列
+	- 每列的所有元素从上到下升序排列
+	- `-109&#160;9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>289. 生命游戏</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\289_生命游戏</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/game-of-life/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 289. 生命游戏
+
+**难度:** 中等  
+**标签:** 数组, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/game-of-life/)
+
+## 题目描述
+
+根据&#160;百度百科&#160;，&#160;**生命游戏**&#160;，简称为 **生命** ，是英国数学家约翰&#183;何顿&#183;康威在 1970 年发明的细胞自动机。
+
+给定一个包含 `m &#215; n`&#160;个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态： `1` 即为 **活细胞** （live），或 `0` 即为 **死细胞** （dead）。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：
+
+	- 如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡；
+	- 如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；
+	- 如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡；
+	- 如果死细胞周围正好有三个活细胞，则该位置死细胞复活；
+
+下一个状态是通过将上述规则同时应用于当前状态下的每个细胞所形成的，其中细胞的出生和死亡是 **同时** 发生的。给你 `m x n` 网格面板 `board` 的当前状态，返回下一个状态。
+
+给定当前&#160;`board`&#160;的状态，**更新**&#160;`board`&#160;到下一个状态。
+
+**注意** 你不需要返回任何东西。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+**输出：**[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[1,1],[1,0]]
+**输出：**[[1,1],[1,1]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n == board[i].length`
+	- `1 
+	- `board[i][j]` 为 `0` 或 `1`
+
+&#160;
+
+**进阶：**
+
+	- 你可以使用原地算法解决本题吗？请注意，面板上所有格子需要同时被更新：你不能先更新某些格子，然后使用它们的更新后的值再更新其他格子。
+	- 本题中，我们使用二维数组来表示面板。原则上，面板是无限的，但当活细胞侵占了面板边界时会造成问题。你将如何解决这些问题？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify board in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>308. 二维区域和检索 - 矩阵可修改</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\308_二维区域和检索 - 矩阵可修改</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/range-sum-query-2d-mutable/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 308. 二维区域和检索 - 矩阵可修改
+
+**难度:** 中等  
+**标签:** 设计, 树状数组, 线段树, 数组, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/range-sum-query-2d-mutable/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        308. 二维区域和检索 - 矩阵可修改
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>348. 设计井字棋</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\348_设计井字棋</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/design-tic-tac-toe/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 348. 设计井字棋
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/design-tic-tac-toe/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Could you trade extra space such that move() operation can be done in O(1)?
+2. You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        348. 设计井字棋
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>36. 有效的数独</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\036_有效的数独</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/valid-sudoku/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 36. 有效的数独
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/valid-sudoku/)
+
+## 题目描述
+
+请你判断一个&#160;`9 x 9` 的数独是否有效。只需要** 根据以下规则** ，验证已经填入的数字是否有效即可。
+
+	- 数字&#160;`1-9`&#160;在每一行只能出现一次。
+	- 数字&#160;`1-9`&#160;在每一列只能出现一次。
+	- 数字&#160;`1-9`&#160;在每一个以粗实线分隔的&#160;`3x3`&#160;宫内只能出现一次。（请参考示例图）
+
+&#160;
+
+**注意：**
+
+	- 一个有效的数独（部分已被填充）不一定是可解的。
+	- 只需要根据以上规则，验证已经填入的数字是否有效即可。
+	- 空白格用&#160;`&#39;.&#39;`&#160;表示。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = 
+[[&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]
+,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]
+,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]
+,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]
+,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = 
+[[&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]
+,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]
+,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]
+,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]
+,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]
+,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]
+**输出：**false
+**解释：**除了第一行的第一个数字从** 5** 改为 **8 **以外，空格内其他数字均与 示例1 相同。 但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。
+```
+
+&#160;
+
+**提示：**
+
+	- `board.length == 9`
+	- `board[i].length == 9`
+	- `board[i][j]` 是一位数字（`1-9`）或者 `&#39;.&#39;`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -&gt; bool:
+
+        ans_dict_row = {}
+        ans_dict_col = {}
+        ans_dict_block = {}
+
+        for i in range(9):
+            ans_dict_row[i] = []
+            ans_dict_col[i] = []
+            ans_dict_block[i] = []
+
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == &quot;.&quot;:
+                    continue
+
+                k = i//3*3 + j//3
+                key = str(i) + str(j) + str(k)
+                
+                if (board[i][j] in ans_dict_row[i]) or (board[i][j] in ans_dict_col[j]) or (board[i][j] in ans_dict_block[k]):
+                    return False
+                else:
+                    ans_dict_row[i].append(board[i][j])
+                    ans_dict_col[j].append(board[i][j])
+                    ans_dict_block[k].append(board[i][j])
+
+                
+        return True
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>378. 有序矩阵中第 K 小的元素</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\378_有序矩阵中第 K 小的元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 378. 有序矩阵中第 K 小的元素
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 矩阵, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/)
+
+## 题目描述
+
+给你一个&#160;`n x n`*&#160;*矩阵&#160;`matrix` ，其中每行和每列元素均按升序排序，找到矩阵中第 `k` 小的元素。
+
+请注意，它是 **排序后** 的第 `k` 小元素，而不是第 `k` 个 **不同** 的元素。
+
+你必须找到一个内存复杂度优于&#160;`O(n2)` 的解决方案。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
+**输出：**13
+**解释：**矩阵中的元素为 [1,5,9,10,11,12,13,**13**,15]，第 8 小元素是 13
+
+```
+
+示例 2：
+
+```
+
+**输入：**matrix = [[-5]], k = 1
+**输出：**-5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-109 9`
+	- 题目数据 **保证** `matrix` 中的所有行和列都按 **非递减顺序** 排列
+	- `1 2`
+
+&#160;
+
+**进阶：**
+
+	- 你能否用一个恒定的内存(即 `O(1)` 内存复杂度)来解决这个问题?
+	- 你能在 `O(n)` 的时间复杂度下解决这个问题吗?这个方法对于面试来说可能太超前了，但是你会发现阅读这篇文章（&#160;this paper&#160;）很有趣。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>48. 旋转图像</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\048_旋转图像</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/rotate-image/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 48. 旋转图像
+
+**难度:** 中等  
+**标签:** 数组, 数学, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/rotate-image/)
+
+## 题目描述
+
+给定一个 *n&#160;*&#215;&#160;*n* 的二维矩阵&#160;`matrix` 表示一个图像。请你将图像顺时针旋转 90 度。
+
+你必须在** 原地** 旋转图像，这意味着你需要直接修改输入的二维矩阵。**请不要 **使用另一个矩阵来旋转图像。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[1,2,3],[4,5,6],[7,8,9]]
+**输出：**[[7,4,1],[8,5,2],[9,6,3]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+**输出：**[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == matrix.length == matrix[i].length`
+	- `1 
+	- `-1000</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify matrix in-place instead.
+        &quot;&quot;&quot;
+        &quot;&quot;&quot;
+        N = len(mat)
+        mat[i][j]---&gt;mat[j][N-1-i]
+        mat[j][N-1-i]---&gt;mat[N-1-i][N-1-j]
+        mat[N-1-i][N-1-j]---&gt;mat[N-1-j][i]
+        mat[N-1-j][i]------&gt; mat[i][j]
+        &quot;&quot;&quot;
+        N = len(matrix)
+        n = (N+1)//2
+        # print(n)
+        for i in range(n):
+            for j in range(N-n):
+                a, b, c, d = matrix[i][j], matrix[j][N-1-i], matrix[N-1-i][N-1-j], matrix[N-1-j][i]
+                matrix[j][N-1-i] = a
+                matrix[N-1-i][N-1-j] = b
+                matrix[N-1-j][i] = c
+                matrix[i][j] = d
+
+        return matrix
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>54. 螺旋矩阵</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\054_螺旋矩阵</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/spiral-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 54. 螺旋矩阵
+
+**难度:** 中等  
+**标签:** 数组, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/spiral-matrix/)
+
+## 题目描述
+
+给你一个 `m` 行 `n` 列的矩阵&#160;`matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[1,2,3],[4,5,6],[7,8,9]]
+**输出：**[1,2,3,6,9,8,7,4,5]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+**输出：**[1,2,3,4,8,12,11,10,9,5,6,7]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-100
+
+## 提示
+
+1. Well for some problems, the best way really is to come up with some algorithms for simulation. Basically, you need to simulate what the problem asks us to do.
+2. We go boundary by boundary and move inwards. That is the essential operation. First row, last column, last row, first column, and then we move inwards by 1 and repeat. That&#39;s all. That is all the simulation that we need.
+3. Think about when you want to switch the progress on one of the indexes. If you progress on i out of [i, j], you&#39;ll shift in the same column. Similarly, by changing values for j, you&#39;d be shifting in the same row. Also, keep track of the end of a boundary so that you can move inwards and then keep repeating. It&#39;s always best to simulate edge cases like a single column or a single row to see if anything breaks or not.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -&gt; List[int]:
+        
+        left_bound, right_bound, upper_bound, bottom_bound = 0, len(matrix[0])-1, 0, len(matrix)-1
+        ans = []
+        m, n = 0, 0
+        ans.append(matrix[m][n])
+        while upper_bound&lt;=bottom_bound and left_bound&lt;=right_bound:
+            # 往右走 
+            while n &lt; right_bound:
+                n += 1
+                ans.append(matrix[m][n])
+            upper_bound += 1
+            if upper_bound &gt; bottom_bound:
+                break
+            # print(&quot;往右走&quot;, ans) # 
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            # 往下走
+            while m&lt;bottom_bound:
+                m += 1
+                ans.append(matrix[m][n])
+            right_bound -= 1
+            if left_bound &gt; right_bound:
+                break
+            # print(&quot;往下走&quot;, ans)
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            # 往左走
+            while n &gt; left_bound:
+                n -= 1
+                ans.append(matrix[m][n])
+            bottom_bound -= 1
+            if upper_bound&gt;bottom_bound:
+                break
+            # print(&quot;往左走&quot;, ans)
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            # 往上走
+            while m &gt; upper_bound:
+                m -= 1
+                ans.append(matrix[m][n])
+            left_bound += 1
+            # print(&quot;往上走&quot;, ans)
+            # print(left_bound, right_bound, upper_bound, bottom_bound)
+            if left_bound&gt;right_bound:
+                break
+        return ans
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>73. 矩阵置零</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\073_矩阵置零</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/set-matrix-zeroes/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 73. 矩阵置零
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/set-matrix-zeroes/)
+
+## 题目描述
+
+给定一个&#160;`*m* x *n*` 的矩阵，如果一个元素为 **0 **，则将其所在行和列的所有元素都设为 **0** 。请使用 **原地** 算法**。**
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[1,1,1],[1,0,1],[1,1,1]]
+**输出：**[[1,0,1],[0,0,0],[1,0,1]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+**输出：**[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[0].length`
+	- `1 
+	- `-231 31 - 1`
+
+&#160;
+
+**进阶：**
+
+	- 一个直观的解决方案是使用 &#160;`O(*m**n*)`&#160;的额外空间，但这并不是一个好的解决方案。
+	- 一个简单的改进方案是使用 `O(*m*&#160;+&#160;*n*)` 的额外空间，但这仍然不是最好的解决方案。
+	- 你能想出一个仅使用常量空间的解决方案吗？
+
+## 提示
+
+1. If any cell of the matrix has a zero we can record its row and column number using additional memory. But if you don&#39;t want to use extra memory then you can manipulate the array instead. i.e. simulating exactly what the question says.
+2. Setting cell values to zero on the fly while iterating might lead to discrepancies. What if you use some other integer value as your marker? There is still a better approach for this problem with O(1) space.
+3. We could have used 2 sets to keep a record of rows/columns which need to be set to zero. But for an O(1) space solution, you can use one of the rows and and one of the columns to keep track of this information.
+4. We can use the first cell of every row and column as a flag. This flag would determine whether a row or column has been set to zero.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify matrix in-place instead.
+        &quot;&quot;&quot;
+        
+        first_row_zero, first_col_zero = False, False
+        m, n = len(matrix), len(matrix[0])
+
+        # 先检查第一行和第一列是否包含零元素，分别设置 first_row_zero, first_col_zero
+        for i in range(m):
+            if matrix[i][0] == 0:
+                first_col_zero = True
+                break
+        
+        for j in range(n):
+            if matrix[0][j] == 0:
+                first_row_zero = True
+                break
+        
+        # 开始遍历其他行其他列是否存在零元素，如果 matrix[i][j] == 0, 则 matrix[i][0]和matrix[0][j]都设置为0，
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][j] == 0:
+                    matrix[0][j] = 0
+                    matrix[i][0] = 0
+        # 遍历完成后，再根据首行和首列的元素值，将某些行或者列元素置0，
+        for i in range(1, m):
+            if matrix[i][0] == 0:
+                for j in range(1, n):
+                    matrix[i][j] = 0
+        for j in range(1, n):
+            if matrix[0][j] == 0:
+                for i in range(1, m):
+                    matrix[i][j] = 0
+        
+        # 最后再根据第一步的 first_row_zero, first_col_zero 选择是否要将首行首列置0
+        if first_col_zero:
+            for i in range(m):
+                matrix[i][0] = 0
+        if first_row_zero:
+            for j in range(n):
+                matrix[0][j] = 0
+        
+        return matrix
+        
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>79. 单词搜索</h2>
+      <div class="meta">
+        <span>类型：矩阵</span>
+        <span>难度：中等</span>
+        <span>目录：edium\079_单词搜索</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-search/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 79. 单词搜索
+
+**难度:** 中等  
+**标签:** 深度优先搜索, 数组, 字符串, 回溯, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-search/)
+
+## 题目描述
+
+给定一个&#160;`m x n` 二维字符网格&#160;`board` 和一个字符串单词&#160;`word` 。如果&#160;`word` 存在于网格中，返回 `true` ；否则，返回 `false` 。
+
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;ABCCED&quot;
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;SEE&quot;
+**输出：**true
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**board = [[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;E&#39;],[&#39;S&#39;,&#39;F&#39;,&#39;C&#39;,&#39;S&#39;],[&#39;A&#39;,&#39;D&#39;,&#39;E&#39;,&#39;E&#39;]], word = &quot;ABCB&quot;
+**输出：**false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n = board[i].length`
+	- `1 
+	- `1 
+	- `board` 和 `word` 仅由大小写英文字母组成
+
+&#160;
+
+**进阶：**你可以使用搜索剪枝的技术来优化解决方案，使其在 `board` 更大的情况下可以更快解决问题？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -&gt; bool:
+        
+        m, n = len(board), len(board[0])
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        def back_track(s, k, path_len):
+            # 如果找到符合 word 内容的路径，返回 True
+            if path_len == len(word):
+                return True
+            # 把已经添加到 path 的board[s][k]暂时置为 #， 避免
+            tmp = board[s][k]
+            board[s][k] = &#39;#&#39;
+
+            for sk in directions:
+                s_, k_ = s+sk[0], k+sk[1]
+                if 0&lt;=s_&lt;m and 0&lt;=k_&lt;n and board[s_][k_] == word[path_len]:
+                    if back_track(s_, k_, path_len+1):
+                        return True
+            # 四个方向的遍历结果都没合适的
+            board[s][k] = tmp
+
+            return False
+
+        # 遍历整个 board, 查找第一个开头字符匹配字符串的位置开始回溯
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    if back_track(i, j, 1):
+                        return True
+        
+        return False
+
+
+
+        
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

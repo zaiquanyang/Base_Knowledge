@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字典树 - 困难</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>字典树 - 困难</h1>
+    <p class="summary">共 2 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>140. 单词拆分 II</h2>
+      <div class="meta">
+        <span>类型：字典树</span>
+        <span>难度：困难</span>
+        <span>目录：ard\140_单词拆分 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-break-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 140. 单词拆分 II
+
+**难度:** 困难  
+**标签:** 字典树, 记忆化, 数组, 哈希表, 字符串, 动态规划, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-break-ii/)
+
+## 题目描述
+
+给定一个字符串 `s` 和一个字符串字典&#160;`wordDict`&#160;，在字符串&#160;`s`&#160;中增加空格来构建一个句子，使得句子中所有的单词都在词典中。**以任意顺序** 返回所有这些可能的句子。
+
+**注意：**词典中的同一个单词可能在分段中被重复使用多次。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入:**s = &quot;catsanddog&quot;, wordDict = [&quot;cat&quot;,&quot;cats&quot;,&quot;and&quot;,&quot;sand&quot;,&quot;dog&quot;]
+**输出:**[&quot;cats and dog&quot;,&quot;cat sand dog&quot;]
+
+```
+
+示例 2：
+
+```
+
+**输入:**s = &quot;pineapplepenapple&quot;, wordDict = [&quot;apple&quot;,&quot;pen&quot;,&quot;applepen&quot;,&quot;pine&quot;,&quot;pineapple&quot;]
+**输出:**[&quot;pine apple pen apple&quot;,&quot;pineapple pen apple&quot;,&quot;pine applepen apple&quot;]
+**解释:** 注意你可以重复使用字典中的单词。
+
+```
+
+示例&#160;3：
+
+```
+
+**输入:**s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;,&quot;dog&quot;,&quot;sand&quot;,&quot;and&quot;,&quot;cat&quot;]
+**输出:**[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `1 
+	- `s`&#160;和&#160;`wordDict[i]`&#160;仅有小写英文字母组成
+	- `wordDict`&#160;中所有字符串都 **不同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>212. 单词搜索 II</h2>
+      <div class="meta">
+        <span>类型：字典树</span>
+        <span>难度：困难</span>
+        <span>目录：ard\212_单词搜索 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-search-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 212. 单词搜索 II
+
+**难度:** 困难  
+**标签:** 字典树, 数组, 字符串, 回溯, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-search-ii/)
+
+## 题目描述
+
+给定一个&#160;`m x n` 二维字符网格&#160;`board`**&#160;**和一个单词（字符串）列表 `words`，&#160;*返回所有二维网格上的单词*&#160;。
+
+单词必须按照字母顺序，通过 **相邻的单元格** 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**board = [[&quot;o&quot;,&quot;a&quot;,&quot;a&quot;,&quot;n&quot;],[&quot;e&quot;,&quot;t&quot;,&quot;a&quot;,&quot;e&quot;],[&quot;i&quot;,&quot;h&quot;,&quot;k&quot;,&quot;r&quot;],[&quot;i&quot;,&quot;f&quot;,&quot;l&quot;,&quot;v&quot;]], words = [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]
+**输出：**[&quot;eat&quot;,&quot;oath&quot;]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**board = [[&quot;a&quot;,&quot;b&quot;],[&quot;c&quot;,&quot;d&quot;]], words = [&quot;abcb&quot;]
+**输出：**[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == board.length`
+	- `n == board[i].length`
+	- `1 
+	- `board[i][j]` 是一个小写英文字母
+	- `1 4`
+	- `1 
+	- `words[i]` 由小写英文字母组成
+	- `words` 中的所有字符串互不相同
+
+## 提示
+
+1. You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?
+2. If the current candidate does not exist in all words&#39; prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie? If you would like to learn how to implement a basic trie, please work on this problem: Implement Trie (Prefix Tree) first.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

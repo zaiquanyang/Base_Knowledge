@@ -1,0 +1,874 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>排序 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>排序 - 中等</h1>
+    <p class="summary">共 11 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>148. 排序链表</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\148_排序链表</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sort-list/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 148. 排序链表
+
+**难度:** 中等  
+**标签:** 链表, 双指针, 分治, 排序, 归并排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sort-list/)
+
+## 题目描述
+
+给你链表的头结点&#160;`head`&#160;，请将其按 **升序** 排列并返回 **排序后的链表** 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+输入：head = [4,2,1,3]
+输出：[1,2,3,4]
+
+```
+
+**示例 2：**
+
+```
+
+输入：head = [-1,5,3,4,0]
+输出：[-1,0,3,4,5]
+
+```
+
+**示例 3：**
+
+```
+
+输入：head = []
+输出：[]
+
+```
+
+&#160;
+
+提示：
+
+	- 链表中节点的数目在范围&#160;`[0, 5 * 104]`&#160;内
+	- `-105&#160;5`
+
+&#160;
+
+进阶：你可以在&#160;`O(n&#160;log&#160;n)` 时间复杂度和常数级空间复杂度下，对链表进行排序吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, next=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>15. 三数之和</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\015_三数之和</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/3sum/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 15. 三数之和
+
+**难度:** 中等
+**标签:** 数组, 双指针, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/3sum/)
+
+## 题目描述
+
+给你一个整数数组 `nums` ，判断是否存在三元组 `[nums[i], nums[j], nums[k]]` 满足 `i != j`、`i != k` 且 `j != k` ，同时还满足 `nums[i] + nums[j] + nums[k] == 0` 。请你返回所有和为 `0` 且不重复的三元组。
+
+**注意：**答案中不可以包含重复的三元组。
+
+&#160;
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [-1,0,1,2,-1,-4]
+**输出：**[[-1,-1,2],[-1,0,1]]
+**解释：**
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+注意，输出的顺序和三元组的顺序并不重要。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [0,1,1]
+**输出：**[]
+**解释：**唯一可能的三元组和不为 0 。
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**nums = [0,0,0]
+**输出：**[[0,0,0]]
+**解释：**唯一可能的三元组和为 0 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `3 
+	- `-105 5`
+
+## 提示
+
+1. So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!
+2. For the two-sum problem, if we fix one of the numbers, say x, we have to scan the entire array to find the next number y, which is value - x where value is the input parameter. Can we change our array somehow so that this search becomes faster?
+3. The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def threeSum(self, nums: list[int]) -&gt; list[list[int]]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>179. 最大数</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\179_最大数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/largest-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 179. 最大数
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/largest-number/)
+
+## 题目描述
+
+给定一组非负整数 `nums`，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。
+
+**注意：**输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入`：`**`nums = [10,2]`
+**输出：**`&quot;210&quot;`
+```
+
+**示例&#160;2：**
+
+```
+
+**输入`：`**`nums = [3,30,34,5,9]`
+**输出：**`&quot;9534330&quot;`
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>215. 数组中的第K个最大元素</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\215_数组中的第K个最大元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 215. 数组中的第K个最大元素
+
+**难度:** 中等  
+**标签:** 数组, 分治, 快速选择, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
+
+## 题目描述
+
+给定整数数组 `nums` 和整数 `k`，请返回数组中第 `**k**` 个最大的元素。
+
+请注意，你需要找的是数组排序后的第 `k` 个最大的元素，而不是第 `k` 个不同的元素。
+
+你必须设计并实现时间复杂度为 `O(n)` 的算法解决此问题。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** `[3,2,1,5,6,4],` k = 2
+**输出:** 5
+
+```
+
+**示例&#160;2:**
+
+```
+
+**输入:** `[3,2,3,1,2,4,5,5,6], `k = 4
+**输出:** 4
+```
+
+&#160;
+
+**提示： **
+
+	- `1 5`
+	- `-104&#160;4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>253. 会议室 II</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\253_会议室 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/meeting-rooms-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 253. 会议室 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针, 前缀和, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/meeting-rooms-ii/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Think about how we would approach this problem in a very simplistic way. We will allocate rooms to meetings that occur earlier in the day v/s the ones that occur later on, right?
+2. If you&#39;ve figured out that we have to sort the meetings by their start time, the next thing to think about is how do we do the allocation? There are two scenarios possible here for any meeting. Either there is no meeting room available and a new one has to be allocated, or a meeting room has freed up and this meeting can take place there.
+3. An important thing to note is that we don&#39;t really care which room gets freed up while allocating a room for the current meeting. As long as a room is free, our job is done. We already know the rooms we have allocated till now and we also know when are they due to get free because of the end times of the meetings going on in those rooms. We can simply check the room which is due to get vacated the earliest amongst all the allocated rooms.
+4. Following up on the previous hint, we can make use of a min-heap to store the end times of the meetings in various rooms. So, every time we want to check if any room is free or not, simply check the topmost element of the min heap as that would be the room that would get free the earliest out of all the other rooms currently occupied. If the room we extracted from the top of the min heap isn&#39;t free, then no other room is. So, we can save time here and simply allocate a new room.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        253. 会议室 II
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>324. 摆动排序 II</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\324_摆动排序 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/wiggle-sort-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 324. 摆动排序 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 分治, 快速选择, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/wiggle-sort-ii/)
+
+## 题目描述
+
+给你一个整数数组&#160;`nums`，将它重新排列成&#160;`nums[0]  nums[2] 
+	- `1 4`
+	- `0 
+	- 题目数据保证，对于给定的输入 `nums` ，总能产生满足题目要求的结果
+
+&#160;
+
+**进阶：**你能用&#160;O(n) 时间复杂度和 / 或原地 O(1) 额外空间来实现吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wiggleSort(self, nums: List[int]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>347. 前 K 个高频元素</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\347_前 K 个高频元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/top-k-frequent-elements/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 347. 前 K 个高频元素
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 分治, 桶排序, 计数, 快速选择, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/top-k-frequent-elements/)
+
+## 题目描述
+
+给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。
+
+&#160;
+
+示例 1：
+
+输入：nums = [1,1,1,2,2,3], k = 2
+
+**输出：**[1,2]
+
+示例 2：
+
+输入：nums = [1], k = 1
+
+输出：[1]
+
+示例 3：
+
+输入：nums = [1,2,1,2,1,2,3,1,3,2], k = 2
+
+**输出：**[1,2]
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-104&#160;4`
+	- `k` 的取值范围是 `[1, 数组中不相同的元素的个数]`
+	- 题目数据保证答案唯一，换句话说，数组中前 `k` 个高频元素的集合是唯一的
+
+&#160;
+
+**进阶：**你所设计算法的时间复杂度 **必须** 优于 `O(n log n)` ，其中 `n`*&#160;*是数组大小。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>378. 有序矩阵中第 K 小的元素</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\378_有序矩阵中第 K 小的元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 378. 有序矩阵中第 K 小的元素
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 矩阵, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/)
+
+## 题目描述
+
+给你一个&#160;`n x n`*&#160;*矩阵&#160;`matrix` ，其中每行和每列元素均按升序排序，找到矩阵中第 `k` 小的元素。
+
+请注意，它是 **排序后** 的第 `k` 小元素，而不是第 `k` 个 **不同** 的元素。
+
+你必须找到一个内存复杂度优于&#160;`O(n2)` 的解决方案。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
+**输出：**13
+**解释：**矩阵中的元素为 [1,5,9,10,11,12,13,**13**,15]，第 8 小元素是 13
+
+```
+
+示例 2：
+
+```
+
+**输入：**matrix = [[-5]], k = 1
+**输出：**-5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-109 9`
+	- 题目数据 **保证** `matrix` 中的所有行和列都按 **非递减顺序** 排列
+	- `1 2`
+
+&#160;
+
+**进阶：**
+
+	- 你能否用一个恒定的内存(即 `O(1)` 内存复杂度)来解决这个问题?
+	- 你能在 `O(n)` 的时间复杂度下解决这个问题吗?这个方法对于面试来说可能太超前了，但是你会发现阅读这篇文章（&#160;this paper&#160;）很有趣。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>49. 字母异位词分组</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\049_字母异位词分组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/group-anagrams/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 49. 字母异位词分组
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 字符串, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/group-anagrams/)
+
+## 题目描述
+
+给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+
+&#160;
+
+**示例 1:**
+
+**输入:** strs = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]
+
+**输出: **[[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]
+
+**解释：**
+
+	- 在 strs 中没有字符串可以通过重新排列来形成 `&quot;bat&quot;`。
+	- 字符串 `&quot;nat&quot;` 和 `&quot;tan&quot;` 是字母异位词，因为它们可以重新排列以形成彼此。
+	- 字符串 `&quot;ate&quot;`&#160;，`&quot;eat&quot;`&#160;和 `&quot;tea&quot;` 是字母异位词，因为它们可以重新排列以形成彼此。
+
+**示例 2:**
+
+**输入:** strs = [&quot;&quot;]
+
+**输出: **[[&quot;&quot;]]
+
+**示例 3:**
+
+**输入:** strs = [&quot;a&quot;]
+
+**输出: **[[&quot;a&quot;]]
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `0 
+	- `strs[i]`&#160;仅包含小写字母</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>56. 合并区间</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\056_合并区间</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/merge-intervals/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 56. 合并区间
+
+**难度:** 中等  
+**标签:** 数组, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/merge-intervals/)
+
+## 题目描述
+
+以数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回&#160;*一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间*&#160;。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**intervals = [[1,3],[2,6],[8,10],[15,18]]
+**输出：**[[1,6],[8,10],[15,18]]
+**解释：**区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**intervals = [[1,4],[4,5]]
+**输出：**[[1,5]]
+**解释：**区间 [1,4] 和 [4,5] 可被视为重叠区间。
+```
+
+示例 3：
+
+```
+
+输入：intervals = [[4,7],[1,4]]
+输出：[[1,7]]
+解释：区间 [1,4] 和 [4,7] 可被视为重叠区间。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `intervals[i].length == 2`
+	- `0 i i 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -&gt; List[List[int]]:
+        intervals.sort(key=lambda x: x[0])
+        ans = []
+
+        for i in range(len(intervals)):
+            if ans and ans[-1][1]&gt;=intervals[i][0]:
+                ans[-1][1] = max(ans[-1][1], intervals[i][-1])
+            else:
+                ans.append(intervals[i])
+        
+        return ans
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>75. 颜色分类</h2>
+      <div class="meta">
+        <span>类型：排序</span>
+        <span>难度：中等</span>
+        <span>目录：edium\075_颜色分类</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sort-colors/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 75. 颜色分类
+
+**难度:** 中等  
+**标签:** 数组, 双指针, 排序
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sort-colors/)
+
+## 题目描述
+
+给定一个包含红色、白色和蓝色、共&#160;`n`* *个元素的数组&#160;`nums`&#160;，**原地&#160;**对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
+
+我们使用整数 `0`、&#160;`1` 和 `2` 分别表示红色、白色和蓝色。
+
+必须在不使用库内置的 sort 函数的情况下解决这个问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [2,0,2,1,1,0]
+**输出：**[0,0,1,1,2,2]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [2,0,1]
+**输出：**[0,1,2]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == nums.length`
+	- `1 
+	- `nums[i]` 为 `0`、`1` 或 `2`
+
+&#160;
+
+**进阶：**
+
+	- 你能想出一个仅使用常数空间的一趟扫描算法吗？
+
+## 提示
+
+1. A rather straight forward solution is a two-pass algorithm using counting sort.
+2. Iterate the array counting number of 0&#39;s, 1&#39;s, and 2&#39;s.
+3. Overwrite array with the total number of 0&#39;s, then 1&#39;s and followed by 2&#39;s.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def sortColors(self, nums: List[int]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # 利用三指针进行单次遍历，把 0 统统交换到左边，把 2 统统交换到右边，中间自然就留下了 1。
+        left, current = 0, 0
+        right = len(nums) - 1
+
+        while current &lt;= right:
+            if nums[current]==0:
+                nums[current], nums[left] = nums[left], nums[current]
+                left += 1
+                current += 1
+            elif nums[current] == 1:
+                current += 1
+            elif nums[current] == 2:
+                nums[current], nums[right] = nums[right], nums[current]
+                right -= 1
+        
+        return nums
+        
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

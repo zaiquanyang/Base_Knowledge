@@ -1,0 +1,633 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二分查找 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>二分查找 - 中等</h1>
+    <p class="summary">共 7 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>162. 寻找峰值</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\162_寻找峰值</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-peak-element/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 162. 寻找峰值
+
+**难度:** 中等  
+**标签:** 数组, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-peak-element/)
+
+## 题目描述
+
+峰值元素是指其值严格大于左右相邻值的元素。
+
+给你一个整数数组&#160;`nums`，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 **任何一个峰值** 所在位置即可。
+
+你可以假设&#160;`nums[-1] = nums[n] = -∞` 。
+
+你必须实现时间复杂度为 `O(log n)`* *的算法来解决此问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = `[1,2,3,1]`
+**输出：**2
+**解释：**3 是峰值元素，你的函数应该返回其索引 2。
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**nums = `[`1,2,1,3,5,6,4]
+**输出：**1 或 5 
+**解释：**你的函数可以返回索引 1，其峰值元素为 2；
+&#160;    或者返回索引 5， 其峰值元素为 6。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `-231 31 - 1`
+	- 对于所有有效的 `i` 都有 `nums[i] != nums[i + 1]`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findPeakElement(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>240. 搜索二维矩阵 II</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\240_搜索二维矩阵 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/search-a-2d-matrix-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 240. 搜索二维矩阵 II
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 分治, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/search-a-2d-matrix-ii/)
+
+## 题目描述
+
+编写一个高效的算法来搜索&#160;`*m*&#160;x&#160;*n*`&#160;矩阵 `matrix` 中的一个目标值 `target` 。该矩阵具有以下特性：
+
+	- 每行的元素从左到右升序排列。
+	- 每列的元素从上到下升序排列。
+
+&#160;
+
+示例 1：
+
+```
+
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+输出：true
+
+```
+
+示例 2：
+
+```
+
+输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+输出：false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `m == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-109&#160;9`
+	- 每行的所有元素从左到右升序排列
+	- 每列的所有元素从上到下升序排列
+	- `-109&#160;9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>287. 寻找重复数</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\287_寻找重复数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-the-duplicate-number/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 287. 寻找重复数
+
+**难度:** 中等  
+**标签:** 位运算, 数组, 双指针, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-the-duplicate-number/)
+
+## 题目描述
+
+给定一个包含&#160;`n + 1` 个整数的数组&#160;`nums` ，其数字都在&#160;`[1, n]`&#160;范围内（包括 `1` 和 `n`），可知至少存在一个重复的整数。
+
+假设 `nums` 只有 **一个重复的整数** ，返回&#160;**这个重复的数** 。
+
+你设计的解决方案必须 **不修改** 数组 `nums` 且只用常量级 `O(1)` 的额外空间。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [1,3,4,2,2]
+**输出：**2
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [3,1,3,4,2]
+**输出：**3
+
+```
+
+**示例 3 :**
+
+```
+
+**输入：**nums = [3,3,3,3,3]
+**输出：**3
+
+```
+
+&#160;
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `nums.length == n + 1`
+	- `1 
+	- `nums` 中 **只有一个整数** 出现 **两次或多次** ，其余整数均只出现 **一次**
+
+&#160;
+
+进阶：
+
+	- 如何证明 `nums` 中至少存在一个重复的数字?
+	- 你可以设计一个线性级时间复杂度 `O(n)` 的解决方案吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>300. 最长递增子序列</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\300_最长递增子序列</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/longest-increasing-subsequence/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 300. 最长递增子序列
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/longest-increasing-subsequence/)
+
+## 题目描述
+
+给你一个整数数组 `nums` ，找到其中最长严格递增子序列的长度。
+
+**子序列&#160;**是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，`[3,6,2,7]` 是数组 `[0,3,1,6,2,2,7]` 的子序列。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [10,9,2,5,3,7,101,18]
+**输出：**4
+**解释：**最长递增子序列是 [2,3,7,101]，因此长度为 4 。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [0,1,0,3,2,3]
+**输出：**4
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**nums = [7,7,7,7,7,7,7]
+**输出：**1
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `-104 4`
+
+&#160;
+
+进阶：
+
+	- 你能将算法的时间复杂度降低到&#160;`O(n log(n))` 吗?</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>33. 搜索旋转排序数组</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\033_搜索旋转排序数组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 33. 搜索旋转排序数组
+
+**难度:** 中等  
+**标签:** 数组, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/search-in-rotated-sorted-array/)
+
+## 题目描述
+
+整数数组 `nums` 按升序排列，数组中的值 **互不相同** 。
+
+在传递给函数之前，`nums` 在预先未知的某个下标 `k`（`0 
+	- `1 
+	- `-104 4`
+	- `nums` 中的每个值都 **独一无二**
+	- 题目数据保证 `nums` 在预先未知的某个下标上进行了旋转
+	- `-104 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List
+
+
+class Solution:
+    def search(self, nums: List[int], target: int) -&gt; int:
+        N = len(nums)
+        left, right = 0, N-1
+
+        while left &lt;= right:
+            # print(left, right)
+            mid = (left + right)//2
+            if nums[mid]==target:
+                return mid
+
+            # left---&gt;mid 是左半递增区间
+            if nums[left] &lt;= nums[mid]:
+                if nums[left]&lt;=target&lt;nums[mid]:
+                    right=mid-1
+                else:
+                    left = mid+1
+            else: # mid---&gt;right 是递增区间
+                if nums[mid]&lt;target&lt;=nums[right]:
+                    left = mid+1
+                else:
+                    right=mid-1
+        return -1</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>34. 在排序数组中查找元素的第一个和最后一个位置</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\034_在排序数组中查找元素的第一个和最后一个位置</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 34. 在排序数组中查找元素的第一个和最后一个位置
+
+**难度:** 中等  
+**标签:** 数组, 二分查找
+
+**链接:** [LeetCode](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+## 题目描述
+
+给你一个按照非递减顺序排列的整数数组 `nums`，和一个目标值 `target`。请你找出给定目标值在数组中的开始位置和结束位置。
+
+如果数组中不存在目标值 `target`，返回&#160;`[-1, -1]`。
+
+你必须设计并实现时间复杂度为&#160;`O(log n)`&#160;的算法解决此问题。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [`5,7,7,8,8,10]`, target = 8
+**输出：**[3,4]
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**nums = [`5,7,7,8,8,10]`, target = 6
+**输出：**[-1,-1]
+```
+
+**示例 3：**
+
+```
+
+**输入：**nums = [], target = 0
+**输出：**[-1,-1]
+```
+
+&#160;
+
+**提示：**
+
+	- `0 5`
+	- `-109&#160;9`
+	- `nums`&#160;是一个非递减数组
+	- `-109&#160;9`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -&gt; List[int]:
+        N = len(nums)
+
+        left, right = 0, N-1
+        while left&lt;=right:
+            mid = (left+right)//2
+            if nums[mid] == target:
+                target_left, target_right = mid, mid
+                
+                while left&lt;=(target_left-1):
+                    if nums[target_left-1] == target:
+                        target_left -= 1
+                    else:
+                        break
+                
+                while target_right+1&lt;=right:
+                    if nums[target_right+1] == target:
+                        target_right += 1
+                    else:
+                        break
+
+                return target_left, target_right
+
+            if nums[mid]&lt;target&lt;=nums[right]:
+                left = mid+1
+            else:
+                right=mid-1
+        return [-1, -1]
+
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>378. 有序矩阵中第 K 小的元素</h2>
+      <div class="meta">
+        <span>类型：二分查找</span>
+        <span>难度：中等</span>
+        <span>目录：edium\378_有序矩阵中第 K 小的元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 378. 有序矩阵中第 K 小的元素
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 矩阵, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/)
+
+## 题目描述
+
+给你一个&#160;`n x n`*&#160;*矩阵&#160;`matrix` ，其中每行和每列元素均按升序排序，找到矩阵中第 `k` 小的元素。
+
+请注意，它是 **排序后** 的第 `k` 小元素，而不是第 `k` 个 **不同** 的元素。
+
+你必须找到一个内存复杂度优于&#160;`O(n2)` 的解决方案。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
+**输出：**13
+**解释：**矩阵中的元素为 [1,5,9,10,11,12,13,**13**,15]，第 8 小元素是 13
+
+```
+
+示例 2：
+
+```
+
+**输入：**matrix = [[-5]], k = 1
+**输出：**-5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-109 9`
+	- 题目数据 **保证** `matrix` 中的所有行和列都按 **非递减顺序** 排列
+	- `1 2`
+
+&#160;
+
+**进阶：**
+
+	- 你能否用一个恒定的内存(即 `O(1)` 内存复杂度)来解决这个问题?
+	- 你能在 `O(n)` 的时间复杂度下解决这个问题吗?这个方法对于面试来说可能太超前了，但是你会发现阅读这篇文章（&#160;this paper&#160;）很有趣。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

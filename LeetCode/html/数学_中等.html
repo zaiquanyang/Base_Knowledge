@@ -1,0 +1,1471 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数学 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>数学 - 中等</h1>
+    <p class="summary">共 16 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>150. 逆波兰表达式求值</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\150_逆波兰表达式求值</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 150. 逆波兰表达式求值
+
+**难度:** 中等  
+**标签:** 栈, 数组, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/evaluate-reverse-polish-notation/)
+
+## 题目描述
+
+给你一个字符串数组 `tokens` ，表示一个根据&#160;逆波兰表示法 表示的算术表达式。
+
+请你计算该表达式。返回一个表示表达式值的整数。
+
+**注意：**
+
+	- 有效的算符为 `&#39;+&#39;`、`&#39;-&#39;`、`&#39;*&#39;` 和 `&#39;/&#39;` 。
+	- 每个操作数（运算对象）都可以是一个整数或者另一个表达式。
+	- 两个整数之间的除法总是 **向零截断** 。
+	- 表达式中不含除零运算。
+	- 输入是一个根据逆波兰表示法表示的算术表达式。
+	- 答案及所有中间计算结果可以用 **32 位** 整数表示。
+
+&#160;
+
+**示例&#160;1：**
+
+```
+
+**输入：**tokens = [&quot;2&quot;,&quot;1&quot;,&quot;+&quot;,&quot;3&quot;,&quot;*&quot;]
+**输出：**9
+**解释：**该算式转化为常见的中缀算术表达式为：((2 + 1) * 3) = 9
+
+```
+
+**示例&#160;2：**
+
+```
+
+**输入：**tokens = [&quot;4&quot;,&quot;13&quot;,&quot;5&quot;,&quot;/&quot;,&quot;+&quot;]
+**输出：**6
+**解释：**该算式转化为常见的中缀算术表达式为：(4 + (13 / 5)) = 6
+
+```
+
+**示例&#160;3：**
+
+```
+
+**输入：**tokens = [&quot;10&quot;,&quot;6&quot;,&quot;9&quot;,&quot;3&quot;,&quot;+&quot;,&quot;-11&quot;,&quot;*&quot;,&quot;/&quot;,&quot;*&quot;,&quot;17&quot;,&quot;+&quot;,&quot;5&quot;,&quot;+&quot;]
+**输出：**22
+**解释：**该算式转化为常见的中缀算术表达式为：
+  ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+= ((10 * (6 / (12 * -11))) + 17) + 5
+= ((10 * (6 / -132)) + 17) + 5
+= ((10 * 0) + 17) + 5
+= (0 + 17) + 5
+= 17 + 5
+= 22
+```
+
+&#160;
+
+**提示：**
+
+	- `1 4`
+	- `tokens[i]`&#160;是一个算符（`&quot;+&quot;`、`&quot;-&quot;`、`&quot;*&quot;` 或 `&quot;/&quot;`），或是在范围 `[-200, 200]` 内的一个整数
+
+&#160;
+
+**逆波兰表达式：**
+
+逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。
+
+	- 平常使用的算式则是一种中缀表达式，如 `( 1 + 2 ) * ( 3 + 4 )` 。
+	- 该算式的逆波兰表达式写法为 `( ( 1 2 + ) ( 3 4 + ) * )` 。
+
+逆波兰表达式主要有以下两个优点：
+
+	- 去掉括号后表达式无歧义，上式即便写成 `1 2 + 3 4 + * `也可以依据次序计算出正确结果。
+	- 适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>166. 分数到小数</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\166_分数到小数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/fraction-to-recurring-decimal/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 166. 分数到小数
+
+**难度:** 中等  
+**标签:** 哈希表, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/fraction-to-recurring-decimal/)
+
+## 题目描述
+
+给定两个整数，分别表示分数的分子&#160;`numerator` 和分母 `denominator`，以 **字符串形式返回小数** 。
+
+如果小数部分为循环小数，则将循环的部分括在括号内。
+
+如果存在多个答案，只需返回 **任意一个** 。
+
+对于所有给定的输入，**保证** 答案字符串的长度小于 `104` 。
+
+**注意**，如果分数可以表示为有限长度的字符串，则 **必须** 返回它。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**numerator = 1, denominator = 2
+**输出：**&quot;0.5&quot;
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**numerator = 2, denominator = 1
+**输出：**&quot;2&quot;
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**numerator = 4, denominator = 333
+**输出：**&quot;0.(012)&quot;
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- `denominator != 0`
+
+## 提示
+
+1. No scary math, just apply elementary math knowledge. Still remember how to perform a long division?
+2. Try a long division on 4/9, the repeating part is obvious. Now try 4/333. Do you see a pattern?
+3. Notice that once the remainder starts repeating, so does the divided result.
+4. Be wary of edge cases! List out as many test cases as you can think of and test your code thoroughly.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def fractionToDecimal(self, numerator: int, denominator: int) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>172. 阶乘后的零</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\172_阶乘后的零</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/factorial-trailing-zeroes/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 172. 阶乘后的零
+
+**难度:** 中等  
+**标签:** 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/factorial-trailing-zeroes/)
+
+## 题目描述
+
+给定一个整数 `n` ，返回 `n!` 结果中尾随零的数量。
+
+提示&#160;`n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1`
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 3
+**输出：**0
+**解释：**3! = 6 ，不含尾随 0
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 5
+**输出：**1
+**解释：**5! = 120 ，有一个尾随 0
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**n = 0
+**输出：**0
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 4`
+
+&#160;
+
+进阶：你可以设计并实现对数时间复杂度的算法来解决此问题吗？</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def trailingZeroes(self, n: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>189. 轮转数组</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\189_轮转数组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/rotate-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 189. 轮转数组
+
+**难度:** 中等  
+**标签:** 数组, 数学, 双指针
+
+**链接:** [LeetCode](https://leetcode.cn/problems/rotate-array/)
+
+## 题目描述
+
+给定一个整数数组 `nums`，将数组中的元素向右轮转 `k`*&#160;*个位置，其中&#160;`k`*&#160;*是非负数。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** nums = [1,2,3,4,5,6,7], k = 3
+**输出:** `[5,6,7,1,2,3,4]`
+**解释:**
+向右轮转 1 步: `[7,1,2,3,4,5,6]`
+向右轮转 2 步: [6,7,1,2,3,4,5]
+向右轮转 3 步: `[5,6,7,1,2,3,4]`
+
+```
+
+**示例&#160;2:**
+
+```
+
+**输入：**nums = [-1,-100,3,99], k = 2
+**输出：**[3,99,-1,-100]
+**解释:** 
+向右轮转 1 步: [99,-1,-100,3]
+向右轮转 2 步: [3,99,-1,-100]
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-231 31 - 1`
+	- `0 5`
+
+&#160;
+
+**进阶：**
+
+	- 尽可能想出更多的解决方案，至少有 **三种** 不同的方法可以解决这个问题。
+	- 你可以使用空间复杂度为&#160;`O(1)` 的&#160;**原地&#160;**算法解决这个问题吗？
+
+## 提示
+
+1. The easiest solution would use additional memory and that is perfectly fine.
+2. The actual trick comes when trying to solve this problem without using any additional memory. This means you need to use the original array somehow to move the elements around. Now, we can place each element in its original location and shift all the elements around it to adjust as that would be too costly and most likely will time out on larger input arrays.
+3. One line of thought is based on reversing the array (or parts of it) to obtain the desired result. Think about how reversal might potentially help us out by using an example.
+4. The other line of thought is a tad bit complicated but essentially it builds on the idea of placing each element in its original position while keeping track of the element originally in that position. Basically, at every step, we place an element in its rightful position and keep track of the element already there or the one being overwritten in an additional variable. We can&#39;t do this in one linear pass and the idea here is based on cyclic-dependencies between elements.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify nums in-place instead.
+        &quot;&quot;&quot;
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>2. 两数相加</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\002_两数相加</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/add-two-numbers/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 2. 两数相加
+
+**难度:** 中等  
+**标签:** 递归, 链表, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/add-two-numbers/)
+
+## 题目描述
+
+给你两个&#160;**非空** 的链表，表示两个非负的整数。它们每位数字都是按照&#160;**逆序**&#160;的方式存储的，并且每个节点只能存储&#160;**一位**&#160;数字。
+
+请你将两个数相加，并以相同形式返回一个表示和的链表。
+
+你可以假设除了数字 0 之外，这两个数都不会以 0&#160;开头。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**l1 = [2,4,3], l2 = [5,6,4]
+**输出：**[7,0,8]
+**解释：**342 + 465 = 807.
+
+```
+
+示例 2：
+
+```
+
+**输入：**l1 = [0], l2 = [0]
+**输出：**[0]
+
+```
+
+示例 3：
+
+```
+
+**输入：**l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+**输出：**[8,9,9,9,0,0,0,1]
+
+```
+
+&#160;
+
+**提示：**
+
+	- 每个链表中的节点数在范围 `[1, 100]` 内
+	- `0 
+	- 题目数据保证列表表示的数字不含前导零</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import Optional
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -&gt; Optional[ListNode]:
+        dummy = ListNode(0)
+        curr = dummy
+        carry = 0
+
+        while l1 or l2 or carry:
+            val = carry
+            if l1:
+                val += l1.val
+                l1 = l1.next
+            if l2:
+                val += l2.val
+                l2 = l2.next
+            carry, val = divmod(val, 10)
+            curr.next = ListNode(val)
+            curr = curr.next
+
+        return dummy.next
+
+
+# 测试辅助函数
+def make_list(nums):
+    dummy = ListNode()
+    curr = dummy
+    for n in nums:
+        curr.next = ListNode(n)
+        curr = curr.next
+    return dummy.next
+
+def list_to_array(node):
+    result = []
+    while node:
+        result.append(node.val)
+        node = node.next
+    return result
+
+
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+
+    # 示例 1: 342 + 465 = 807 → [7,0,8]
+    l1 = make_list([2, 4, 3])
+    l2 = make_list([5, 6, 4])
+    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [7, 0, 8]
+
+    # 示例 2: 0 + 0 = 0 → [0]
+    l1 = make_list([0])
+    l2 = make_list([0])
+    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [0]
+
+    # 示例 3: 9999999 + 9999 = 10009998 → [8,9,9,9,0,0,0,1]
+    l1 = make_list([9, 9, 9, 9, 9, 9, 9])
+    l2 = make_list([9, 9, 9, 9])
+    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [8, 9, 9, 9, 0, 0, 0, 1]</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>204. 计数质数</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\204_计数质数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/count-primes/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 204. 计数质数
+
+**难度:** 中等  
+**标签:** 数组, 数学, 枚举, 数论
+
+**链接:** [LeetCode](https://leetcode.cn/problems/count-primes/)
+
+## 题目描述
+
+给定整数 `n` ，返回 *所有小于非负整数&#160;`n`&#160;的质数的数量* 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**n = 10
+**输出：**4
+**解释：**小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = 0
+**输出：**0
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**n = 1
+**输出**：0
+
+```
+
+&#160;
+
+**提示：**
+
+	- `0 6`
+
+## 提示
+
+1. Checking all the integers in the range [1, n - 1] is not efficient. Think about a better approach.
+2. Since most of the numbers are not primes, we need a fast approach to exclude the non-prime integers.
+3. Use Sieve of Eratosthenes.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def countPrimes(self, n: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>227. 基本计算器 II</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\227_基本计算器 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/basic-calculator-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 227. 基本计算器 II
+
+**难度:** 中等  
+**标签:** 栈, 数学, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/basic-calculator-ii/)
+
+## 题目描述
+
+给你一个字符串表达式 `s` ，请你实现一个基本计算器来计算并返回它的值。
+
+整数除法仅保留整数部分。
+
+你可以假设给定的表达式总是有效的。所有中间结果将在&#160;`[-231, 231&#160;- 1]` 的范围内。
+
+**注意：**不允许使用任何将字符串作为数学表达式计算的内置函数，比如 `eval()` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;3+2*2&quot;
+**输出：**7
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot; 3/2 &quot;
+**输出：**1
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**s = &quot; 3+5 / 2 &quot;
+**输出：**5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `s` 由整数和算符 `(&#39;+&#39;, &#39;-&#39;, &#39;*&#39;, &#39;/&#39;)` 组成，中间由一些空格隔开
+	- `s` 表示一个 **有效表达式**
+	- 表达式中的所有整数都是非负整数，且在范围 `[0, 231 - 1]` 内
+	- 题目数据保证答案是一个 **32-bit 整数**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def calculate(self, s: str) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>279. 完全平方数</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\279_完全平方数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/perfect-squares/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 279. 完全平方数
+
+**难度:** 中等  
+**标签:** 广度优先搜索, 数学, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/perfect-squares/)
+
+## 题目描述
+
+给你一个整数 `n` ，返回 *和为 `n` 的完全平方数的最少数量* 。
+
+**完全平方数** 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，`1`、`4`、`9` 和 `16` 都是完全平方数，而 `3` 和 `11` 不是。
+
+&#160;
+
+**示例&#160;1：**
+
+```
+
+**输入：**n = `12`
+**输出：**3 
+**解释：**`12 = 4 + 4 + 4`
+```
+
+**示例 2：**
+
+```
+
+**输入：**n = `13`
+**输出：**2
+**解释：**`13 = 4 + 9`
+```
+&#160;
+
+**提示：**
+
+	- `1 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def numSquares(self, n: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>29. 两数相除</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\029_两数相除</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/divide-two-integers/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 29. 两数相除
+
+**难度:** 中等  
+**标签:** 位运算, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/divide-two-integers/)
+
+## 题目描述
+
+给你两个整数，被除数&#160;`dividend`&#160;和除数&#160;`divisor`。将两数相除，要求 **不使用** 乘法、除法和取余运算。
+
+整数除法应该向零截断，也就是截去（`truncate`）其小数部分。例如，`8.345` 将被截断为 `8` ，`-2.7335` 将被截断至 `-2` 。
+
+返回被除数&#160;`dividend`&#160;除以除数&#160;`divisor`&#160;得到的 **商** 。
+
+**注意：**假设我们的环境只能存储 **32 位** 有符号整数，其数值范围是 `[−231,&#160; 231&#160;− 1]` 。本题中，如果商 **严格大于** `231&#160;− 1` ，则返回 `231&#160;− 1` ；如果商 **严格小于** `-231` ，则返回 `-231` 。
+
+&#160;
+
+**示例&#160;1:**
+
+```
+
+**输入:** dividend = 10, divisor = 3
+**输出:** 3
+**解释: **10/3 = 3.33333.. ，向零截断后得到 3 。
+```
+
+**示例&#160;2:**
+
+```
+
+**输入:** dividend = 7, divisor = -3
+**输出:** -2
+**解释:** 7/-3 = -2.33333.. ，向零截断后得到 -2 。
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- `divisor != 0`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def divide(self, dividend: int, divisor: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>371. 两整数之和</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\371_两整数之和</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/sum-of-two-integers/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 371. 两整数之和
+
+**难度:** 中等  
+**标签:** 位运算, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/sum-of-two-integers/)
+
+## 题目描述
+
+给你两个整数 `a` 和 `b` ，**不使用 **运算符&#160;`+` 和&#160;`-`&#160;​​​​​​​，计算并返回两整数之和。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**a = 1, b = 2
+**输出：**3
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**a = 2, b = 3
+**输出：**5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-1000</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def getSum(self, a: int, b: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>380. O(1) 时间插入、删除和获取随机元素</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\380_O(1) 时间插入、删除和获取随机元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/insert-delete-getrandom-o1/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 380. O(1) 时间插入、删除和获取随机元素
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 数学, 随机化
+
+**链接:** [LeetCode](https://leetcode.cn/problems/insert-delete-getrandom-o1/)
+
+## 题目描述
+
+实现`RandomizedSet` 类：
+
+	- `RandomizedSet()` 初始化 `RandomizedSet` 对象
+	- `bool insert(int val)` 当元素 `val` 不存在时，向集合中插入该项，并返回 `true` ；否则，返回 `false` 。
+	- `bool remove(int val)` 当元素 `val` 存在时，从集合中移除该项，并返回 `true` ；否则，返回 `false` 。
+	- `int getRandom()` 随机返回现有集合中的一项（测试用例保证调用此方法时集合中至少存在一个元素）。每个元素应该有 **相同的概率** 被返回。
+
+你必须实现类的所有函数，并满足每个函数的 **平均** 时间复杂度为 `O(1)` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;RandomizedSet&quot;, &quot;insert&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;]
+[[], [1], [2], [2], [], [1], [2], []]
+**输出**
+[null, true, false, true, 2, true, false, 2]
+
+**解释**
+RandomizedSet randomizedSet = new RandomizedSet();
+randomizedSet.insert(1); // 向集合中插入 1 。返回 true 表示 1 被成功地插入。
+randomizedSet.remove(2); // 返回 false ，表示集合中不存在 2 。
+randomizedSet.insert(2); // 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。
+randomizedSet.getRandom(); // getRandom 应随机返回 1 或 2 。
+randomizedSet.remove(1); // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。
+randomizedSet.insert(2); // 2 已在集合中，所以返回 false 。
+randomizedSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- 最多调用 `insert`、`remove` 和 `getRandom` 函数 `2 *&#160;``105` 次
+	- 在调用 `getRandom` 方法时，数据结构中 **至少存在一个** 元素。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, val: int) -&gt; bool:
+        
+
+    def remove(self, val: int) -&gt; bool:
+        
+
+    def getRandom(self) -&gt; int:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>384. 打乱数组</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\384_打乱数组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/shuffle-an-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 384. 打乱数组
+
+**难度:** 中等  
+**标签:** 设计, 数组, 数学, 随机化
+
+**链接:** [LeetCode](https://leetcode.cn/problems/shuffle-an-array/)
+
+## 题目描述
+
+给你一个整数数组 `nums` ，设计算法来打乱一个没有重复元素的数组。打乱后，数组的所有排列应该是&#160;**等可能**&#160;的。
+
+实现 `Solution` class:
+
+	- `Solution(int[] nums)` 使用整数数组 `nums` 初始化对象
+	- `int[] reset()` 重设数组到它的初始状态并返回
+	- `int[] shuffle()` 返回数组随机打乱后的结果
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入**
+[&quot;Solution&quot;, &quot;shuffle&quot;, &quot;reset&quot;, &quot;shuffle&quot;]
+[[[1, 2, 3]], [], [], []]
+**输出**
+[null, [3, 1, 2], [1, 2, 3], [1, 3, 2]]
+
+**解释**
+Solution solution = new Solution([1, 2, 3]);
+solution.shuffle();    // 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。例如，返回 [3, 1, 2]
+solution.reset();      // 重设数组到它的初始状态 [1, 2, 3] 。返回 [1, 2, 3]
+solution.shuffle();    // 随机返回数组 [1, 2, 3] 打乱后的结果。例如，返回 [1, 3, 2]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `-106 6`
+	- `nums` 中的所有元素都是 **唯一的**
+	- 最多可以调用 `104` 次 `reset` 和 `shuffle`
+
+## 提示
+
+1. The solution expects that we always use the original array to shuffle() else some of the test cases fail. (Credits; @snehasingh31)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, nums: List[int]):
+        
+
+    def reset(self) -&gt; List[int]:
+        
+
+    def shuffle(self) -&gt; List[int]:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>48. 旋转图像</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\048_旋转图像</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/rotate-image/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 48. 旋转图像
+
+**难度:** 中等  
+**标签:** 数组, 数学, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/rotate-image/)
+
+## 题目描述
+
+给定一个 *n&#160;*&#215;&#160;*n* 的二维矩阵&#160;`matrix` 表示一个图像。请你将图像顺时针旋转 90 度。
+
+你必须在** 原地** 旋转图像，这意味着你需要直接修改输入的二维矩阵。**请不要 **使用另一个矩阵来旋转图像。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**matrix = [[1,2,3],[4,5,6],[7,8,9]]
+**输出：**[[7,4,1],[8,5,2],[9,6,3]]
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+**输出：**[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == matrix.length == matrix[i].length`
+	- `1 
+	- `-1000</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -&gt; None:
+        &quot;&quot;&quot;
+        Do not return anything, modify matrix in-place instead.
+        &quot;&quot;&quot;
+        &quot;&quot;&quot;
+        N = len(mat)
+        mat[i][j]---&gt;mat[j][N-1-i]
+        mat[j][N-1-i]---&gt;mat[N-1-i][N-1-j]
+        mat[N-1-i][N-1-j]---&gt;mat[N-1-j][i]
+        mat[N-1-j][i]------&gt; mat[i][j]
+        &quot;&quot;&quot;
+        N = len(matrix)
+        n = (N+1)//2
+        # print(n)
+        for i in range(n):
+            for j in range(N-n):
+                a, b, c, d = matrix[i][j], matrix[j][N-1-i], matrix[N-1-i][N-1-j], matrix[N-1-j][i]
+                matrix[j][N-1-i] = a
+                matrix[N-1-i][N-1-j] = b
+                matrix[N-1-j][i] = c
+                matrix[i][j] = d
+
+        return matrix
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>50. Pow(x, n)</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\050_Pow(x, n)</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/powx-n/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 50. Pow(x, n)
+
+**难度:** 中等  
+**标签:** 递归, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/powx-n/)
+
+## 题目描述
+
+实现&#160;pow(*x*, *n*)&#160;，即计算 `x` 的整数&#160;`n` 次幂函数（即，`xn` ）。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**x = 2.00000, n = 10
+**输出：**1024.00000
+
+```
+
+示例 2：
+
+```
+
+**输入：**x = 2.10000, n = 3
+**输出：**9.26100
+
+```
+
+示例 3：
+
+```
+
+**输入：**x = 2.00000, n = -2
+**输出：**0.25000
+**解释：**2-2 = 1/22 = 1/4 = 0.25
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-100.0 
+	- `-231 31-1`
+	- `n`&#160;是一个整数
+	- 要么 `x` 不为零，要么 `n &gt; 0` 。
+	- `-104 n 4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def myPow(self, x: float, n: int) -&gt; float:
+        
+        if n == 0:
+            return 1
+        if n &lt; 0:
+            x = 1/x
+            n = -n
+
+
+        def quick_pow(x, n):
+
+            if n== 1:
+                return x
+            
+
+            if n % 2 == 0:
+                cur_pow = quick_pow(x, n//2)
+                cur_pow = cur_pow * cur_pow
+            else:
+                cur_pow = quick_pow(x, n//2)
+                cur_pow = cur_pow * cur_pow * x
+
+            return cur_pow
+
+        return quick_pow(x, n)
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>62. 不同路径</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\062_不同路径</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/unique-paths/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 62. 不同路径
+
+**难度:** 中等  
+**标签:** 数学, 动态规划, 组合数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/unique-paths/)
+
+## 题目描述
+
+一个机器人位于一个 `m x n`*&#160;*网格的左上角 （起始点在下图中标记为 “Start” ）。
+
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
+
+问总共有多少条不同的路径？
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**m = 3, n = 7
+**输出：**28
+```
+
+**示例 2：**
+
+```
+
+**输入：**m = 3, n = 2
+**输出：**3
+**解释：**
+从左上角开始，总共有 3 条路径可以到达右下角。
+1. 向右 -&gt; 向下 -&gt; 向下
+2. 向下 -&gt; 向下 -&gt; 向右
+3. 向下 -&gt; 向右 -&gt; 向下
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**m = 7, n = 3
+**输出：**28
+
+```
+
+**示例 4：**
+
+```
+
+**输入：**m = 3, n = 3
+**输出：**6
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- 题目数据保证答案小于等于 `2 * 109`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -&gt; int:
+        # 动态规划：到达 [i][j]位置只能从[i-1][j]和[i][j-1]位置过来，因此
+        # dp[i][j] = dp[i-1][j] + dp[i][j-1], 而且 dp[0][:] = 1, dp[:][0] = 1
+
+        dp = [[0] * n for i in range(m)]
+
+        for i in range(m):
+            dp[i][0] = 1
+        for j in range(n):
+            dp[0][j] = 1
+
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        
+        return max([max(dp[i]) for i in range(m)])
+        
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>7. 整数反转</h2>
+      <div class="meta">
+        <span>类型：数学</span>
+        <span>难度：中等</span>
+        <span>目录：edium\007_整数反转</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/reverse-integer/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 7. 整数反转
+
+**难度:** 中等  
+**标签:** 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/reverse-integer/)
+
+## 题目描述
+
+给你一个 32 位的有符号整数 `x` ，返回将 `x` 中的数字部分反转后的结果。
+
+如果反转后整数超过 32 位的有符号整数的范围&#160;`[−231,&#160; 231&#160;− 1]` ，就返回 0。
+
+**假设环境不允许存储 64 位整数（有符号或无符号）。**
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**x = 123
+**输出：**321
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**x = -123
+**输出：**-321
+
+```
+
+**示例 3：**
+
+```
+
+**输入：**x = 120
+**输出：**21
+
+```
+
+**示例 4：**
+
+```
+
+**输入：**x = 0
+**输出：**0
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def reverse(self, x: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

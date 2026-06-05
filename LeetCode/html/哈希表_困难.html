@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈希表 - 困难</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>哈希表 - 困难</h1>
+    <p class="summary">共 5 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>127. 单词接龙</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：困难</span>
+        <span>目录：ard\127_单词接龙</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-ladder/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 127. 单词接龙
+
+**难度:** 困难  
+**标签:** 广度优先搜索, 哈希表, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-ladder/)
+
+## 题目描述
+
+字典&#160;`wordList` 中从单词 `beginWord`*&#160;*到&#160;`endWord` 的 **转换序列 **是一个按下述规格形成的序列&#160;`beginWord -&gt; s1&#160;-&gt; s2&#160;-&gt; ... -&gt; sk`：
+
+	- 每一对相邻的单词只差一个字母。
+	- &#160;对于&#160;`1 &#160;`si`&#160;都在&#160;`wordList`&#160;中。注意， `beginWord`*&#160;*不需要在&#160;`wordList`&#160;中。
+	- `sk&#160;== endWord`
+
+给你两个单词* *`beginWord`*&#160;*和 `endWord` 和一个字典 `wordList` ，返回 *从&#160;`beginWord` 到&#160;`endWord` 的 **最短转换序列** 中的 **单词数目*** 。如果不存在这样的转换序列，返回 `0` 。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
+**输出：**5
+**解释：**一个最短转换序列是 &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;, 返回它的长度 5。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
+**输出：**0
+**解释：**endWord &quot;cog&quot; 不在字典中，所以无法进行转换。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `endWord.length == beginWord.length`
+	- `1 
+	- `wordList[i].length == beginWord.length`
+	- `beginWord`、`endWord` 和 `wordList[i]` 由小写英文字母组成
+	- `beginWord != endWord`
+	- `wordList` 中的所有字符串 **互不相同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>140. 单词拆分 II</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：困难</span>
+        <span>目录：ard\140_单词拆分 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-break-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 140. 单词拆分 II
+
+**难度:** 困难  
+**标签:** 字典树, 记忆化, 数组, 哈希表, 字符串, 动态规划, 回溯
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-break-ii/)
+
+## 题目描述
+
+给定一个字符串 `s` 和一个字符串字典&#160;`wordDict`&#160;，在字符串&#160;`s`&#160;中增加空格来构建一个句子，使得句子中所有的单词都在词典中。**以任意顺序** 返回所有这些可能的句子。
+
+**注意：**词典中的同一个单词可能在分段中被重复使用多次。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入:**s = &quot;catsanddog&quot;, wordDict = [&quot;cat&quot;,&quot;cats&quot;,&quot;and&quot;,&quot;sand&quot;,&quot;dog&quot;]
+**输出:**[&quot;cats and dog&quot;,&quot;cat sand dog&quot;]
+
+```
+
+示例 2：
+
+```
+
+**输入:**s = &quot;pineapplepenapple&quot;, wordDict = [&quot;apple&quot;,&quot;pen&quot;,&quot;applepen&quot;,&quot;pine&quot;,&quot;pineapple&quot;]
+**输出:**[&quot;pine apple pen apple&quot;,&quot;pineapple pen apple&quot;,&quot;pine applepen apple&quot;]
+**解释:** 注意你可以重复使用字典中的单词。
+
+```
+
+示例&#160;3：
+
+```
+
+**输入:**s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;,&quot;dog&quot;,&quot;sand&quot;,&quot;and&quot;,&quot;cat&quot;]
+**输出:**[]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `1 
+	- `s`&#160;和&#160;`wordDict[i]`&#160;仅有小写英文字母组成
+	- `wordDict`&#160;中所有字符串都 **不同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -&gt; List[str]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>149. 直线上最多的点数</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：困难</span>
+        <span>目录：ard\149_直线上最多的点数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/max-points-on-a-line/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 149. 直线上最多的点数
+
+**难度:** 困难  
+**标签:** 几何, 数组, 哈希表, 数学
+
+**链接:** [LeetCode](https://leetcode.cn/problems/max-points-on-a-line/)
+
+## 题目描述
+
+给你一个数组 `points` ，其中 `points[i] = [xi, yi]` 表示 **X-Y** 平面上的一个点。求最多有多少个点在同一条直线上。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**points = [[1,1],[2,2],[3,3]]
+**输出：**3
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
+**输出：**4
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `points[i].length == 2`
+	- `-104 i, yi 4`
+	- `points` 中的所有点 **互不相同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def maxPoints(self, points: List[List[int]]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>41. 缺失的第一个正数</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：困难</span>
+        <span>目录：ard\041_缺失的第一个正数</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/first-missing-positive/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 41. 缺失的第一个正数
+
+**难度:** 困难  
+**标签:** 数组, 哈希表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/first-missing-positive/)
+
+## 题目描述
+
+给你一个未排序的整数数组 `nums` ，请你找出其中没有出现的最小的正整数。
+
+请你实现时间复杂度为 `O(n)` 并且只使用常数级别额外空间的解决方案。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nums = [1,2,0]
+**输出：**3
+**解释：**范围 [1,2] 中的数字都在数组中。
+```
+
+**示例 2：**
+
+```
+
+**输入：**nums = [3,4,-1,1]
+**输出：**2
+**解释：**1 在数组中，但 2 没有。
+```
+
+**示例 3：**
+
+```
+
+**输入：**nums = [7,8,9,11,12]
+**输出：**1
+**解释：**最小的正数 1 没有出现。
+```
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-231 31 - 1`
+
+## 提示
+
+1. Think about how you would solve the problem in non-constant space. Can you apply that logic to the existing space?
+2. We don&#39;t care about duplicates or non-positive integers
+3. Remember that O(2n) = O(n)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>76. 最小覆盖子串</h2>
+      <div class="meta">
+        <span>类型：哈希表</span>
+        <span>难度：困难</span>
+        <span>目录：ard\076_最小覆盖子串</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/minimum-window-substring/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 76. 最小覆盖子串
+
+**难度:** 困难  
+**标签:** 哈希表, 字符串, 滑动窗口
+
+**链接:** [LeetCode](https://leetcode.cn/problems/minimum-window-substring/)
+
+## 题目描述
+
+给定两个字符串&#160;`s` 和&#160;`t`，长度分别是&#160;`m` 和&#160;`n`，返回 s 中的&#160;**最短窗口 子串**，使得该子串包含 `t` 中的每一个字符（**包括重复字符**）。如果没有这样的子串，返回空字符串*&#160;*`&quot;&quot;`。
+
+测试用例保证答案唯一。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**s = &quot;ADOBECODEBANC&quot;, t = &quot;ABC&quot;
+**输出：**&quot;BANC&quot;
+**解释：**最小覆盖子串 &quot;BANC&quot; 包含来自字符串 t 的 &#39;A&#39;、&#39;B&#39; 和 &#39;C&#39;。
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**s = &quot;a&quot;, t = &quot;a&quot;
+**输出：**&quot;a&quot;
+**解释：**整个字符串 s 是最小覆盖子串。
+
+```
+
+**示例 3:**
+
+```
+
+**输入:** s = &quot;a&quot;, t = &quot;aa&quot;
+**输出:** &quot;&quot;
+**解释:** t 中两个字符 &#39;a&#39; 均应包含在 s 的子串中，
+因此没有符合条件的子字符串，返回空字符串。
+```
+
+&#160;
+
+**提示：**
+
+	- `m == s.length`
+	- `n == t.length`
+	- `1 5`
+	- `s` 和 `t` 由英文字母组成
+
+&#160;
+
+**进阶：**你能设计一个在 `O(m + n)` 时间内解决此问题的算法吗？
+
+## 提示
+
+1. Use two pointers to create a window of letters in s, which would have all the characters from t.
+2. Expand the right pointer until all the characters of t are covered.
+3. Once all the characters are covered, move the left pointer and ensure that all the characters are still covered to minimize the subarray size.
+4. Continue expanding the right and left pointers until you reach the end of s.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def minWindow(self, s: str, t: str) -&gt; str:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

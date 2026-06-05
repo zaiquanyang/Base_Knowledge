@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字典树 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>字典树 - 中等</h1>
+    <p class="summary">共 2 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>139. 单词拆分</h2>
+      <div class="meta">
+        <span>类型：字典树</span>
+        <span>难度：中等</span>
+        <span>目录：edium\139_单词拆分</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/word-break/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 139. 单词拆分
+
+**难度:** 中等  
+**标签:** 字典树, 记忆化, 数组, 哈希表, 字符串, 动态规划
+
+**链接:** [LeetCode](https://leetcode.cn/problems/word-break/)
+
+## 题目描述
+
+给你一个字符串 `s` 和一个字符串列表 `wordDict` 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 `s`&#160;则返回 `true`。
+
+**注意：**不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入:** s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]
+**输出:** true
+**解释:** 返回 true 因为 &quot;leetcode&quot; 可以由 &quot;leet&quot; 和 &quot;code&quot; 拼接成。
+
+```
+
+**示例 2：**
+
+```
+
+**输入:** s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]
+**输出:** true
+**解释:** 返回 true 因为 &quot;applepenapple&quot; 可以由 &quot;apple&quot; &quot;pen&quot; &quot;apple&quot; 拼接成。
+&#160;    注意，你可以重复使用字典中的单词。
+
+```
+
+**示例 3：**
+
+```
+
+**输入:** s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]
+**输出:** false
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `1 
+	- `1 
+	- `s` 和 `wordDict[i]` 仅由小写英文字母组成
+	- `wordDict` 中的所有字符串 **互不相同**</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -&gt; bool:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>208. 实现 Trie (前缀树)</h2>
+      <div class="meta">
+        <span>类型：字典树</span>
+        <span>难度：中等</span>
+        <span>目录：edium\208_实现 Trie (前缀树)</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 208. 实现 Trie (前缀树)
+
+**难度:** 中等  
+**标签:** 设计, 字典树, 哈希表, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/implement-trie-prefix-tree/)
+
+## 题目描述
+
+**Trie**（发音类似 &quot;try&quot;）或者说 **前缀树** 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
+
+请你实现 Trie 类：
+
+	- `Trie()` 初始化前缀树对象。
+	- `void insert(String word)` 向前缀树中插入字符串 `word` 。
+	- `boolean search(String word)` 如果字符串 `word` 在前缀树中，返回 `true`（即，在检索之前已经插入）；否则，返回 `false` 。
+	- `boolean startsWith(String prefix)` 如果之前已经插入的字符串&#160;`word` 的前缀之一为 `prefix` ，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]
+[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]
+**输出**
+[null, null, true, false, true, null, true]
+
+**解释**
+Trie trie = new Trie();
+trie.insert(&quot;apple&quot;);
+trie.search(&quot;apple&quot;);   // 返回 True
+trie.search(&quot;app&quot;);     // 返回 False
+trie.startsWith(&quot;app&quot;); // 返回 True
+trie.insert(&quot;app&quot;);
+trie.search(&quot;app&quot;);     // 返回 True
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `word` 和 `prefix` 仅由小写英文字母组成
+	- `insert`、`search` 和 `startsWith` 调用次数 **总计** 不超过 `3 * 104` 次</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, word: str) -&gt; None:
+        
+
+    def search(self, word: str) -&gt; bool:
+        
+
+    def startsWith(self, prefix: str) -&gt; bool:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

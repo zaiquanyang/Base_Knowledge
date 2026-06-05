@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二叉搜索树 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>二叉搜索树 - 中等</h1>
+    <p class="summary">共 3 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>230. 二叉搜索树中第 K 小的元素</h2>
+      <div class="meta">
+        <span>类型：二叉搜索树</span>
+        <span>难度：中等</span>
+        <span>目录：edium\230_二叉搜索树中第 K 小的元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 230. 二叉搜索树中第 K 小的元素
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉搜索树, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
+
+## 题目描述
+
+给定一个二叉搜索树的根节点 `root` ，和一个整数 `k` ，请你设计一个算法查找其中第&#160;`k`**&#160;**小的元素（`k` 从 1 开始计数）。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**root = [3,1,4,null,2], k = 1
+**输出：**1
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**root = [5,3,6,2,4,null,null,1], k = 3
+**输出：**3
+
+```
+
+&#160;
+
+&#160;
+
+**提示：**
+
+	- 树中的节点数为 `n` 。
+	- `1 4`
+	- `0 4`
+
+&#160;
+
+**进阶：**如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 `k` 小的值，你将如何优化算法？
+
+## 提示
+
+1. Try to utilize the property of a BST.
+2. Try in-order traversal. (Credits to @chan13)
+3. What if you could modify the BST node&#39;s structure?
+4. The optimal runtime complexity is O(height of BST).</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#     def __init__(self, val=0, left=None, right=None):
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>285. 二叉搜索树中的中序后继</h2>
+      <div class="meta">
+        <span>类型：二叉搜索树</span>
+        <span>难度：中等</span>
+        <span>目录：edium\285_二叉搜索树中的中序后继</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/inorder-successor-in-bst/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 285. 二叉搜索树中的中序后继
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉搜索树, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/inorder-successor-in-bst/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        285. 二叉搜索树中的中序后继
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>98. 验证二叉搜索树</h2>
+      <div class="meta">
+        <span>类型：二叉搜索树</span>
+        <span>难度：中等</span>
+        <span>目录：edium\098_验证二叉搜索树</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/validate-binary-search-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 98. 验证二叉搜索树
+
+**难度:** 中等  
+**标签:** 树, 深度优先搜索, 二叉搜索树, 二叉树
+
+**链接:** [LeetCode](https://leetcode.cn/problems/validate-binary-search-tree/)
+
+## 题目描述
+
+给你一个二叉树的根节点 `root` ，判断其是否是一个有效的二叉搜索树。
+
+**有效** 二叉搜索树定义如下：
+
+	- 节点的左子树只包含**&#160;严格小于 **当前节点的数。
+	- 节点的右子树只包含 **严格大于** 当前节点的数。
+	- 所有左子树和右子树自身必须也是二叉搜索树。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**root = [2,1,3]
+**输出：**true
+
+```
+
+**示例 2：**
+
+```
+
+**输入：**root = [5,1,4,null,null,3,6]
+**输出：**false
+**解释：**根节点的值是 5 ，但是右子节点的值是 4 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- 树中节点数目范围在`[1, 104]` 内
+	- `-231 31 - 1`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -&gt; bool:
+        
+        def dfs(node, left, right):
+            if node is None:
+                return True
+            
+            if not (left&lt; node.val&lt; right):
+                return False
+
+            return dfs(node.left, left, node.val) and dfs(node.right, node.val, right)
+        
+        return dfs(root, float(&#39;-inf&#39;), float(&#39;inf&#39;))
+
+
+
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>队列 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>队列 - 中等</h1>
+    <p class="summary">共 1 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>341. 扁平化嵌套列表迭代器</h2>
+      <div class="meta">
+        <span>类型：队列</span>
+        <span>难度：中等</span>
+        <span>目录：edium\341_扁平化嵌套列表迭代器</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/flatten-nested-list-iterator/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 341. 扁平化嵌套列表迭代器
+
+**难度:** 中等  
+**标签:** 栈, 树, 深度优先搜索, 设计, 队列, 迭代器
+
+**链接:** [LeetCode](https://leetcode.cn/problems/flatten-nested-list-iterator/)
+
+## 题目描述
+
+给你一个嵌套的整数列表 `nestedList` 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。
+
+实现扁平迭代器类 `NestedIterator` ：
+
+	- `NestedIterator(List nestedList)` 用嵌套列表 `nestedList` 初始化迭代器。
+	- `int next()` 返回嵌套列表的下一个整数。
+	- `boolean hasNext()` 如果仍然存在待迭代的整数，返回 `true` ；否则，返回 `false` 。
+
+你的代码将会用下述伪代码检测：
+
+```
+
+initialize iterator with nestedList
+res = []
+while iterator.hasNext()
+    append iterator.next() to the end of res
+return res
+```
+
+如果 `res` 与预期的扁平化列表匹配，那么你的代码将会被判为正确。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nestedList = [[1,1],2,[1,1]]
+**输出：**[1,1,2,1,1]
+**解释：**通过重复调用&#160;*next *直到&#160;*hasNex*t 返回 false，*next&#160;*返回的元素的顺序应该是: `[1,1,2,1,1]`。
+```
+
+**示例 2：**
+
+```
+
+**输入：**nestedList = [1,[4,[6]]]
+**输出：**[1,4,6]
+**解释：**通过重复调用&#160;*next&#160;*直到&#160;*hasNex*t 返回 false，*next&#160;*返回的元素的顺序应该是: `[1,4,6]`。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- 嵌套列表中的整数值在范围 `[-106, 106]` 内</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#    def isInteger(self) -&gt; bool:
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>堆（优先队列） - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>堆（优先队列） - 中等</h1>
+    <p class="summary">共 4 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>215. 数组中的第K个最大元素</h2>
+      <div class="meta">
+        <span>类型：堆（优先队列）</span>
+        <span>难度：中等</span>
+        <span>目录：edium\215_数组中的第K个最大元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 215. 数组中的第K个最大元素
+
+**难度:** 中等  
+**标签:** 数组, 分治, 快速选择, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
+
+## 题目描述
+
+给定整数数组 `nums` 和整数 `k`，请返回数组中第 `**k**` 个最大的元素。
+
+请注意，你需要找的是数组排序后的第 `k` 个最大的元素，而不是第 `k` 个不同的元素。
+
+你必须设计并实现时间复杂度为 `O(n)` 的算法解决此问题。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入:** `[3,2,1,5,6,4],` k = 2
+**输出:** 5
+
+```
+
+**示例&#160;2:**
+
+```
+
+**输入:** `[3,2,3,1,2,4,5,5,6], `k = 4
+**输出:** 4
+```
+
+&#160;
+
+**提示： **
+
+	- `1 5`
+	- `-104&#160;4`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>253. 会议室 II</h2>
+      <div class="meta">
+        <span>类型：堆（优先队列）</span>
+        <span>难度：中等</span>
+        <span>目录：edium\253_会议室 II</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/meeting-rooms-ii/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 253. 会议室 II
+
+**难度:** 中等  
+**标签:** 贪心, 数组, 双指针, 前缀和, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/meeting-rooms-ii/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Think about how we would approach this problem in a very simplistic way. We will allocate rooms to meetings that occur earlier in the day v/s the ones that occur later on, right?
+2. If you&#39;ve figured out that we have to sort the meetings by their start time, the next thing to think about is how do we do the allocation? There are two scenarios possible here for any meeting. Either there is no meeting room available and a new one has to be allocated, or a meeting room has freed up and this meeting can take place there.
+3. An important thing to note is that we don&#39;t really care which room gets freed up while allocating a room for the current meeting. As long as a room is free, our job is done. We already know the rooms we have allocated till now and we also know when are they due to get free because of the end times of the meetings going on in those rooms. We can simply check the room which is due to get vacated the earliest amongst all the allocated rooms.
+4. Following up on the previous hint, we can make use of a min-heap to store the end times of the meetings in various rooms. So, every time we want to check if any room is free or not, simply check the topmost element of the min heap as that would be the room that would get free the earliest out of all the other rooms currently occupied. If the room we extracted from the top of the min heap isn&#39;t free, then no other room is. So, we can save time here and simply allocate a new room.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        253. 会议室 II
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>347. 前 K 个高频元素</h2>
+      <div class="meta">
+        <span>类型：堆（优先队列）</span>
+        <span>难度：中等</span>
+        <span>目录：edium\347_前 K 个高频元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/top-k-frequent-elements/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 347. 前 K 个高频元素
+
+**难度:** 中等  
+**标签:** 数组, 哈希表, 分治, 桶排序, 计数, 快速选择, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/top-k-frequent-elements/)
+
+## 题目描述
+
+给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。
+
+&#160;
+
+示例 1：
+
+输入：nums = [1,1,1,2,2,3], k = 2
+
+**输出：**[1,2]
+
+示例 2：
+
+输入：nums = [1], k = 1
+
+输出：[1]
+
+示例 3：
+
+输入：nums = [1,2,1,2,1,2,3,1,3,2], k = 2
+
+**输出：**[1,2]
+
+&#160;
+
+**提示：**
+
+	- `1 5`
+	- `-104&#160;4`
+	- `k` 的取值范围是 `[1, 数组中不相同的元素的个数]`
+	- 题目数据保证答案唯一，换句话说，数组中前 `k` 个高频元素的集合是唯一的
+
+&#160;
+
+**进阶：**你所设计算法的时间复杂度 **必须** 优于 `O(n log n)` ，其中 `n`*&#160;*是数组大小。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>378. 有序矩阵中第 K 小的元素</h2>
+      <div class="meta">
+        <span>类型：堆（优先队列）</span>
+        <span>难度：中等</span>
+        <span>目录：edium\378_有序矩阵中第 K 小的元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 378. 有序矩阵中第 K 小的元素
+
+**难度:** 中等  
+**标签:** 数组, 二分查找, 矩阵, 排序, 堆（优先队列）
+
+**链接:** [LeetCode](https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/)
+
+## 题目描述
+
+给你一个&#160;`n x n`*&#160;*矩阵&#160;`matrix` ，其中每行和每列元素均按升序排序，找到矩阵中第 `k` 小的元素。
+
+请注意，它是 **排序后** 的第 `k` 小元素，而不是第 `k` 个 **不同** 的元素。
+
+你必须找到一个内存复杂度优于&#160;`O(n2)` 的解决方案。
+
+&#160;
+
+示例 1：
+
+```
+
+**输入：**matrix = [[1,5,9],[10,11,13],[12,13,15]], k = 8
+**输出：**13
+**解释：**矩阵中的元素为 [1,5,9,10,11,12,13,**13**,15]，第 8 小元素是 13
+
+```
+
+示例 2：
+
+```
+
+**输入：**matrix = [[-5]], k = 1
+**输出：**-5
+
+```
+
+&#160;
+
+**提示：**
+
+	- `n == matrix.length`
+	- `n == matrix[i].length`
+	- `1 
+	- `-109 9`
+	- 题目数据 **保证** `matrix` 中的所有行和列都按 **非递减顺序** 排列
+	- `1 2`
+
+&#160;
+
+**进阶：**
+
+	- 你能否用一个恒定的内存(即 `O(1)` 内存复杂度)来解决这个问题?
+	- 你能在 `O(n)` 的时间复杂度下解决这个问题吗?这个方法对于面试来说可能太超前了，但是你会发现阅读这篇文章（&#160;this paper&#160;）很有趣。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -&gt; int:
+        
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>

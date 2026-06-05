@@ -1,0 +1,734 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计 - 中等</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .problem-card h2,
+    .problem-card h3 {
+      margin-top: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="./index.html">返回索引</a>
+    <h1>设计 - 中等</h1>
+    <p class="summary">共 9 题，按题目原始标签与难度聚合生成。</p>
+    <section class="problem-card">
+      <h2>146. LRU 缓存</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\146_LRU 缓存</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/lru-cache/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 146. LRU 缓存
+
+**难度:** 中等  
+**标签:** 设计, 哈希表, 链表, 双向链表
+
+**链接:** [LeetCode](https://leetcode.cn/problems/lru-cache/)
+
+## 题目描述
+
+请你设计并实现一个满足&#160; LRU (最近最少使用) 缓存 约束的数据结构。
+
+实现 `LRUCache` 类：
+
+	- `LRUCache(int capacity)` 以 **正整数** 作为容量&#160;`capacity` 初始化 LRU 缓存
+	- `int get(int key)` 如果关键字 `key` 存在于缓存中，则返回关键字的值，否则返回 `-1` 。
+	- `void put(int key, int value)`&#160;如果关键字&#160;`key` 已经存在，则变更其数据值&#160;`value` ；如果不存在，则向缓存中插入该组&#160;`key-value` 。如果插入操作导致关键字数量超过&#160;`capacity` ，则应该 **逐出** 最久未使用的关键字。
+
+函数 `get` 和 `put` 必须以 `O(1)` 的平均时间复杂度运行。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]
+[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+**输出**
+[null, null, null, 1, null, -1, null, -1, 3, 4]
+
+**解释**
+LRUCache lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // 缓存是 {1=1}
+lRUCache.put(2, 2); // 缓存是 {1=1, 2=2}
+lRUCache.get(1);    // 返回 1
+lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+lRUCache.get(2);    // 返回 -1 (未找到)
+lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+lRUCache.get(1);    // 返回 -1 (未找到)
+lRUCache.get(3);    // 返回 3
+lRUCache.get(4);    // 返回 4
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `0 
+	- `0 5`
+	- 最多调用 `2 * 105` 次 `get` 和 `put`</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, capacity: int):
+        
+
+    def get(self, key: int) -&gt; int:
+        
+
+    def put(self, key: int, value: int) -&gt; None:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>155. 最小栈</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\155_最小栈</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/min-stack/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 155. 最小栈
+
+**难度:** 中等  
+**标签:** 栈, 设计
+
+**链接:** [LeetCode](https://leetcode.cn/problems/min-stack/)
+
+## 题目描述
+
+设计一个支持 `push` ，`pop` ，`top` 操作，并能在常数时间内检索到最小元素的栈。
+
+实现 `MinStack` 类:
+
+	- `MinStack()` 初始化堆栈对象。
+	- `void push(int val)` 将元素val推入堆栈。
+	- `void pop()` 删除堆栈顶部的元素。
+	- `int top()` 获取堆栈顶部的元素。
+	- `int getMin()` 获取堆栈中的最小元素。
+
+&#160;
+
+**示例 1:**
+
+```
+
+**输入：**
+[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+**输出：**
+[null,null,null,null,-3,null,0,-2]
+
+**解释：**
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --&gt; 返回 -3.
+minStack.pop();
+minStack.top();      --&gt; 返回 0.
+minStack.getMin();   --&gt; 返回 -2.
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231&#160;31&#160;- 1`
+	- `pop`、`top` 和 `getMin` 操作总是在 **非空栈** 上调用
+	- `push`,&#160;`pop`,&#160;`top`, and&#160;`getMin`最多被调用&#160;`3 * 104`&#160;次
+
+## 提示
+
+1. Consider each node in the stack having a minimum value. (Credits to @aakarshmadhavan)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def push(self, val: int) -&gt; None:
+        
+
+    def pop(self) -&gt; None:
+        
+
+    def top(self) -&gt; int:
+        
+
+    def getMin(self) -&gt; int:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>208. 实现 Trie (前缀树)</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\208_实现 Trie (前缀树)</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 208. 实现 Trie (前缀树)
+
+**难度:** 中等  
+**标签:** 设计, 字典树, 哈希表, 字符串
+
+**链接:** [LeetCode](https://leetcode.cn/problems/implement-trie-prefix-tree/)
+
+## 题目描述
+
+**Trie**（发音类似 &quot;try&quot;）或者说 **前缀树** 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。
+
+请你实现 Trie 类：
+
+	- `Trie()` 初始化前缀树对象。
+	- `void insert(String word)` 向前缀树中插入字符串 `word` 。
+	- `boolean search(String word)` 如果字符串 `word` 在前缀树中，返回 `true`（即，在检索之前已经插入）；否则，返回 `false` 。
+	- `boolean startsWith(String prefix)` 如果之前已经插入的字符串&#160;`word` 的前缀之一为 `prefix` ，返回 `true` ；否则，返回 `false` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]
+[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]
+**输出**
+[null, null, true, false, true, null, true]
+
+**解释**
+Trie trie = new Trie();
+trie.insert(&quot;apple&quot;);
+trie.search(&quot;apple&quot;);   // 返回 True
+trie.search(&quot;app&quot;);     // 返回 False
+trie.startsWith(&quot;app&quot;); // 返回 True
+trie.insert(&quot;app&quot;);
+trie.search(&quot;app&quot;);     // 返回 True
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `word` 和 `prefix` 仅由小写英文字母组成
+	- `insert`、`search` 和 `startsWith` 调用次数 **总计** 不超过 `3 * 104` 次</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, word: str) -&gt; None:
+        
+
+    def search(self, word: str) -&gt; bool:
+        
+
+    def startsWith(self, prefix: str) -&gt; bool:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>251. 展开二维向量</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\251_展开二维向量</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/flatten-2d-vector/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 251. 展开二维向量
+
+**难度:** 中等  
+**标签:** 设计, 数组, 双指针, 迭代器
+
+**链接:** [LeetCode](https://leetcode.cn/problems/flatten-2d-vector/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. How many variables do you need to keep track?
+2. Two variables is all you need. Try with x and y.
+3. Beware of empty rows. It could be the first few rows.
+4. To write correct code, think about the invariant to maintain. What is it?
+5. The invariant is x and y must always point to a valid point in the 2d vector. Should you maintain your invariant ahead of time or right when you need it?
+6. Not sure? Think about how you would implement hasNext(). Which is more complex?
+7. Common logic in two different places should be refactored into a common method.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        251. 展开二维向量
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>308. 二维区域和检索 - 矩阵可修改</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\308_二维区域和检索 - 矩阵可修改</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/range-sum-query-2d-mutable/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 308. 二维区域和检索 - 矩阵可修改
+
+**难度:** 中等  
+**标签:** 设计, 树状数组, 线段树, 数组, 矩阵
+
+**链接:** [LeetCode](https://leetcode.cn/problems/range-sum-query-2d-mutable/)
+
+## 题目描述</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        308. 二维区域和检索 - 矩阵可修改
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>341. 扁平化嵌套列表迭代器</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\341_扁平化嵌套列表迭代器</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/flatten-nested-list-iterator/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 341. 扁平化嵌套列表迭代器
+
+**难度:** 中等  
+**标签:** 栈, 树, 深度优先搜索, 设计, 队列, 迭代器
+
+**链接:** [LeetCode](https://leetcode.cn/problems/flatten-nested-list-iterator/)
+
+## 题目描述
+
+给你一个嵌套的整数列表 `nestedList` 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。
+
+实现扁平迭代器类 `NestedIterator` ：
+
+	- `NestedIterator(List nestedList)` 用嵌套列表 `nestedList` 初始化迭代器。
+	- `int next()` 返回嵌套列表的下一个整数。
+	- `boolean hasNext()` 如果仍然存在待迭代的整数，返回 `true` ；否则，返回 `false` 。
+
+你的代码将会用下述伪代码检测：
+
+```
+
+initialize iterator with nestedList
+res = []
+while iterator.hasNext()
+    append iterator.next() to the end of res
+return res
+```
+
+如果 `res` 与预期的扁平化列表匹配，那么你的代码将会被判为正确。
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入：**nestedList = [[1,1],2,[1,1]]
+**输出：**[1,1,2,1,1]
+**解释：**通过重复调用&#160;*next *直到&#160;*hasNex*t 返回 false，*next&#160;*返回的元素的顺序应该是: `[1,1,2,1,1]`。
+```
+
+**示例 2：**
+
+```
+
+**输入：**nestedList = [1,[4,[6]]]
+**输出：**[1,4,6]
+**解释：**通过重复调用&#160;*next&#160;*直到&#160;*hasNex*t 返回 false，*next&#160;*返回的元素的顺序应该是: `[1,4,6]`。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- 嵌套列表中的整数值在范围 `[-106, 106]` 内</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+#    def isInteger(self) -&gt; bool:
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>348. 设计井字棋</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\348_设计井字棋</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/design-tic-tac-toe/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 348. 设计井字棋
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 矩阵, 模拟
+
+**链接:** [LeetCode](https://leetcode.cn/problems/design-tic-tac-toe/)
+
+## 题目描述
+
+
+
+## 提示
+
+1. Could you trade extra space such that move() operation can be done in O(1)?
+2. You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def solve(self):
+        &quot;&quot;&quot;
+        348. 设计井字棋
+        TODO: 在此实现解题逻辑
+        &quot;&quot;&quot;
+        pass
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>380. O(1) 时间插入、删除和获取随机元素</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\380_O(1) 时间插入、删除和获取随机元素</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/insert-delete-getrandom-o1/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 380. O(1) 时间插入、删除和获取随机元素
+
+**难度:** 中等  
+**标签:** 设计, 数组, 哈希表, 数学, 随机化
+
+**链接:** [LeetCode](https://leetcode.cn/problems/insert-delete-getrandom-o1/)
+
+## 题目描述
+
+实现`RandomizedSet` 类：
+
+	- `RandomizedSet()` 初始化 `RandomizedSet` 对象
+	- `bool insert(int val)` 当元素 `val` 不存在时，向集合中插入该项，并返回 `true` ；否则，返回 `false` 。
+	- `bool remove(int val)` 当元素 `val` 存在时，从集合中移除该项，并返回 `true` ；否则，返回 `false` 。
+	- `int getRandom()` 随机返回现有集合中的一项（测试用例保证调用此方法时集合中至少存在一个元素）。每个元素应该有 **相同的概率** 被返回。
+
+你必须实现类的所有函数，并满足每个函数的 **平均** 时间复杂度为 `O(1)` 。
+
+&#160;
+
+**示例：**
+
+```
+
+**输入**
+[&quot;RandomizedSet&quot;, &quot;insert&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;]
+[[], [1], [2], [2], [], [1], [2], []]
+**输出**
+[null, true, false, true, 2, true, false, 2]
+
+**解释**
+RandomizedSet randomizedSet = new RandomizedSet();
+randomizedSet.insert(1); // 向集合中插入 1 。返回 true 表示 1 被成功地插入。
+randomizedSet.remove(2); // 返回 false ，表示集合中不存在 2 。
+randomizedSet.insert(2); // 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。
+randomizedSet.getRandom(); // getRandom 应随机返回 1 或 2 。
+randomizedSet.remove(1); // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。
+randomizedSet.insert(2); // 2 已在集合中，所以返回 false 。
+randomizedSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。
+
+```
+
+&#160;
+
+**提示：**
+
+	- `-231 31 - 1`
+	- 最多调用 `insert`、`remove` 和 `getRandom` 函数 `2 *&#160;``105` 次
+	- 在调用 `getRandom` 方法时，数据结构中 **至少存在一个** 元素。</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self):
+        
+
+    def insert(self, val: int) -&gt; bool:
+        
+
+    def remove(self, val: int) -&gt; bool:
+        
+
+    def getRandom(self) -&gt; int:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+    <section class="problem-card">
+      <h2>384. 打乱数组</h2>
+      <div class="meta">
+        <span>类型：设计</span>
+        <span>难度：中等</span>
+        <span>目录：edium\384_打乱数组</span>
+      </div>
+      <p><a href="https://leetcode.cn/problems/shuffle-an-array/" target="_blank" rel="noopener noreferrer">LeetCode 原题链接</a></p>
+      <h3>题目内容</h3>
+      <pre># 384. 打乱数组
+
+**难度:** 中等  
+**标签:** 设计, 数组, 数学, 随机化
+
+**链接:** [LeetCode](https://leetcode.cn/problems/shuffle-an-array/)
+
+## 题目描述
+
+给你一个整数数组 `nums` ，设计算法来打乱一个没有重复元素的数组。打乱后，数组的所有排列应该是&#160;**等可能**&#160;的。
+
+实现 `Solution` class:
+
+	- `Solution(int[] nums)` 使用整数数组 `nums` 初始化对象
+	- `int[] reset()` 重设数组到它的初始状态并返回
+	- `int[] shuffle()` 返回数组随机打乱后的结果
+
+&#160;
+
+**示例 1：**
+
+```
+
+**输入**
+[&quot;Solution&quot;, &quot;shuffle&quot;, &quot;reset&quot;, &quot;shuffle&quot;]
+[[[1, 2, 3]], [], [], []]
+**输出**
+[null, [3, 1, 2], [1, 2, 3], [1, 3, 2]]
+
+**解释**
+Solution solution = new Solution([1, 2, 3]);
+solution.shuffle();    // 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。例如，返回 [3, 1, 2]
+solution.reset();      // 重设数组到它的初始状态 [1, 2, 3] 。返回 [1, 2, 3]
+solution.shuffle();    // 随机返回数组 [1, 2, 3] 打乱后的结果。例如，返回 [1, 3, 2]
+
+```
+
+&#160;
+
+**提示：**
+
+	- `1 
+	- `-106 6`
+	- `nums` 中的所有元素都是 **唯一的**
+	- 最多可以调用 `104` 次 `reset` 和 `shuffle`
+
+## 提示
+
+1. The solution expects that we always use the original array to shuffle() else some of the test cases fail. (Credits; @snehasingh31)</pre>
+      <h3>解答方案</h3>
+      <pre><code>from typing import List, Optional
+
+
+class Solution:
+    def __init__(self, nums: List[int]):
+        
+
+    def reset(self) -&gt; List[int]:
+        
+
+    def shuffle(self) -&gt; List[int]:
+        
+
+
+        # TODO: 在此实现解题逻辑
+        pass
+
+
+
+# 测试
+if __name__ == &quot;__main__&quot;:
+    sol = Solution()
+    # TODO: 添加测试用例
+    pass</code></pre>
+    </section>
+  </main>
+</body>
+</html>
