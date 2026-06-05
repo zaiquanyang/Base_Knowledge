@@ -270,6 +270,14 @@ foreach ($group in $groups) {
       padding: 16px;
       overflow-x: auto;
     }
+    code.language-python .token.comment { color: #64748b; }
+    code.language-python .token.keyword { color: #c084fc; }
+    code.language-python .token.string { color: #86efac; }
+    code.language-python .token.number { color: #fca5a5; }
+    code.language-python .token.function { color: #7dd3fc; }
+    code.language-python .token.builtin { color: #fcd34d; }
+    code.language-python .token.decorator { color: #f9a8d4; }
+    code.language-python .token.operator { color: #e2e8f0; }
     a { color: var(--accent); }
   </style>
 </head>
@@ -280,6 +288,76 @@ foreach ($group in $groups) {
     <p class="summary">共 $($group.Count) 题，按题目原始标签与难度聚合生成。</p>
 $(($cards -join "`r`n"))
   </main>
+  <script>
+    (() => {
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+
+      const keywords = new Set([
+        'False','None','True','and','as','assert','async','await','break','class','continue',
+        'def','del','elif','else','except','finally','for','from','global','if','import','in',
+        'is','lambda','nonlocal','not','or','pass','raise','return','try','while','with','yield'
+      ]);
+
+      const builtins = new Set([
+        'abs','all','any','bool','dict','enumerate','filter','float','int','len','list','map',
+        'max','min','open','print','range','reversed','set','sorted','str','sum','tuple','type','zip'
+      ]);
+
+      const highlightPython = (source) => {
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        let result = '';
+        let lastIndex = 0;
+        let functionPending = false;
+
+        source.replace(pattern, (match, _group, offset) => {
+          result += escapeHtml(source.slice(lastIndex, offset));
+          let className = '';
+
+          if (match.startsWith('#')) {
+            className = 'comment';
+          } else if (match.startsWith('"""') || match.startsWith(\"'''\") || match.startsWith('\"') || match.startsWith(\"'\")) {
+            className = 'string';
+          } else if (match.startsWith('@')) {
+            className = 'decorator';
+          } else if (/^\d/.test(match)) {
+            className = 'number';
+          } else if (keywords.has(match)) {
+            className = 'keyword';
+            functionPending = match === 'def';
+          } else if (builtins.has(match)) {
+            className = 'builtin';
+          } else if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(match) && functionPending) {
+            className = 'function';
+            functionPending = false;
+          } else if (/^[+\-*/%=!<>]/.test(match)) {
+            className = 'operator';
+          } else if (match !== 'def') {
+            functionPending = false;
+          }
+
+          if (className) {
+            result += `<span class="token ${className}">${escapeHtml(match)}</span>`;
+          } else {
+            result += escapeHtml(match);
+          }
+
+          lastIndex = offset + match.length;
+          return match;
+        });
+
+        result += escapeHtml(source.slice(lastIndex));
+        return result;
+      };
+
+      document.querySelectorAll('code.language-python').forEach((block) => {
+        block.innerHTML = highlightPython(block.textContent || '');
+      });
+    })();
+  </script>
 </body>
 </html>
 "@
