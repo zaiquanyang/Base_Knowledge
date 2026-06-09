@@ -70,6 +70,14 @@
       padding: 16px;
       overflow-x: auto;
     }
+    code.language-python .token.comment { color: #64748b; }
+    code.language-python .token.keyword { color: #c084fc; }
+    code.language-python .token.string { color: #86efac; }
+    code.language-python .token.number { color: #fca5a5; }
+    code.language-python .token.function { color: #7dd3fc; }
+    code.language-python .token.builtin { color: #fcd34d; }
+    code.language-python .token.decorator { color: #f9a8d4; }
+    code.language-python .token.operator { color: #e2e8f0; }
     a { color: var(--accent); }
   </style>
 </head>
@@ -95,22 +103,22 @@
 
 给你两个单词* *`beginWord`*&#160;*和 `endWord` 和一个字典 `wordList` ，返回 *从&#160;`beginWord` 到&#160;`endWord` 的 **最短转换序列** 中的 **单词数目*** 。如果不存在这样的转换序列，返回 `0` 。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">ladderLength</span>(self, beginWord: <span class="token builtin">str</span>, endWord: <span class="token builtin">str</span>, wordList: <span class="token builtin">List</span>[<span class="token builtin">str</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>140. 单词拆分 II</h2>
@@ -125,22 +133,22 @@ if __name__ == &quot;__main__&quot;:
 
 **注意：**词典中的同一个单词可能在分段中被重复使用多次。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -&gt; List[str]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">wordBreak</span>(self, s: <span class="token builtin">str</span>, wordDict: <span class="token builtin">List</span>[<span class="token builtin">str</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">str</span>]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>149. 直线上最多的点数</h2>
@@ -153,22 +161,22 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你一个数组 `points` ，其中 `points[i] = [xi, yi]` 表示 **X-Y** 平面上的一个点。求最多有多少个点在同一条直线上。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxPoints(self, points: List[List[int]]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxPoints</span>(self, points: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>41. 缺失的第一个正数</h2>
@@ -183,22 +191,22 @@ if __name__ == &quot;__main__&quot;:
 
 请你实现时间复杂度为 `O(n)` 并且只使用常数级别额外空间的解决方案。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def firstMissingPositive(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">firstMissingPositive</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>76. 最小覆盖子串</h2>
@@ -213,23 +221,93 @@ if __name__ == &quot;__main__&quot;:
 
 测试用例保证答案唯一。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def minWindow(self, s: str, t: str) -&gt; str:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">minWindow</span>(self, s: <span class="token builtin">str</span>, t: <span class="token builtin">str</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
+  <script>
+    (() => {
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+
+      const keywords = new Set([
+        'False','None','True','and','as','assert','async','await','break','class','continue',
+        'def','del','elif','else','except','finally','for','from','global','if','import','in',
+        'is','lambda','nonlocal','not','or','pass','raise','return','try','while','with','yield'
+      ]);
+
+      const builtins = new Set([
+        'abs','all','any','bool','dict','enumerate','filter','float','int','len','list','map',
+        'max','min','open','print','range','reversed','set','sorted','str','sum','tuple','type','zip'
+      ]);
+
+      const highlightPython = (source) => {
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
+        let result = '';
+        let lastIndex = 0;
+        let functionPending = false;
+
+        source.replace(pattern, (match, _group, offset) => {
+          result += escapeHtml(source.slice(lastIndex, offset));
+          let className = '';
+
+          if (match.startsWith('#')) {
+            className = 'comment';
+          } else if (match.startsWith('"""') || match.startsWith(\"'''\") || match.startsWith('\"') || match.startsWith(\"'\")) {
+            className = 'string';
+          } else if (match.startsWith('@')) {
+            className = 'decorator';
+          } else if (/^\d/.test(match)) {
+            className = 'number';
+          } else if (keywords.has(match)) {
+            className = 'keyword';
+            functionPending = match === 'def';
+          } else if (builtins.has(match)) {
+            className = 'builtin';
+          } else if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(match) && functionPending) {
+            className = 'function';
+            functionPending = false;
+          } else if (/^[+\-*/%=!<>]/.test(match)) {
+            className = 'operator';
+          } else if (match !== 'def') {
+            functionPending = false;
+          }
+
+          if (className) {
+            result += '<span class="token ' + className + '">' + escapeHtml(match) + '</span>';
+          } else {
+            result += escapeHtml(match);
+          }
+
+          lastIndex = offset + match.length;
+          return match;
+        });
+
+        result += escapeHtml(source.slice(lastIndex));
+        return result;
+      };
+
+      document.querySelectorAll('code.language-python').forEach((block) => {
+        block.innerHTML = highlightPython(block.textContent || '');
+      });
+    })();
+  </script>
 </body>
 </html>

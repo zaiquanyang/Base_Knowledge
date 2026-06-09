@@ -99,31 +99,31 @@
 
 请你设计并实现时间复杂度为&#160;`O(n)`* *的算法解决此问题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def longestConsecutive(self, nums: List[int]) -&gt; int:
-        nums_set = set(nums)
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">longestConsecutive</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
+        nums_set <span class="token operator">=</span> <span class="token builtin">set</span>(nums)
 
-        max_seq_len = 0
-        for num in nums_set:
-            if (num-1) not in nums_set:
-                current_num = num
-                sequence_len = 1
+        max_seq_len <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> num <span class="token keyword">in</span> nums_set:
+            <span class="token keyword">if</span> (num<span class="token operator">-</span><span class="token number">1</span>) <span class="token keyword">not</span> <span class="token keyword">in</span> nums_set:
+                current_num <span class="token operator">=</span> num
+                sequence_len <span class="token operator">=</span> <span class="token number">1</span>
 
-                while current_num+1 in nums_set:
-                    current_num += 1
-                    sequence_len += 1
+                <span class="token keyword">while</span> current_num<span class="token operator">+</span><span class="token number">1</span> <span class="token keyword">in</span> nums_set:
+                    current_num <span class="token operator">+=</span> <span class="token number">1</span>
+                    sequence_len <span class="token operator">+=</span> <span class="token number">1</span>
 
-                max_seq_len = max(max_seq_len, sequence_len)
-        return max_seq_len
+                max_seq_len <span class="token operator">=</span> <span class="token builtin">max</span>(max_seq_len, sequence_len)
+        <span class="token keyword">return</span> max_seq_len
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>130. 被围绕的区域</h2>
@@ -142,56 +142,56 @@ if __name__ == &quot;__main__&quot;:
 
 通过 **原地**&#160;将输入矩阵中的所有 `&#39;O&#39;`&#160;替换为 `&#39;X&#39;` 来 **捕获被围绕的区域**。你不需要返回任何值。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self, board: List[List[str]]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self, board: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify board in-place instead.
-        &quot;&quot;&quot;
-        if not board:
-            return 
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> board:
+            <span class="token keyword">return</span> 
         
-        m, n = len(board), len(board[0])
+        m, n <span class="token operator">=</span> <span class="token builtin">len</span>(board), <span class="token builtin">len</span>(board[<span class="token number">0</span>])
 
-        def dfs(s, k):
-            if s&lt;0 or s&gt;=m or k&lt;0 or k&gt;=n or board[s][k] != &#39;O&#39;:
-                return
-            board[s][k] = &#39;#&#39;
+        <span class="token keyword">def</span> <span class="token function">dfs</span>(s, k):
+            <span class="token keyword">if</span> s<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token keyword">or</span> s<span class="token operator">&gt;=</span>m <span class="token keyword">or</span> k<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token keyword">or</span> k<span class="token operator">&gt;=</span>n <span class="token keyword">or</span> board[s][k] <span class="token operator">!=</span> <span class="token string">&#39;O&#39;</span>:
+                <span class="token keyword">return</span>
+            board[s][k] <span class="token operator">=</span> <span class="token string">&#39;#&#39;</span>
 
-            dfs(s+1, k)
-            dfs(s-1, k)
-            dfs(s, k+1)
-            dfs(s, k-1)
-        # 从左右两边的边界开始dfs
-        for s in range(m):
-            dfs(s, 0)
-            dfs(s, n-1)
+            dfs(s<span class="token operator">+</span><span class="token number">1</span>, k)
+            dfs(s<span class="token operator">-</span><span class="token number">1</span>, k)
+            dfs(s, k<span class="token operator">+</span><span class="token number">1</span>)
+            dfs(s, k<span class="token operator">-</span><span class="token number">1</span>)
+        <span class="token comment"># 从左右两边的边界开始dfs</span>
+        <span class="token keyword">for</span> s <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            dfs(s, <span class="token number">0</span>)
+            dfs(s, n<span class="token operator">-</span><span class="token number">1</span>)
 
-        # 从上下两行的边界开始dfs
-        for k in range(n):
-            dfs(0, k)
-            dfs(m-1, k)
+        <span class="token comment"># 从上下两行的边界开始dfs</span>
+        <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+            dfs(<span class="token number">0</span>, k)
+            dfs(m<span class="token operator">-</span><span class="token number">1</span>, k)
 
-        for s in range(m):
-            for k in range(n):
-                if board[s][k] == &#39;O&#39;:
-                    board[s][k] = &#39;X&#39;
-                elif board[s][k] == &#39;#&#39;:
-                    board[s][k]=&#39;O&#39;
+        <span class="token keyword">for</span> s <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+                <span class="token keyword">if</span> board[s][k] <span class="token operator">==</span> <span class="token string">&#39;O&#39;</span>:
+                    board[s][k] <span class="token operator">=</span> <span class="token string">&#39;X&#39;</span>
+                <span class="token keyword">elif</span> board[s][k] <span class="token operator">==</span> <span class="token string">&#39;#&#39;</span>:
+                    board[s][k]<span class="token operator">=</span><span class="token string">&#39;O&#39;</span>
 
-        return board
-
-
+        <span class="token keyword">return</span> board
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+
+
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>200. 岛屿数量</h2>
@@ -208,22 +208,22 @@ if __name__ == &quot;__main__&quot;:
 
 此外，你可以假设该网格的四条边均被水包围。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">numIslands</span>(self, grid: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
   <script>
@@ -246,7 +246,7 @@ if __name__ == &quot;__main__&quot;:
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;

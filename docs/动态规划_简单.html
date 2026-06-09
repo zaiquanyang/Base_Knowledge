@@ -70,6 +70,14 @@
       padding: 16px;
       overflow-x: auto;
     }
+    code.language-python .token.comment { color: #64748b; }
+    code.language-python .token.keyword { color: #c084fc; }
+    code.language-python .token.string { color: #86efac; }
+    code.language-python .token.number { color: #fca5a5; }
+    code.language-python .token.function { color: #7dd3fc; }
+    code.language-python .token.builtin { color: #fcd34d; }
+    code.language-python .token.decorator { color: #f9a8d4; }
+    code.language-python .token.operator { color: #e2e8f0; }
     a { color: var(--accent); }
   </style>
 </head>
@@ -91,22 +99,22 @@
 
 在**「杨辉三角」**中，每个数是它左上方和右上方的数的和。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def generate(self, numRows: int) -&gt; List[List[int]]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">generate</span>(self, numRows: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>121. 买卖股票的最佳时机</h2>
@@ -123,22 +131,22 @@ if __name__ == &quot;__main__&quot;:
 
 返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 `0` 。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxProfit(self, prices: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxProfit</span>(self, prices: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>70. 爬楼梯</h2>
@@ -153,23 +161,93 @@ if __name__ == &quot;__main__&quot;:
 
 每次你可以爬 `1` 或 `2` 个台阶。你有多少种不同的方法可以爬到楼顶呢？</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def climbStairs(self, n: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">climbStairs</span>(self, n: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
+  <script>
+    (() => {
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+
+      const keywords = new Set([
+        'False','None','True','and','as','assert','async','await','break','class','continue',
+        'def','del','elif','else','except','finally','for','from','global','if','import','in',
+        'is','lambda','nonlocal','not','or','pass','raise','return','try','while','with','yield'
+      ]);
+
+      const builtins = new Set([
+        'abs','all','any','bool','dict','enumerate','filter','float','int','len','list','map',
+        'max','min','open','print','range','reversed','set','sorted','str','sum','tuple','type','zip'
+      ]);
+
+      const highlightPython = (source) => {
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
+        let result = '';
+        let lastIndex = 0;
+        let functionPending = false;
+
+        source.replace(pattern, (match, _group, offset) => {
+          result += escapeHtml(source.slice(lastIndex, offset));
+          let className = '';
+
+          if (match.startsWith('#')) {
+            className = 'comment';
+          } else if (match.startsWith('"""') || match.startsWith(\"'''\") || match.startsWith('\"') || match.startsWith(\"'\")) {
+            className = 'string';
+          } else if (match.startsWith('@')) {
+            className = 'decorator';
+          } else if (/^\d/.test(match)) {
+            className = 'number';
+          } else if (keywords.has(match)) {
+            className = 'keyword';
+            functionPending = match === 'def';
+          } else if (builtins.has(match)) {
+            className = 'builtin';
+          } else if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(match) && functionPending) {
+            className = 'function';
+            functionPending = false;
+          } else if (/^[+\-*/%=!<>]/.test(match)) {
+            className = 'operator';
+          } else if (match !== 'def') {
+            functionPending = false;
+          }
+
+          if (className) {
+            result += '<span class="token ' + className + '">' + escapeHtml(match) + '</span>';
+          } else {
+            result += escapeHtml(match);
+          }
+
+          lastIndex = offset + match.length;
+          return match;
+        });
+
+        result += escapeHtml(source.slice(lastIndex));
+        return result;
+      };
+
+      document.querySelectorAll('code.language-python').forEach((block) => {
+        block.innerHTML = highlightPython(block.textContent || '');
+      });
+    })();
+  </script>
 </body>
 </html>

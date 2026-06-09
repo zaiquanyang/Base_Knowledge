@@ -110,24 +110,24 @@
 
 **注意** 你不需要返回任何东西。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def gameOfLife(self, board: List[List[int]]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">gameOfLife</span>(self, board: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify board in-place instead.
-        &quot;&quot;&quot;
-        # TODO: 在此实现解题逻辑
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>348. 设计井字棋</h2>
@@ -140,23 +140,23 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre></pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self):
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self):
+        <span class="token string">&quot;&quot;&quot;
         348. 设计井字棋
         TODO: 在此实现解题逻辑
-        &quot;&quot;&quot;
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">pass</span>
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>54. 螺旋矩阵</h2>
@@ -169,61 +169,61 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你一个 `m` 行 `n` 列的矩阵&#160;`matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -&gt; List[int]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">spiralOrder</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
-        left_bound, right_bound, upper_bound, bottom_bound = 0, len(matrix[0])-1, 0, len(matrix)-1
-        ans = []
-        m, n = 0, 0
+        left_bound, right_bound, upper_bound, bottom_bound <span class="token operator">=</span> <span class="token number">0</span>, <span class="token builtin">len</span>(matrix[<span class="token number">0</span>])<span class="token operator">-</span><span class="token number">1</span>, <span class="token number">0</span>, <span class="token builtin">len</span>(matrix)<span class="token operator">-</span><span class="token number">1</span>
+        ans <span class="token operator">=</span> []
+        m, n <span class="token operator">=</span> <span class="token number">0</span>, <span class="token number">0</span>
         ans.append(matrix[m][n])
-        while upper_bound&lt;=bottom_bound and left_bound&lt;=right_bound:
-            # 往右走 
-            while n &lt; right_bound:
-                n += 1
+        <span class="token keyword">while</span> upper_bound<span class="token operator">&lt;=</span>bottom_bound <span class="token keyword">and</span> left_bound<span class="token operator">&lt;=</span>right_bound:
+            <span class="token comment"># 往右走 </span>
+            <span class="token keyword">while</span> n <span class="token operator">&lt;</span> right_bound:
+                n <span class="token operator">+=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            upper_bound += 1
-            if upper_bound &gt; bottom_bound:
-                break
-            # print(&quot;往右走&quot;, ans) # 
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            # 往下走
-            while m&lt;bottom_bound:
-                m += 1
+            upper_bound <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> upper_bound <span class="token operator">&gt;</span> bottom_bound:
+                <span class="token keyword">break</span>
+            <span class="token comment"># print(&quot;往右走&quot;, ans) # </span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token comment"># 往下走</span>
+            <span class="token keyword">while</span> m<span class="token operator">&lt;</span>bottom_bound:
+                m <span class="token operator">+=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            right_bound -= 1
-            if left_bound &gt; right_bound:
-                break
-            # print(&quot;往下走&quot;, ans)
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            # 往左走
-            while n &gt; left_bound:
-                n -= 1
+            right_bound <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> left_bound <span class="token operator">&gt;</span> right_bound:
+                <span class="token keyword">break</span>
+            <span class="token comment"># print(&quot;往下走&quot;, ans)</span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token comment"># 往左走</span>
+            <span class="token keyword">while</span> n <span class="token operator">&gt;</span> left_bound:
+                n <span class="token operator">-=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            bottom_bound -= 1
-            if upper_bound&gt;bottom_bound:
-                break
-            # print(&quot;往左走&quot;, ans)
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            # 往上走
-            while m &gt; upper_bound:
-                m -= 1
+            bottom_bound <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> upper_bound<span class="token operator">&gt;</span>bottom_bound:
+                <span class="token keyword">break</span>
+            <span class="token comment"># print(&quot;往左走&quot;, ans)</span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token comment"># 往上走</span>
+            <span class="token keyword">while</span> m <span class="token operator">&gt;</span> upper_bound:
+                m <span class="token operator">-=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            left_bound += 1
-            # print(&quot;往上走&quot;, ans)
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            if left_bound&gt;right_bound:
-                break
-        return ans
+            left_bound <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token comment"># print(&quot;往上走&quot;, ans)</span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token keyword">if</span> left_bound<span class="token operator">&gt;</span>right_bound:
+                <span class="token keyword">break</span>
+        <span class="token keyword">return</span> ans
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
   <script>
@@ -246,7 +246,7 @@ if __name__ == &quot;__main__&quot;:
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;

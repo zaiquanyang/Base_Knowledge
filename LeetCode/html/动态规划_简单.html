@@ -99,22 +99,22 @@
 
 在**「杨辉三角」**中，每个数是它左上方和右上方的数的和。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def generate(self, numRows: int) -&gt; List[List[int]]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">generate</span>(self, numRows: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>121. 买卖股票的最佳时机</h2>
@@ -131,22 +131,22 @@ if __name__ == &quot;__main__&quot;:
 
 返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 `0` 。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxProfit(self, prices: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxProfit</span>(self, prices: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>70. 爬楼梯</h2>
@@ -161,22 +161,22 @@ if __name__ == &quot;__main__&quot;:
 
 每次你可以爬 `1` 或 `2` 个台阶。你有多少种不同的方法可以爬到楼顶呢？</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def climbStairs(self, n: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">climbStairs</span>(self, n: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
   <script>
@@ -199,7 +199,7 @@ if __name__ == &quot;__main__&quot;:
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;

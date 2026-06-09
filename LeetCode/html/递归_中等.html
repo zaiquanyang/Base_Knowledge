@@ -101,70 +101,70 @@
 
 你可以假设除了数字 0 之外，这两个数都不会以 0&#160;开头。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> Optional
 
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+<span class="token keyword">class</span> ListNode:
+    <span class="token keyword">def</span> <span class="token function">__init__</span>(self, val<span class="token operator">=</span><span class="token number">0</span>, next<span class="token operator">=</span><span class="token keyword">None</span>):
+        self.val <span class="token operator">=</span> val
+        self.next <span class="token operator">=</span> next
 
 
-class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -&gt; Optional[ListNode]:
-        dummy = ListNode(0)
-        curr = dummy
-        carry = 0
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">addTwoNumbers</span>(self, l1: Optional[ListNode], l2: Optional[ListNode]) <span class="token operator">-</span><span class="token operator">&gt;</span> Optional[ListNode]:
+        dummy <span class="token operator">=</span> ListNode(<span class="token number">0</span>)
+        curr <span class="token operator">=</span> dummy
+        carry <span class="token operator">=</span> <span class="token number">0</span>
 
-        while l1 or l2 or carry:
-            val = carry
-            if l1:
-                val += l1.val
-                l1 = l1.next
-            if l2:
-                val += l2.val
-                l2 = l2.next
-            carry, val = divmod(val, 10)
-            curr.next = ListNode(val)
-            curr = curr.next
+        <span class="token keyword">while</span> l1 <span class="token keyword">or</span> l2 <span class="token keyword">or</span> carry:
+            val <span class="token operator">=</span> carry
+            <span class="token keyword">if</span> l1:
+                val <span class="token operator">+=</span> l1.val
+                l1 <span class="token operator">=</span> l1.next
+            <span class="token keyword">if</span> l2:
+                val <span class="token operator">+=</span> l2.val
+                l2 <span class="token operator">=</span> l2.next
+            carry, val <span class="token operator">=</span> divmod(val, <span class="token number">10</span>)
+            curr.next <span class="token operator">=</span> ListNode(val)
+            curr <span class="token operator">=</span> curr.next
 
-        return dummy.next
+        <span class="token keyword">return</span> dummy.next
 
 
-# 测试辅助函数
-def make_list(nums):
-    dummy = ListNode()
-    curr = dummy
-    for n in nums:
-        curr.next = ListNode(n)
-        curr = curr.next
-    return dummy.next
+<span class="token comment"># 测试辅助函数</span>
+<span class="token keyword">def</span> <span class="token function">make_list</span>(nums):
+    dummy <span class="token operator">=</span> ListNode()
+    curr <span class="token operator">=</span> dummy
+    <span class="token keyword">for</span> n <span class="token keyword">in</span> nums:
+        curr.next <span class="token operator">=</span> ListNode(n)
+        curr <span class="token operator">=</span> curr.next
+    <span class="token keyword">return</span> dummy.next
 
-def list_to_array(node):
-    result = []
-    while node:
+<span class="token keyword">def</span> <span class="token function">list_to_array</span>(node):
+    result <span class="token operator">=</span> []
+    <span class="token keyword">while</span> node:
         result.append(node.val)
-        node = node.next
-    return result
+        node <span class="token operator">=</span> node.next
+    <span class="token keyword">return</span> result
 
 
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
 
-    # 示例 1: 342 + 465 = 807 → [7,0,8]
-    l1 = make_list([2, 4, 3])
-    l2 = make_list([5, 6, 4])
-    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [7, 0, 8]
+    <span class="token comment"># 示例 1: 342 + 465 = 807 → [7,0,8]</span>
+    l1 <span class="token operator">=</span> make_list([<span class="token number">2</span>, <span class="token number">4</span>, <span class="token number">3</span>])
+    l2 <span class="token operator">=</span> make_list([<span class="token number">5</span>, <span class="token number">6</span>, <span class="token number">4</span>])
+    <span class="token builtin">print</span>(list_to_array(sol.addTwoNumbers(l1, l2)))  <span class="token comment"># [7, 0, 8]</span>
 
-    # 示例 2: 0 + 0 = 0 → [0]
-    l1 = make_list([0])
-    l2 = make_list([0])
-    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [0]
+    <span class="token comment"># 示例 2: 0 + 0 = 0 → [0]</span>
+    l1 <span class="token operator">=</span> make_list([<span class="token number">0</span>])
+    l2 <span class="token operator">=</span> make_list([<span class="token number">0</span>])
+    <span class="token builtin">print</span>(list_to_array(sol.addTwoNumbers(l1, l2)))  <span class="token comment"># [0]</span>
 
-    # 示例 3: 9999999 + 9999 = 10009998 → [8,9,9,9,0,0,0,1]
-    l1 = make_list([9, 9, 9, 9, 9, 9, 9])
-    l2 = make_list([9, 9, 9, 9])
-    print(list_to_array(sol.addTwoNumbers(l1, l2)))  # [8, 9, 9, 9, 0, 0, 0, 1]</code></pre>
+    <span class="token comment"># 示例 3: 9999999 + 9999 = 10009998 → [8,9,9,9,0,0,0,1]</span>
+    l1 <span class="token operator">=</span> make_list([<span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>])
+    l2 <span class="token operator">=</span> make_list([<span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>, <span class="token number">9</span>])
+    <span class="token builtin">print</span>(list_to_array(sol.addTwoNumbers(l1, l2)))  <span class="token comment"># [8, 9, 9, 9, 0, 0, 0, 1]</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>50. Pow(x, n)</h2>
@@ -177,42 +177,42 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>实现&#160;pow(*x*, *n*)&#160;，即计算 `x` 的整数&#160;`n` 次幂函数（即，`xn` ）。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def myPow(self, x: float, n: int) -&gt; float:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">myPow</span>(self, x: <span class="token builtin">float</span>, n: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">float</span>:
         
-        if n == 0:
-            return 1
-        if n &lt; 0:
-            x = 1/x
-            n = -n
+        <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">0</span>:
+            <span class="token keyword">return</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> n <span class="token operator">&lt;</span> <span class="token number">0</span>:
+            x <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span>x
+            n <span class="token operator">=</span> <span class="token operator">-</span>n
 
 
-        def quick_pow(x, n):
+        <span class="token keyword">def</span> <span class="token function">quick_pow</span>(x, n):
 
-            if n== 1:
-                return x
+            <span class="token keyword">if</span> n<span class="token operator">==</span> <span class="token number">1</span>:
+                <span class="token keyword">return</span> x
             
 
-            if n % 2 == 0:
-                cur_pow = quick_pow(x, n//2)
-                cur_pow = cur_pow * cur_pow
-            else:
-                cur_pow = quick_pow(x, n//2)
-                cur_pow = cur_pow * cur_pow * x
+            <span class="token keyword">if</span> n <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>:
+                cur_pow <span class="token operator">=</span> quick_pow(x, n<span class="token operator">/</span><span class="token operator">/</span><span class="token number">2</span>)
+                cur_pow <span class="token operator">=</span> cur_pow <span class="token operator">*</span> cur_pow
+            <span class="token keyword">else</span>:
+                cur_pow <span class="token operator">=</span> quick_pow(x, n<span class="token operator">/</span><span class="token operator">/</span><span class="token number">2</span>)
+                cur_pow <span class="token operator">=</span> cur_pow <span class="token operator">*</span> cur_pow <span class="token operator">*</span> x
 
-            return cur_pow
+            <span class="token keyword">return</span> cur_pow
 
-        return quick_pow(x, n)
+        <span class="token keyword">return</span> quick_pow(x, n)
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
   <script>
@@ -235,7 +235,7 @@ if __name__ == &quot;__main__&quot;:
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;

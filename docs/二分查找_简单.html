@@ -70,6 +70,14 @@
       padding: 16px;
       overflow-x: auto;
     }
+    code.language-python .token.comment { color: #64748b; }
+    code.language-python .token.keyword { color: #c084fc; }
+    code.language-python .token.string { color: #86efac; }
+    code.language-python .token.number { color: #fca5a5; }
+    code.language-python .token.function { color: #7dd3fc; }
+    code.language-python .token.builtin { color: #fcd34d; }
+    code.language-python .token.decorator { color: #f9a8d4; }
+    code.language-python .token.operator { color: #e2e8f0; }
     a { color: var(--accent); }
   </style>
 </head>
@@ -89,22 +97,22 @@
       <h3>题目内容</h3>
       <pre>给定一个包含 `[0, n]`&#160;中&#160;`n`&#160;个数的数组 `nums` ，找出 `[0, n]` 这个范围内没有出现在数组中的那个数。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def missingNumber(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">missingNumber</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>350. 两个数组的交集 II</h2>
@@ -117,22 +125,22 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你两个整数数组&#160;`nums1` 和 `nums2` ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def intersect(self, nums1: List[int], nums2: List[int]) -&gt; List[int]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">intersect</span>(self, nums1: <span class="token builtin">List</span>[<span class="token builtin">int</span>], nums2: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>69. x 的平方根</h2>
@@ -149,23 +157,93 @@ if __name__ == &quot;__main__&quot;:
 
 **注意：**不允许使用任何内置指数函数和算符，例如 `pow(x, 0.5)` 或者 `x ** 0.5` 。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def mySqrt(self, x: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">mySqrt</span>(self, x: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
+  <script>
+    (() => {
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+
+      const keywords = new Set([
+        'False','None','True','and','as','assert','async','await','break','class','continue',
+        'def','del','elif','else','except','finally','for','from','global','if','import','in',
+        'is','lambda','nonlocal','not','or','pass','raise','return','try','while','with','yield'
+      ]);
+
+      const builtins = new Set([
+        'abs','all','any','bool','dict','enumerate','filter','float','int','len','list','map',
+        'max','min','open','print','range','reversed','set','sorted','str','sum','tuple','type','zip'
+      ]);
+
+      const highlightPython = (source) => {
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
+        let result = '';
+        let lastIndex = 0;
+        let functionPending = false;
+
+        source.replace(pattern, (match, _group, offset) => {
+          result += escapeHtml(source.slice(lastIndex, offset));
+          let className = '';
+
+          if (match.startsWith('#')) {
+            className = 'comment';
+          } else if (match.startsWith('"""') || match.startsWith(\"'''\") || match.startsWith('\"') || match.startsWith(\"'\")) {
+            className = 'string';
+          } else if (match.startsWith('@')) {
+            className = 'decorator';
+          } else if (/^\d/.test(match)) {
+            className = 'number';
+          } else if (keywords.has(match)) {
+            className = 'keyword';
+            functionPending = match === 'def';
+          } else if (builtins.has(match)) {
+            className = 'builtin';
+          } else if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(match) && functionPending) {
+            className = 'function';
+            functionPending = false;
+          } else if (/^[+\-*/%=!<>]/.test(match)) {
+            className = 'operator';
+          } else if (match !== 'def') {
+            functionPending = false;
+          }
+
+          if (className) {
+            result += '<span class="token ' + className + '">' + escapeHtml(match) + '</span>';
+          } else {
+            result += escapeHtml(match);
+          }
+
+          lastIndex = offset + match.length;
+          return match;
+        });
+
+        result += escapeHtml(source.slice(lastIndex));
+        return result;
+      };
+
+      document.querySelectorAll('code.language-python').forEach((block) => {
+        block.innerHTML = highlightPython(block.textContent || '');
+      });
+    })();
+  </script>
 </body>
 </html>

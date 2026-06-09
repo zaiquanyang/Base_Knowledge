@@ -97,21 +97,21 @@
       <h3>题目内容</h3>
       <pre>给定一个二叉搜索树的根节点 `root` ，和一个整数 `k` ，请你设计一个算法查找其中第&#160;`k`**&#160;**小的元素（`k` 从 1 开始计数）。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-#     def __init__(self, val=0, left=None, right=None):
-        # TODO: 在此实现解题逻辑
-        pass
+<span class="token keyword">class</span> Solution:
+<span class="token comment">#     def __init__(self, val=0, left=None, right=None):</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>285. 二叉搜索树中的中序后继</h2>
@@ -124,23 +124,23 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre></pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self):
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self):
+        <span class="token string">&quot;&quot;&quot;
         285. 二叉搜索树中的中序后继
         TODO: 在此实现解题逻辑
-        &quot;&quot;&quot;
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">pass</span>
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>98. 验证二叉搜索树</h2>
@@ -159,39 +159,39 @@ if __name__ == &quot;__main__&quot;:
 	- 节点的右子树只包含 **严格大于** 当前节点的数。
 	- 所有左子树和右子树自身必须也是二叉搜索树。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -&gt; bool:
+<span class="token comment"># Definition for a binary tree node.</span>
+<span class="token comment"># class TreeNode:</span>
+<span class="token comment">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="token comment">#         self.val = val</span>
+<span class="token comment">#         self.left = left</span>
+<span class="token comment">#         self.right = right</span>
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">isValidBST</span>(self, root: Optional[TreeNode]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
-        def dfs(node, left, right):
-            if node is None:
-                return True
+        <span class="token keyword">def</span> <span class="token function">dfs</span>(node, left, right):
+            <span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token keyword">None</span>:
+                <span class="token keyword">return</span> <span class="token keyword">True</span>
             
-            if not (left&lt; node.val&lt; right):
-                return False
+            <span class="token keyword">if</span> <span class="token keyword">not</span> (left<span class="token operator">&lt;</span> node.val<span class="token operator">&lt;</span> right):
+                <span class="token keyword">return</span> <span class="token keyword">False</span>
 
-            return dfs(node.left, left, node.val) and dfs(node.right, node.val, right)
+            <span class="token keyword">return</span> dfs(node.left, left, node.val) <span class="token keyword">and</span> dfs(node.right, node.val, right)
         
-        return dfs(root, float(&#39;-inf&#39;), float(&#39;inf&#39;))
+        <span class="token keyword">return</span> dfs(root, <span class="token builtin">float</span>(<span class="token string">&#39;-inf&#39;</span>), <span class="token builtin">float</span>(<span class="token string">&#39;inf&#39;</span>))
 
 
 
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
   <script>
@@ -214,7 +214,7 @@ if __name__ == &quot;__main__&quot;:
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;

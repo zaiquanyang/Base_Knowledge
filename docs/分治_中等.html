@@ -70,6 +70,14 @@
       padding: 16px;
       overflow-x: auto;
     }
+    code.language-python .token.comment { color: #64748b; }
+    code.language-python .token.keyword { color: #c084fc; }
+    code.language-python .token.string { color: #86efac; }
+    code.language-python .token.number { color: #fca5a5; }
+    code.language-python .token.function { color: #7dd3fc; }
+    code.language-python .token.builtin { color: #fcd34d; }
+    code.language-python .token.decorator { color: #f9a8d4; }
+    code.language-python .token.operator { color: #e2e8f0; }
     a { color: var(--accent); }
   </style>
 </head>
@@ -89,43 +97,43 @@
       <h3>题目内容</h3>
       <pre>给定两个整数数组&#160;`preorder` 和 `inorder`&#160;，其中&#160;`preorder` 是二叉树的**先序遍历**， `inorder`&#160;是同一棵树的**中序遍历**，请构造二叉树并返回其根节点。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -&gt; Optional[TreeNode]:
-        in_order_map = {val: i for i, val in enumerate(inorder)}
+<span class="token comment"># Definition for a binary tree node.</span>
+<span class="token comment"># class TreeNode:</span>
+<span class="token comment">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="token comment">#         self.val = val</span>
+<span class="token comment">#         self.left = left</span>
+<span class="token comment">#         self.right = right</span>
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">buildTree</span>(self, preorder: <span class="token builtin">List</span>[<span class="token builtin">int</span>], inorder: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> Optional[TreeNode]:
+        in_order_map <span class="token operator">=</span> {val: i <span class="token keyword">for</span> i, val <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(inorder)}
 
-        self.pre_idx = 0
-        def build_helper(left, right):
-            if left&gt;right:
-                return None
+        self.pre_idx <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">def</span> <span class="token function">build_helper</span>(left, right):
+            <span class="token keyword">if</span> left<span class="token operator">&gt;</span>right:
+                <span class="token keyword">return</span> <span class="token keyword">None</span>
             
-            root_val = preorder[self.pre_idx]
-            root_idx = in_order_map[root_val]
-            root_node = TreeNode(root_val)
-            self.pre_idx += 1
+            root_val <span class="token operator">=</span> preorder[self.pre_idx]
+            root_idx <span class="token operator">=</span> in_order_map[root_val]
+            root_node <span class="token operator">=</span> TreeNode(root_val)
+            self.pre_idx <span class="token operator">+=</span> <span class="token number">1</span>
 
-            root_node.left = build_helper(left, root_idx-1)
-            root_node.right = build_helper(root_idx+1, right)
+            root_node.left <span class="token operator">=</span> build_helper(left, root_idx<span class="token operator">-</span><span class="token number">1</span>)
+            root_node.right <span class="token operator">=</span> build_helper(root_idx<span class="token operator">+</span><span class="token number">1</span>, right)
 
             
-            return root_node
+            <span class="token keyword">return</span> root_node
         
-        return build_helper(0, len(preorder)-1)
+        <span class="token keyword">return</span> build_helper(<span class="token number">0</span>, <span class="token builtin">len</span>(preorder)<span class="token operator">-</span><span class="token number">1</span>)
             
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>148. 排序链表</h2>
@@ -138,21 +146,21 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你链表的头结点&#160;`head`&#160;，请将其按 **升序** 排列并返回 **排序后的链表** 。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-#     def __init__(self, val=0, next=None):
-        # TODO: 在此实现解题逻辑
-        pass
+<span class="token keyword">class</span> Solution:
+<span class="token comment">#     def __init__(self, val=0, next=None):</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>215. 数组中的第K个最大元素</h2>
@@ -169,22 +177,22 @@ if __name__ == &quot;__main__&quot;:
 
 你必须设计并实现时间复杂度为 `O(n)` 的算法解决此问题。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">findKthLargest</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>240. 搜索二维矩阵 II</h2>
@@ -200,22 +208,22 @@ if __name__ == &quot;__main__&quot;:
 	- 每行的元素从左到右升序排列。
 	- 每列的元素从上到下升序排列。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">searchMatrix</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]], target: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>324. 摆动排序 II</h2>
@@ -231,24 +239,24 @@ if __name__ == &quot;__main__&quot;:
 	- `0 
 	- 题目数据保证，对于给定的输入 `nums` ，总能产生满足题目要求的结果</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def wiggleSort(self, nums: List[int]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">wiggleSort</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify nums in-place instead.
-        &quot;&quot;&quot;
-        # TODO: 在此实现解题逻辑
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>347. 前 K 个高频元素</h2>
@@ -261,22 +269,22 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">topKFrequent</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>395. 至少有 K 个重复字符的最长子串</h2>
@@ -291,22 +299,22 @@ if __name__ == &quot;__main__&quot;:
 
 如果不存在这样的子字符串，则返回 0。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def longestSubstring(self, s: str, k: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">longestSubstring</span>(self, s: <span class="token builtin">str</span>, k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>53. 最大子数组和</h2>
@@ -321,30 +329,100 @@ if __name__ == &quot;__main__&quot;:
 
 **子数组 **是数组中的一个连续部分。</pre>
       <h3>解答方案</h3>
-      <pre><code>from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxSubArray(self, nums: List[int]) -&gt; int:
-        max_sum = nums[0]
-        cur_max_sum = nums[0]
-        N = len(nums)
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxSubArray</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
+        max_sum <span class="token operator">=</span> nums[<span class="token number">0</span>]
+        cur_max_sum <span class="token operator">=</span> nums[<span class="token number">0</span>]
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(nums)
 
-        for i in range(1, N):
-            cur_max_sum = max(nums[i], nums[i]+cur_max_sum)
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, N):
+            cur_max_sum <span class="token operator">=</span> <span class="token builtin">max</span>(nums[i], nums[i]<span class="token operator">+</span>cur_max_sum)
 
-            max_sum = max(cur_max_sum, max_sum)
+            max_sum <span class="token operator">=</span> <span class="token builtin">max</span>(cur_max_sum, max_sum)
         
-        return max_sum
+        <span class="token keyword">return</span> max_sum
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
+  <script>
+    (() => {
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+
+      const keywords = new Set([
+        'False','None','True','and','as','assert','async','await','break','class','continue',
+        'def','del','elif','else','except','finally','for','from','global','if','import','in',
+        'is','lambda','nonlocal','not','or','pass','raise','return','try','while','with','yield'
+      ]);
+
+      const builtins = new Set([
+        'abs','all','any','bool','dict','enumerate','filter','float','int','len','list','map',
+        'max','min','open','print','range','reversed','set','sorted','str','sum','tuple','type','zip'
+      ]);
+
+      const highlightPython = (source) => {
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
+        let result = '';
+        let lastIndex = 0;
+        let functionPending = false;
+
+        source.replace(pattern, (match, _group, offset) => {
+          result += escapeHtml(source.slice(lastIndex, offset));
+          let className = '';
+
+          if (match.startsWith('#')) {
+            className = 'comment';
+          } else if (match.startsWith('"""') || match.startsWith(\"'''\") || match.startsWith('\"') || match.startsWith(\"'\")) {
+            className = 'string';
+          } else if (match.startsWith('@')) {
+            className = 'decorator';
+          } else if (/^\d/.test(match)) {
+            className = 'number';
+          } else if (keywords.has(match)) {
+            className = 'keyword';
+            functionPending = match === 'def';
+          } else if (builtins.has(match)) {
+            className = 'builtin';
+          } else if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(match) && functionPending) {
+            className = 'function';
+            functionPending = false;
+          } else if (/^[+\-*/%=!<>]/.test(match)) {
+            className = 'operator';
+          } else if (match !== 'def') {
+            functionPending = false;
+          }
+
+          if (className) {
+            result += '<span class="token ' + className + '">' + escapeHtml(match) + '</span>';
+          } else {
+            result += escapeHtml(match);
+          }
+
+          lastIndex = offset + match.length;
+          return match;
+        });
+
+        result += escapeHtml(source.slice(lastIndex));
+        return result;
+      };
+
+      document.querySelectorAll('code.language-python').forEach((block) => {
+        block.innerHTML = highlightPython(block.textContent || '');
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -97,43 +97,43 @@
       <h3>题目内容</h3>
       <pre>给定两个整数数组&#160;`preorder` 和 `inorder`&#160;，其中&#160;`preorder` 是二叉树的**先序遍历**， `inorder`&#160;是同一棵树的**中序遍历**，请构造二叉树并返回其根节点。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -&gt; Optional[TreeNode]:
-        in_order_map = {val: i for i, val in enumerate(inorder)}
+<span class="token comment"># Definition for a binary tree node.</span>
+<span class="token comment"># class TreeNode:</span>
+<span class="token comment">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="token comment">#         self.val = val</span>
+<span class="token comment">#         self.left = left</span>
+<span class="token comment">#         self.right = right</span>
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">buildTree</span>(self, preorder: <span class="token builtin">List</span>[<span class="token builtin">int</span>], inorder: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> Optional[TreeNode]:
+        in_order_map <span class="token operator">=</span> {val: i <span class="token keyword">for</span> i, val <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(inorder)}
 
-        self.pre_idx = 0
-        def build_helper(left, right):
-            if left&gt;right:
-                return None
+        self.pre_idx <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">def</span> <span class="token function">build_helper</span>(left, right):
+            <span class="token keyword">if</span> left<span class="token operator">&gt;</span>right:
+                <span class="token keyword">return</span> <span class="token keyword">None</span>
             
-            root_val = preorder[self.pre_idx]
-            root_idx = in_order_map[root_val]
-            root_node = TreeNode(root_val)
-            self.pre_idx += 1
+            root_val <span class="token operator">=</span> preorder[self.pre_idx]
+            root_idx <span class="token operator">=</span> in_order_map[root_val]
+            root_node <span class="token operator">=</span> TreeNode(root_val)
+            self.pre_idx <span class="token operator">+=</span> <span class="token number">1</span>
 
-            root_node.left = build_helper(left, root_idx-1)
-            root_node.right = build_helper(root_idx+1, right)
+            root_node.left <span class="token operator">=</span> build_helper(left, root_idx<span class="token operator">-</span><span class="token number">1</span>)
+            root_node.right <span class="token operator">=</span> build_helper(root_idx<span class="token operator">+</span><span class="token number">1</span>, right)
 
             
-            return root_node
+            <span class="token keyword">return</span> root_node
         
-        return build_helper(0, len(preorder)-1)
+        <span class="token keyword">return</span> build_helper(<span class="token number">0</span>, <span class="token builtin">len</span>(preorder)<span class="token operator">-</span><span class="token number">1</span>)
             
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>11. 盛最多水的容器</h2>
@@ -152,30 +152,30 @@ if __name__ == &quot;__main__&quot;:
 
 **说明：**你不能倾斜容器。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxArea(self, height: List[int]) -&gt; int:
-        # 核心思路是双指针，每次只移动较短的那个指针，因为移动高的指针，面积不会变大（容器高度取决于短板）
-        N = len(height)
-        left, right = 0, N-1
-        max_area = 0
-        while left &lt; right:
-            max_area = max(min(height[right], height[left])*(right-left), max_area)
-            if height[left] &lt; height[right]:
-                left += 1
-            else:
-                right -= 1
-        return max_area
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxArea</span>(self, height: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
+        <span class="token comment"># 核心思路是双指针，每次只移动较短的那个指针，因为移动高的指针，面积不会变大（容器高度取决于短板）</span>
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(height)
+        left, right <span class="token operator">=</span> <span class="token number">0</span>, N<span class="token operator">-</span><span class="token number">1</span>
+        max_area <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">while</span> left <span class="token operator">&lt;</span> right:
+            max_area <span class="token operator">=</span> <span class="token builtin">max</span>(<span class="token builtin">min</span>(height[right], height[left])<span class="token operator">*</span>(right<span class="token operator">-</span>left), max_area)
+            <span class="token keyword">if</span> height[left] <span class="token operator">&lt;</span> height[right]:
+                left <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">else</span>:
+                right <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> max_area
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>122. 买卖股票的最佳时机 II</h2>
@@ -192,22 +192,22 @@ if __name__ == &quot;__main__&quot;:
 
 返回 *你能获得的 **最大** 利润*&#160;。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxProfit(self, prices: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxProfit</span>(self, prices: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>128. 最长连续序列</h2>
@@ -222,31 +222,31 @@ if __name__ == &quot;__main__&quot;:
 
 请你设计并实现时间复杂度为&#160;`O(n)`* *的算法解决此问题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def longestConsecutive(self, nums: List[int]) -&gt; int:
-        nums_set = set(nums)
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">longestConsecutive</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
+        nums_set <span class="token operator">=</span> <span class="token builtin">set</span>(nums)
 
-        max_seq_len = 0
-        for num in nums_set:
-            if (num-1) not in nums_set:
-                current_num = num
-                sequence_len = 1
+        max_seq_len <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> num <span class="token keyword">in</span> nums_set:
+            <span class="token keyword">if</span> (num<span class="token operator">-</span><span class="token number">1</span>) <span class="token keyword">not</span> <span class="token keyword">in</span> nums_set:
+                current_num <span class="token operator">=</span> num
+                sequence_len <span class="token operator">=</span> <span class="token number">1</span>
 
-                while current_num+1 in nums_set:
-                    current_num += 1
-                    sequence_len += 1
+                <span class="token keyword">while</span> current_num<span class="token operator">+</span><span class="token number">1</span> <span class="token keyword">in</span> nums_set:
+                    current_num <span class="token operator">+=</span> <span class="token number">1</span>
+                    sequence_len <span class="token operator">+=</span> <span class="token number">1</span>
 
-                max_seq_len = max(max_seq_len, sequence_len)
-        return max_seq_len
+                max_seq_len <span class="token operator">=</span> <span class="token builtin">max</span>(max_seq_len, sequence_len)
+        <span class="token keyword">return</span> max_seq_len
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>130. 被围绕的区域</h2>
@@ -265,56 +265,56 @@ if __name__ == &quot;__main__&quot;:
 
 通过 **原地**&#160;将输入矩阵中的所有 `&#39;O&#39;`&#160;替换为 `&#39;X&#39;` 来 **捕获被围绕的区域**。你不需要返回任何值。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self, board: List[List[str]]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self, board: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify board in-place instead.
-        &quot;&quot;&quot;
-        if not board:
-            return 
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> board:
+            <span class="token keyword">return</span> 
         
-        m, n = len(board), len(board[0])
+        m, n <span class="token operator">=</span> <span class="token builtin">len</span>(board), <span class="token builtin">len</span>(board[<span class="token number">0</span>])
 
-        def dfs(s, k):
-            if s&lt;0 or s&gt;=m or k&lt;0 or k&gt;=n or board[s][k] != &#39;O&#39;:
-                return
-            board[s][k] = &#39;#&#39;
+        <span class="token keyword">def</span> <span class="token function">dfs</span>(s, k):
+            <span class="token keyword">if</span> s<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token keyword">or</span> s<span class="token operator">&gt;=</span>m <span class="token keyword">or</span> k<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token keyword">or</span> k<span class="token operator">&gt;=</span>n <span class="token keyword">or</span> board[s][k] <span class="token operator">!=</span> <span class="token string">&#39;O&#39;</span>:
+                <span class="token keyword">return</span>
+            board[s][k] <span class="token operator">=</span> <span class="token string">&#39;#&#39;</span>
 
-            dfs(s+1, k)
-            dfs(s-1, k)
-            dfs(s, k+1)
-            dfs(s, k-1)
-        # 从左右两边的边界开始dfs
-        for s in range(m):
-            dfs(s, 0)
-            dfs(s, n-1)
+            dfs(s<span class="token operator">+</span><span class="token number">1</span>, k)
+            dfs(s<span class="token operator">-</span><span class="token number">1</span>, k)
+            dfs(s, k<span class="token operator">+</span><span class="token number">1</span>)
+            dfs(s, k<span class="token operator">-</span><span class="token number">1</span>)
+        <span class="token comment"># 从左右两边的边界开始dfs</span>
+        <span class="token keyword">for</span> s <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            dfs(s, <span class="token number">0</span>)
+            dfs(s, n<span class="token operator">-</span><span class="token number">1</span>)
 
-        # 从上下两行的边界开始dfs
-        for k in range(n):
-            dfs(0, k)
-            dfs(m-1, k)
+        <span class="token comment"># 从上下两行的边界开始dfs</span>
+        <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+            dfs(<span class="token number">0</span>, k)
+            dfs(m<span class="token operator">-</span><span class="token number">1</span>, k)
 
-        for s in range(m):
-            for k in range(n):
-                if board[s][k] == &#39;O&#39;:
-                    board[s][k] = &#39;X&#39;
-                elif board[s][k] == &#39;#&#39;:
-                    board[s][k]=&#39;O&#39;
+        <span class="token keyword">for</span> s <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+                <span class="token keyword">if</span> board[s][k] <span class="token operator">==</span> <span class="token string">&#39;O&#39;</span>:
+                    board[s][k] <span class="token operator">=</span> <span class="token string">&#39;X&#39;</span>
+                <span class="token keyword">elif</span> board[s][k] <span class="token operator">==</span> <span class="token string">&#39;#&#39;</span>:
+                    board[s][k]<span class="token operator">=</span><span class="token string">&#39;O&#39;</span>
 
-        return board
-
-
+        <span class="token keyword">return</span> board
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+
+
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>134. 加油站</h2>
@@ -331,22 +331,22 @@ if __name__ == &quot;__main__&quot;:
 
 给定两个整数数组 `gas` 和 `cost` ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 `-1` 。如果存在解，则 **保证** 它是 **唯一** 的。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">canCompleteCircuit</span>(self, gas: <span class="token builtin">List</span>[<span class="token builtin">int</span>], cost: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>139. 单词拆分</h2>
@@ -361,22 +361,22 @@ if __name__ == &quot;__main__&quot;:
 
 **注意：**不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -&gt; bool:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">wordBreak</span>(self, s: <span class="token builtin">str</span>, wordDict: <span class="token builtin">List</span>[<span class="token builtin">str</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>15. 三数之和</h2>
@@ -391,22 +391,22 @@ if __name__ == &quot;__main__&quot;:
 
 **注意：**答案中不可以包含重复的三元组。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def threeSum(self, nums: list[int]) -&gt; list[list[int]]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">threeSum</span>(self, nums: <span class="token builtin">list</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">list</span>[<span class="token builtin">list</span>[<span class="token builtin">int</span>]]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>150. 逆波兰表达式求值</h2>
@@ -430,22 +430,22 @@ if __name__ == &quot;__main__&quot;:
 	- 输入是一个根据逆波兰表示法表示的算术表达式。
 	- 答案及所有中间计算结果可以用 **32 位** 整数表示。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def evalRPN(self, tokens: List[str]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">evalRPN</span>(self, tokens: <span class="token builtin">List</span>[<span class="token builtin">str</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>152. 乘积最大子数组</h2>
@@ -462,22 +462,22 @@ if __name__ == &quot;__main__&quot;:
 
 **请注意**，一个只包含一个元素的数组的乘积是这个元素的值。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxProduct(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxProduct</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>162. 寻找峰值</h2>
@@ -496,22 +496,22 @@ if __name__ == &quot;__main__&quot;:
 
 你必须实现时间复杂度为 `O(log n)`* *的算法来解决此问题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def findPeakElement(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">findPeakElement</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>179. 最大数</h2>
@@ -526,22 +526,22 @@ if __name__ == &quot;__main__&quot;:
 
 **注意：**输出结果可能非常大，所以你需要返回一个字符串而不是整数。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def largestNumber(self, nums: List[int]) -&gt; str:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">largestNumber</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">str</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>189. 轮转数组</h2>
@@ -554,24 +554,24 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给定一个整数数组 `nums`，将数组中的元素向右轮转 `k`*&#160;*个位置，其中&#160;`k`*&#160;*是非负数。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def rotate(self, nums: List[int], k: int) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">rotate</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify nums in-place instead.
-        &quot;&quot;&quot;
-        # TODO: 在此实现解题逻辑
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>198. 打家劫舍</h2>
@@ -586,22 +586,22 @@ if __name__ == &quot;__main__&quot;:
 
 给定一个代表每个房屋存放金额的非负整数数组，计算你** 不触动警报装置的情况下 **，一夜之内能够偷窃到的最高金额。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def rob(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">rob</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>200. 岛屿数量</h2>
@@ -618,22 +618,22 @@ if __name__ == &quot;__main__&quot;:
 
 此外，你可以假设该网格的四条边均被水包围。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">numIslands</span>(self, grid: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>204. 计数质数</h2>
@@ -646,22 +646,22 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给定整数 `n` ，返回 *所有小于非负整数&#160;`n`&#160;的质数的数量* 。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def countPrimes(self, n: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">countPrimes</span>(self, n: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>215. 数组中的第K个最大元素</h2>
@@ -678,22 +678,22 @@ if __name__ == &quot;__main__&quot;:
 
 你必须设计并实现时间复杂度为 `O(n)` 的算法解决此问题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">findKthLargest</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>238. 除了自身以外数组的乘积</h2>
@@ -710,22 +710,22 @@ if __name__ == &quot;__main__&quot;:
 
 请&#160;**不要使用除法，**且在&#160;`O(n)` 时间复杂度内完成此题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -&gt; List[int]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">productExceptSelf</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>240. 搜索二维矩阵 II</h2>
@@ -741,22 +741,22 @@ if __name__ == &quot;__main__&quot;:
 	- 每行的元素从左到右升序排列。
 	- 每列的元素从上到下升序排列。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">searchMatrix</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]], target: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>251. 展开二维向量</h2>
@@ -769,23 +769,23 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre></pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self):
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self):
+        <span class="token string">&quot;&quot;&quot;
         251. 展开二维向量
         TODO: 在此实现解题逻辑
-        &quot;&quot;&quot;
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">pass</span>
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>253. 会议室 II</h2>
@@ -798,23 +798,23 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre></pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self):
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self):
+        <span class="token string">&quot;&quot;&quot;
         253. 会议室 II
         TODO: 在此实现解题逻辑
-        &quot;&quot;&quot;
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">pass</span>
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>287. 寻找重复数</h2>
@@ -831,22 +831,22 @@ if __name__ == &quot;__main__&quot;:
 
 你设计的解决方案必须 **不修改** 数组 `nums` 且只用常量级 `O(1)` 的额外空间。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def findDuplicate(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">findDuplicate</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>289. 生命游戏</h2>
@@ -872,24 +872,24 @@ if __name__ == &quot;__main__&quot;:
 
 **注意** 你不需要返回任何东西。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def gameOfLife(self, board: List[List[int]]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">gameOfLife</span>(self, board: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify board in-place instead.
-        &quot;&quot;&quot;
-        # TODO: 在此实现解题逻辑
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>300. 最长递增子序列</h2>
@@ -904,22 +904,22 @@ if __name__ == &quot;__main__&quot;:
 
 **子序列&#160;**是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，`[3,6,2,7]` 是数组 `[0,3,1,6,2,2,7]` 的子序列。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">lengthOfLIS</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>308. 二维区域和检索 - 矩阵可修改</h2>
@@ -932,23 +932,23 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre></pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self):
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self):
+        <span class="token string">&quot;&quot;&quot;
         308. 二维区域和检索 - 矩阵可修改
         TODO: 在此实现解题逻辑
-        &quot;&quot;&quot;
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">pass</span>
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>322. 零钱兑换</h2>
@@ -965,22 +965,22 @@ if __name__ == &quot;__main__&quot;:
 
 你可以认为每种硬币的数量是无限的。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def coinChange(self, coins: List[int], amount: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">coinChange</span>(self, coins: <span class="token builtin">List</span>[<span class="token builtin">int</span>], amount: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>324. 摆动排序 II</h2>
@@ -996,24 +996,24 @@ if __name__ == &quot;__main__&quot;:
 	- `0 
 	- 题目数据保证，对于给定的输入 `nums` ，总能产生满足题目要求的结果</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def wiggleSort(self, nums: List[int]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">wiggleSort</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify nums in-place instead.
-        &quot;&quot;&quot;
-        # TODO: 在此实现解题逻辑
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>33. 搜索旋转排序数组</h2>
@@ -1033,32 +1033,32 @@ if __name__ == &quot;__main__&quot;:
 	- 题目数据保证 `nums` 在预先未知的某个下标上进行了旋转
 	- `-104 4`</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>
 
 
-class Solution:
-    def search(self, nums: List[int], target: int) -&gt; int:
-        N = len(nums)
-        left, right = 0, N-1
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">search</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], target: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(nums)
+        left, right <span class="token operator">=</span> <span class="token number">0</span>, N<span class="token operator">-</span><span class="token number">1</span>
 
-        while left &lt;= right:
-            # print(left, right)
-            mid = (left + right)//2
-            if nums[mid]==target:
-                return mid
+        <span class="token keyword">while</span> left <span class="token operator">&lt;=</span> right:
+            <span class="token comment"># print(left, right)</span>
+            mid <span class="token operator">=</span> (left <span class="token operator">+</span> right)<span class="token operator">/</span><span class="token operator">/</span><span class="token number">2</span>
+            <span class="token keyword">if</span> nums[mid]<span class="token operator">==</span>target:
+                <span class="token keyword">return</span> mid
 
-            # left---&gt;mid 是左半递增区间
-            if nums[left] &lt;= nums[mid]:
-                if nums[left]&lt;=target&lt;nums[mid]:
-                    right=mid-1
-                else:
-                    left = mid+1
-            else: # mid---&gt;right 是递增区间
-                if nums[mid]&lt;target&lt;=nums[right]:
-                    left = mid+1
-                else:
-                    right=mid-1
-        return -1</code></pre>
+            <span class="token comment"># left---&gt;mid 是左半递增区间</span>
+            <span class="token keyword">if</span> nums[left] <span class="token operator">&lt;=</span> nums[mid]:
+                <span class="token keyword">if</span> nums[left]<span class="token operator">&lt;=</span>target<span class="token operator">&lt;</span>nums[mid]:
+                    right<span class="token operator">=</span>mid<span class="token operator">-</span><span class="token number">1</span>
+                <span class="token keyword">else</span>:
+                    left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
+            <span class="token keyword">else</span>: <span class="token comment"># mid---&gt;right 是递增区间</span>
+                <span class="token keyword">if</span> nums[mid]<span class="token operator">&lt;</span>target<span class="token operator">&lt;=</span>nums[right]:
+                    left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
+                <span class="token keyword">else</span>:
+                    right<span class="token operator">=</span>mid<span class="token operator">-</span><span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>334. 递增的三元子序列</h2>
@@ -1075,22 +1075,22 @@ class Solution:
 	- `1 5`
 	- `-231 31 - 1`</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def increasingTriplet(self, nums: List[int]) -&gt; bool:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">increasingTriplet</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>34. 在排序数组中查找元素的第一个和最后一个位置</h2>
@@ -1107,47 +1107,47 @@ if __name__ == &quot;__main__&quot;:
 
 你必须设计并实现时间复杂度为&#160;`O(log n)`&#160;的算法解决此问题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def searchRange(self, nums: List[int], target: int) -&gt; List[int]:
-        N = len(nums)
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">searchRange</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], target: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(nums)
 
-        left, right = 0, N-1
-        while left&lt;=right:
-            mid = (left+right)//2
-            if nums[mid] == target:
-                target_left, target_right = mid, mid
+        left, right <span class="token operator">=</span> <span class="token number">0</span>, N<span class="token operator">-</span><span class="token number">1</span>
+        <span class="token keyword">while</span> left<span class="token operator">&lt;=</span>right:
+            mid <span class="token operator">=</span> (left<span class="token operator">+</span>right)<span class="token operator">/</span><span class="token operator">/</span><span class="token number">2</span>
+            <span class="token keyword">if</span> nums[mid] <span class="token operator">==</span> target:
+                target_left, target_right <span class="token operator">=</span> mid, mid
                 
-                while left&lt;=(target_left-1):
-                    if nums[target_left-1] == target:
-                        target_left -= 1
-                    else:
-                        break
+                <span class="token keyword">while</span> left<span class="token operator">&lt;=</span>(target_left<span class="token operator">-</span><span class="token number">1</span>):
+                    <span class="token keyword">if</span> nums[target_left<span class="token operator">-</span><span class="token number">1</span>] <span class="token operator">==</span> target:
+                        target_left <span class="token operator">-=</span> <span class="token number">1</span>
+                    <span class="token keyword">else</span>:
+                        <span class="token keyword">break</span>
                 
-                while target_right+1&lt;=right:
-                    if nums[target_right+1] == target:
-                        target_right += 1
-                    else:
-                        break
+                <span class="token keyword">while</span> target_right<span class="token operator">+</span><span class="token number">1</span><span class="token operator">&lt;=</span>right:
+                    <span class="token keyword">if</span> nums[target_right<span class="token operator">+</span><span class="token number">1</span>] <span class="token operator">==</span> target:
+                        target_right <span class="token operator">+=</span> <span class="token number">1</span>
+                    <span class="token keyword">else</span>:
+                        <span class="token keyword">break</span>
 
-                return target_left, target_right
+                <span class="token keyword">return</span> target_left, target_right
 
-            if nums[mid]&lt;target&lt;=nums[right]:
-                left = mid+1
-            else:
-                right=mid-1
-        return [-1, -1]
-
-
+            <span class="token keyword">if</span> nums[mid]<span class="token operator">&lt;</span>target<span class="token operator">&lt;=</span>nums[right]:
+                left <span class="token operator">=</span> mid<span class="token operator">+</span><span class="token number">1</span>
+            <span class="token keyword">else</span>:
+                right<span class="token operator">=</span>mid<span class="token operator">-</span><span class="token number">1</span>
+        <span class="token keyword">return</span> [<span class="token operator">-</span><span class="token number">1</span>, <span class="token operator">-</span><span class="token number">1</span>]
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+
+
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>347. 前 K 个高频元素</h2>
@@ -1160,22 +1160,22 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">topKFrequent</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>348. 设计井字棋</h2>
@@ -1188,23 +1188,23 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre></pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def solve(self):
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">solve</span>(self):
+        <span class="token string">&quot;&quot;&quot;
         348. 设计井字棋
         TODO: 在此实现解题逻辑
-        &quot;&quot;&quot;
-        pass
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">pass</span>
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>36. 有效的数独</h2>
@@ -1229,46 +1229,46 @@ if __name__ == &quot;__main__&quot;:
 	- 只需要根据以上规则，验证已经填入的数字是否有效即可。
 	- 空白格用&#160;`&#39;.&#39;`&#160;表示。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -&gt; bool:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">isValidSudoku</span>(self, board: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
 
-        ans_dict_row = {}
-        ans_dict_col = {}
-        ans_dict_block = {}
+        ans_dict_row <span class="token operator">=</span> {}
+        ans_dict_col <span class="token operator">=</span> {}
+        ans_dict_block <span class="token operator">=</span> {}
 
-        for i in range(9):
-            ans_dict_row[i] = []
-            ans_dict_col[i] = []
-            ans_dict_block[i] = []
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">9</span>):
+            ans_dict_row[i] <span class="token operator">=</span> []
+            ans_dict_col[i] <span class="token operator">=</span> []
+            ans_dict_block[i] <span class="token operator">=</span> []
 
-        for i in range(9):
-            for j in range(9):
-                if board[i][j] == &quot;.&quot;:
-                    continue
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">9</span>):
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">9</span>):
+                <span class="token keyword">if</span> board[i][j] <span class="token operator">==</span> <span class="token string">&quot;.&quot;</span>:
+                    <span class="token keyword">continue</span>
 
-                k = i//3*3 + j//3
-                key = str(i) + str(j) + str(k)
+                k <span class="token operator">=</span> i<span class="token operator">/</span><span class="token operator">/</span><span class="token number">3</span><span class="token operator">*</span><span class="token number">3</span> <span class="token operator">+</span> j<span class="token operator">/</span><span class="token operator">/</span><span class="token number">3</span>
+                key <span class="token operator">=</span> <span class="token builtin">str</span>(i) <span class="token operator">+</span> <span class="token builtin">str</span>(j) <span class="token operator">+</span> <span class="token builtin">str</span>(k)
                 
-                if (board[i][j] in ans_dict_row[i]) or (board[i][j] in ans_dict_col[j]) or (board[i][j] in ans_dict_block[k]):
-                    return False
-                else:
+                <span class="token keyword">if</span> (board[i][j] <span class="token keyword">in</span> ans_dict_row[i]) <span class="token keyword">or</span> (board[i][j] <span class="token keyword">in</span> ans_dict_col[j]) <span class="token keyword">or</span> (board[i][j] <span class="token keyword">in</span> ans_dict_block[k]):
+                    <span class="token keyword">return</span> <span class="token keyword">False</span>
+                <span class="token keyword">else</span>:
                     ans_dict_row[i].append(board[i][j])
                     ans_dict_col[j].append(board[i][j])
                     ans_dict_block[k].append(board[i][j])
 
                 
-        return True
+        <span class="token keyword">return</span> <span class="token keyword">True</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>378. 有序矩阵中第 K 小的元素</h2>
@@ -1285,22 +1285,22 @@ if __name__ == &quot;__main__&quot;:
 
 你必须找到一个内存复杂度优于&#160;`O(n2)` 的解决方案。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def kthSmallest(self, matrix: List[List[int]], k: int) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">kthSmallest</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]], k: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>380. O(1) 时间插入、删除和获取随机元素</h2>
@@ -1320,33 +1320,33 @@ if __name__ == &quot;__main__&quot;:
 
 你必须实现类的所有函数，并满足每个函数的 **平均** 时间复杂度为 `O(1)` 。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def __init__(self):
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">__init__</span>(self):
         
 
-    def insert(self, val: int) -&gt; bool:
+    <span class="token keyword">def</span> <span class="token function">insert</span>(self, val: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
 
-    def remove(self, val: int) -&gt; bool:
+    <span class="token keyword">def</span> <span class="token function">remove</span>(self, val: <span class="token builtin">int</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
 
-    def getRandom(self) -&gt; int:
+    <span class="token keyword">def</span> <span class="token function">getRandom</span>(self) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
 
 
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>384. 打乱数组</h2>
@@ -1365,30 +1365,30 @@ if __name__ == &quot;__main__&quot;:
 	- `int[] reset()` 重设数组到它的初始状态并返回
 	- `int[] shuffle()` 返回数组随机打乱后的结果</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def __init__(self, nums: List[int]):
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">__init__</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]):
         
 
-    def reset(self) -&gt; List[int]:
+    <span class="token keyword">def</span> <span class="token function">reset</span>(self) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
 
-    def shuffle(self) -&gt; List[int]:
+    <span class="token keyword">def</span> <span class="token function">shuffle</span>(self) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
 
 
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>454. 四数相加 II</h2>
@@ -1404,22 +1404,22 @@ if __name__ == &quot;__main__&quot;:
 	- `0 
 	- `nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0`</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -&gt; int:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">fourSumCount</span>(self, nums1: <span class="token builtin">List</span>[<span class="token builtin">int</span>], nums2: <span class="token builtin">List</span>[<span class="token builtin">int</span>], nums3: <span class="token builtin">List</span>[<span class="token builtin">int</span>], nums4: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>46. 全排列</h2>
@@ -1432,36 +1432,36 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给定一个不含重复数字的数组 `nums` ，返回其 *所有可能的全排列* 。你可以 **按任意顺序** 返回答案。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def permute(self, nums: List[int]) -&gt; List[List[int]]:
-        ans_list = []
-        N = len(nums)
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">permute</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]:
+        ans_list <span class="token operator">=</span> []
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(nums)
 
-        def back_track(ans, nums):
-            if len(ans) == N:
+        <span class="token keyword">def</span> <span class="token function">back_track</span>(ans, nums):
+            <span class="token keyword">if</span> <span class="token builtin">len</span>(ans) <span class="token operator">==</span> N:
                 ans_list.append(ans.copy())
-                return 
-            n = len(nums)
+                <span class="token keyword">return</span> 
+            n <span class="token operator">=</span> <span class="token builtin">len</span>(nums)
 
-            for i in range(n):
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
                 ans.append(nums[i])
-                tmp_nums = nums[:i] + nums[i+1:]
+                tmp_nums <span class="token operator">=</span> nums[:i] <span class="token operator">+</span> nums[i<span class="token operator">+</span><span class="token number">1</span>:]
                 back_track(ans, tmp_nums)
 
                 ans.pop()
 
         back_track([], nums)
-        return ans_list
+        <span class="token keyword">return</span> ans_list
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>48. 旋转图像</h2>
@@ -1476,41 +1476,41 @@ if __name__ == &quot;__main__&quot;:
 
 你必须在** 原地** 旋转图像，这意味着你需要直接修改输入的二维矩阵。**请不要 **使用另一个矩阵来旋转图像。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def rotate(self, matrix: List[List[int]]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">rotate</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify matrix in-place instead.
-        &quot;&quot;&quot;
-        &quot;&quot;&quot;
+        &quot;&quot;&quot;</span>
+        <span class="token string">&quot;&quot;&quot;
         N = len(mat)
         mat[i][j]---&gt;mat[j][N-1-i]
         mat[j][N-1-i]---&gt;mat[N-1-i][N-1-j]
         mat[N-1-i][N-1-j]---&gt;mat[N-1-j][i]
         mat[N-1-j][i]------&gt; mat[i][j]
-        &quot;&quot;&quot;
-        N = len(matrix)
-        n = (N+1)//2
-        # print(n)
-        for i in range(n):
-            for j in range(N-n):
-                a, b, c, d = matrix[i][j], matrix[j][N-1-i], matrix[N-1-i][N-1-j], matrix[N-1-j][i]
-                matrix[j][N-1-i] = a
-                matrix[N-1-i][N-1-j] = b
-                matrix[N-1-j][i] = c
-                matrix[i][j] = d
+        &quot;&quot;&quot;</span>
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(matrix)
+        n <span class="token operator">=</span> (N<span class="token operator">+</span><span class="token number">1</span>)<span class="token operator">/</span><span class="token operator">/</span><span class="token number">2</span>
+        <span class="token comment"># print(n)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(N<span class="token operator">-</span>n):
+                a, b, c, d <span class="token operator">=</span> matrix[i][j], matrix[j][N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>i], matrix[N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>i][N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>j], matrix[N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>j][i]
+                matrix[j][N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>i] <span class="token operator">=</span> a
+                matrix[N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>i][N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>j] <span class="token operator">=</span> b
+                matrix[N<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>j][i] <span class="token operator">=</span> c
+                matrix[i][j] <span class="token operator">=</span> d
 
-        return matrix
+        <span class="token keyword">return</span> matrix
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>49. 字母异位词分组</h2>
@@ -1523,22 +1523,22 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">groupAnagrams</span>(self, strs: <span class="token builtin">List</span>[<span class="token builtin">str</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]]:
         
-        # TODO: 在此实现解题逻辑
-        pass
+        <span class="token comment"># TODO: 在此实现解题逻辑</span>
+        <span class="token keyword">pass</span>
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>53. 最大子数组和</h2>
@@ -1553,29 +1553,29 @@ if __name__ == &quot;__main__&quot;:
 
 **子数组 **是数组中的一个连续部分。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def maxSubArray(self, nums: List[int]) -&gt; int:
-        max_sum = nums[0]
-        cur_max_sum = nums[0]
-        N = len(nums)
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">maxSubArray</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span>:
+        max_sum <span class="token operator">=</span> nums[<span class="token number">0</span>]
+        cur_max_sum <span class="token operator">=</span> nums[<span class="token number">0</span>]
+        N <span class="token operator">=</span> <span class="token builtin">len</span>(nums)
 
-        for i in range(1, N):
-            cur_max_sum = max(nums[i], nums[i]+cur_max_sum)
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, N):
+            cur_max_sum <span class="token operator">=</span> <span class="token builtin">max</span>(nums[i], nums[i]<span class="token operator">+</span>cur_max_sum)
 
-            max_sum = max(cur_max_sum, max_sum)
+            max_sum <span class="token operator">=</span> <span class="token builtin">max</span>(cur_max_sum, max_sum)
         
-        return max_sum
+        <span class="token keyword">return</span> max_sum
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>54. 螺旋矩阵</h2>
@@ -1588,61 +1588,61 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给你一个 `m` 行 `n` 列的矩阵&#160;`matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -&gt; List[int]:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">spiralOrder</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">int</span>]:
         
-        left_bound, right_bound, upper_bound, bottom_bound = 0, len(matrix[0])-1, 0, len(matrix)-1
-        ans = []
-        m, n = 0, 0
+        left_bound, right_bound, upper_bound, bottom_bound <span class="token operator">=</span> <span class="token number">0</span>, <span class="token builtin">len</span>(matrix[<span class="token number">0</span>])<span class="token operator">-</span><span class="token number">1</span>, <span class="token number">0</span>, <span class="token builtin">len</span>(matrix)<span class="token operator">-</span><span class="token number">1</span>
+        ans <span class="token operator">=</span> []
+        m, n <span class="token operator">=</span> <span class="token number">0</span>, <span class="token number">0</span>
         ans.append(matrix[m][n])
-        while upper_bound&lt;=bottom_bound and left_bound&lt;=right_bound:
-            # 往右走 
-            while n &lt; right_bound:
-                n += 1
+        <span class="token keyword">while</span> upper_bound<span class="token operator">&lt;=</span>bottom_bound <span class="token keyword">and</span> left_bound<span class="token operator">&lt;=</span>right_bound:
+            <span class="token comment"># 往右走 </span>
+            <span class="token keyword">while</span> n <span class="token operator">&lt;</span> right_bound:
+                n <span class="token operator">+=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            upper_bound += 1
-            if upper_bound &gt; bottom_bound:
-                break
-            # print(&quot;往右走&quot;, ans) # 
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            # 往下走
-            while m&lt;bottom_bound:
-                m += 1
+            upper_bound <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> upper_bound <span class="token operator">&gt;</span> bottom_bound:
+                <span class="token keyword">break</span>
+            <span class="token comment"># print(&quot;往右走&quot;, ans) # </span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token comment"># 往下走</span>
+            <span class="token keyword">while</span> m<span class="token operator">&lt;</span>bottom_bound:
+                m <span class="token operator">+=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            right_bound -= 1
-            if left_bound &gt; right_bound:
-                break
-            # print(&quot;往下走&quot;, ans)
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            # 往左走
-            while n &gt; left_bound:
-                n -= 1
+            right_bound <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> left_bound <span class="token operator">&gt;</span> right_bound:
+                <span class="token keyword">break</span>
+            <span class="token comment"># print(&quot;往下走&quot;, ans)</span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token comment"># 往左走</span>
+            <span class="token keyword">while</span> n <span class="token operator">&gt;</span> left_bound:
+                n <span class="token operator">-=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            bottom_bound -= 1
-            if upper_bound&gt;bottom_bound:
-                break
-            # print(&quot;往左走&quot;, ans)
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            # 往上走
-            while m &gt; upper_bound:
-                m -= 1
+            bottom_bound <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> upper_bound<span class="token operator">&gt;</span>bottom_bound:
+                <span class="token keyword">break</span>
+            <span class="token comment"># print(&quot;往左走&quot;, ans)</span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token comment"># 往上走</span>
+            <span class="token keyword">while</span> m <span class="token operator">&gt;</span> upper_bound:
+                m <span class="token operator">-=</span> <span class="token number">1</span>
                 ans.append(matrix[m][n])
-            left_bound += 1
-            # print(&quot;往上走&quot;, ans)
-            # print(left_bound, right_bound, upper_bound, bottom_bound)
-            if left_bound&gt;right_bound:
-                break
-        return ans
+            left_bound <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token comment"># print(&quot;往上走&quot;, ans)</span>
+            <span class="token comment"># print(left_bound, right_bound, upper_bound, bottom_bound)</span>
+            <span class="token keyword">if</span> left_bound<span class="token operator">&gt;</span>right_bound:
+                <span class="token keyword">break</span>
+        <span class="token keyword">return</span> ans
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>55. 跳跃游戏</h2>
@@ -1657,28 +1657,28 @@ if __name__ == &quot;__main__&quot;:
 
 判断你是否能够到达最后一个下标，如果可以，返回 `true` ；否则，返回 `false` 。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def canJump(self, nums: List[int]) -&gt; bool:
-        max_jump = 0
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">canJump</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
+        max_jump <span class="token operator">=</span> <span class="token number">0</span>
 
-        for i in range(len(nums)):
-            if i &gt; max_jump:
-                return False
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(nums)):
+            <span class="token keyword">if</span> i <span class="token operator">&gt;</span> max_jump:
+                <span class="token keyword">return</span> <span class="token keyword">False</span>
             
-            max_jump = max(max_jump, i+nums[i])
-            if max_jump &gt;= len(nums)-1:
-                return True
+            max_jump <span class="token operator">=</span> <span class="token builtin">max</span>(max_jump, i<span class="token operator">+</span>nums[i])
+            <span class="token keyword">if</span> max_jump <span class="token operator">&gt;=</span> <span class="token builtin">len</span>(nums)<span class="token operator">-</span><span class="token number">1</span>:
+                <span class="token keyword">return</span> <span class="token keyword">True</span>
         
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>56. 合并区间</h2>
@@ -1691,29 +1691,29 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>以数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回&#160;*一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间*&#160;。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def merge(self, intervals: List[List[int]]) -&gt; List[List[int]]:
-        intervals.sort(key=lambda x: x[0])
-        ans = []
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">merge</span>(self, intervals: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]:
+        intervals.sort(key<span class="token operator">=</span><span class="token keyword">lambda</span> x: x[<span class="token number">0</span>])
+        ans <span class="token operator">=</span> []
 
-        for i in range(len(intervals)):
-            if ans and ans[-1][1]&gt;=intervals[i][0]:
-                ans[-1][1] = max(ans[-1][1], intervals[i][-1])
-            else:
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(intervals)):
+            <span class="token keyword">if</span> ans <span class="token keyword">and</span> ans[<span class="token operator">-</span><span class="token number">1</span>][<span class="token number">1</span>]<span class="token operator">&gt;=</span>intervals[i][<span class="token number">0</span>]:
+                ans[<span class="token operator">-</span><span class="token number">1</span>][<span class="token number">1</span>] <span class="token operator">=</span> <span class="token builtin">max</span>(ans[<span class="token operator">-</span><span class="token number">1</span>][<span class="token number">1</span>], intervals[i][<span class="token operator">-</span><span class="token number">1</span>])
+            <span class="token keyword">else</span>:
                 ans.append(intervals[i])
         
-        return ans
+        <span class="token keyword">return</span> ans
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>73. 矩阵置零</h2>
@@ -1726,63 +1726,63 @@ if __name__ == &quot;__main__&quot;:
       <h3>题目内容</h3>
       <pre>给定一个&#160;`*m* x *n*` 的矩阵，如果一个元素为 **0 **，则将其所在行和列的所有元素都设为 **0** 。请使用 **原地** 算法**。**</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def setZeroes(self, matrix: List[List[int]]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">setZeroes</span>(self, matrix: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify matrix in-place instead.
-        &quot;&quot;&quot;
+        &quot;&quot;&quot;</span>
         
-        first_row_zero, first_col_zero = False, False
-        m, n = len(matrix), len(matrix[0])
+        first_row_zero, first_col_zero <span class="token operator">=</span> <span class="token keyword">False</span>, <span class="token keyword">False</span>
+        m, n <span class="token operator">=</span> <span class="token builtin">len</span>(matrix), <span class="token builtin">len</span>(matrix[<span class="token number">0</span>])
 
-        # 先检查第一行和第一列是否包含零元素，分别设置 first_row_zero, first_col_zero
-        for i in range(m):
-            if matrix[i][0] == 0:
-                first_col_zero = True
-                break
+        <span class="token comment"># 先检查第一行和第一列是否包含零元素，分别设置 first_row_zero, first_col_zero</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            <span class="token keyword">if</span> matrix[i][<span class="token number">0</span>] <span class="token operator">==</span> <span class="token number">0</span>:
+                first_col_zero <span class="token operator">=</span> <span class="token keyword">True</span>
+                <span class="token keyword">break</span>
         
-        for j in range(n):
-            if matrix[0][j] == 0:
-                first_row_zero = True
-                break
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+            <span class="token keyword">if</span> matrix[<span class="token number">0</span>][j] <span class="token operator">==</span> <span class="token number">0</span>:
+                first_row_zero <span class="token operator">=</span> <span class="token keyword">True</span>
+                <span class="token keyword">break</span>
         
-        # 开始遍历其他行其他列是否存在零元素，如果 matrix[i][j] == 0, 则 matrix[i][0]和matrix[0][j]都设置为0，
-        for i in range(1, m):
-            for j in range(1, n):
-                if matrix[i][j] == 0:
-                    matrix[0][j] = 0
-                    matrix[i][0] = 0
-        # 遍历完成后，再根据首行和首列的元素值，将某些行或者列元素置0，
-        for i in range(1, m):
-            if matrix[i][0] == 0:
-                for j in range(1, n):
-                    matrix[i][j] = 0
-        for j in range(1, n):
-            if matrix[0][j] == 0:
-                for i in range(1, m):
-                    matrix[i][j] = 0
+        <span class="token comment"># 开始遍历其他行其他列是否存在零元素，如果 matrix[i][j] == 0, 则 matrix[i][0]和matrix[0][j]都设置为0，</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, m):
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, n):
+                <span class="token keyword">if</span> matrix[i][j] <span class="token operator">==</span> <span class="token number">0</span>:
+                    matrix[<span class="token number">0</span>][j] <span class="token operator">=</span> <span class="token number">0</span>
+                    matrix[i][<span class="token number">0</span>] <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token comment"># 遍历完成后，再根据首行和首列的元素值，将某些行或者列元素置0，</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, m):
+            <span class="token keyword">if</span> matrix[i][<span class="token number">0</span>] <span class="token operator">==</span> <span class="token number">0</span>:
+                <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, n):
+                    matrix[i][j] <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, n):
+            <span class="token keyword">if</span> matrix[<span class="token number">0</span>][j] <span class="token operator">==</span> <span class="token number">0</span>:
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, m):
+                    matrix[i][j] <span class="token operator">=</span> <span class="token number">0</span>
         
-        # 最后再根据第一步的 first_row_zero, first_col_zero 选择是否要将首行首列置0
-        if first_col_zero:
-            for i in range(m):
-                matrix[i][0] = 0
-        if first_row_zero:
-            for j in range(n):
-                matrix[0][j] = 0
+        <span class="token comment"># 最后再根据第一步的 first_row_zero, first_col_zero 选择是否要将首行首列置0</span>
+        <span class="token keyword">if</span> first_col_zero:
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+                matrix[i][<span class="token number">0</span>] <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> first_row_zero:
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+                matrix[<span class="token number">0</span>][j] <span class="token operator">=</span> <span class="token number">0</span>
         
-        return matrix
+        <span class="token keyword">return</span> matrix
         
 
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>75. 颜色分类</h2>
@@ -1799,38 +1799,38 @@ if __name__ == &quot;__main__&quot;:
 
 必须在不使用库内置的 sort 函数的情况下解决这个问题。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def sortColors(self, nums: List[int]) -&gt; None:
-        &quot;&quot;&quot;
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">sortColors</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">None</span>:
+        <span class="token string">&quot;&quot;&quot;
         Do not return anything, modify nums in-place instead.
-        &quot;&quot;&quot;
-        # 利用三指针进行单次遍历，把 0 统统交换到左边，把 2 统统交换到右边，中间自然就留下了 1。
-        left, current = 0, 0
-        right = len(nums) - 1
+        &quot;&quot;&quot;</span>
+        <span class="token comment"># 利用三指针进行单次遍历，把 0 统统交换到左边，把 2 统统交换到右边，中间自然就留下了 1。</span>
+        left, current <span class="token operator">=</span> <span class="token number">0</span>, <span class="token number">0</span>
+        right <span class="token operator">=</span> <span class="token builtin">len</span>(nums) <span class="token operator">-</span> <span class="token number">1</span>
 
-        while current &lt;= right:
-            if nums[current]==0:
-                nums[current], nums[left] = nums[left], nums[current]
-                left += 1
-                current += 1
-            elif nums[current] == 1:
-                current += 1
-            elif nums[current] == 2:
-                nums[current], nums[right] = nums[right], nums[current]
-                right -= 1
+        <span class="token keyword">while</span> current <span class="token operator">&lt;=</span> right:
+            <span class="token keyword">if</span> nums[current]<span class="token operator">==</span><span class="token number">0</span>:
+                nums[current], nums[left] <span class="token operator">=</span> nums[left], nums[current]
+                left <span class="token operator">+=</span> <span class="token number">1</span>
+                current <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">elif</span> nums[current] <span class="token operator">==</span> <span class="token number">1</span>:
+                current <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">elif</span> nums[current] <span class="token operator">==</span> <span class="token number">2</span>:
+                nums[current], nums[right] <span class="token operator">=</span> nums[right], nums[current]
+                right <span class="token operator">-=</span> <span class="token number">1</span>
         
-        return nums
+        <span class="token keyword">return</span> nums
         
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>78. 子集</h2>
@@ -1845,34 +1845,34 @@ if __name__ == &quot;__main__&quot;:
 
 解集 **不能** 包含重复的子集。你可以按 **任意顺序** 返回解集。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
-class Solution:
-    def subsets(self, nums: List[int]) -&gt; List[List[int]]:
-        # 回溯实现，每一次只有两种选择，要么把当前遇到的数字加入path，要么不加入
-        ans = []
-        def backback(num_idx, path):
-            # 先记录答案
-            ans.append(path[:]) # path[:] 是浅拷贝
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">subsets</span>(self, nums: <span class="token builtin">List</span>[<span class="token builtin">int</span>]) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">int</span>]]:
+        <span class="token comment"># 回溯实现，每一次只有两种选择，要么把当前遇到的数字加入path，要么不加入</span>
+        ans <span class="token operator">=</span> []
+        <span class="token keyword">def</span> <span class="token function">backback</span>(num_idx, path):
+            <span class="token comment"># 先记录答案</span>
+            ans.append(path[:]) <span class="token comment"># path[:] 是浅拷贝</span>
 
-            for i in range(num_idx, len(nums)):
-                # 选择加入
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(num_idx, <span class="token builtin">len</span>(nums)):
+                <span class="token comment"># 选择加入</span>
                 path.append(nums[i])
-                backback(i+1, path)
+                backback(i<span class="token operator">+</span><span class="token number">1</span>, path)
 
-                # 选择不加入
+                <span class="token comment"># 选择不加入</span>
                 path.pop()
                 
-        backback(0, [])
+        backback(<span class="token number">0</span>, [])
 
-        return ans
+        <span class="token keyword">return</span> ans
 
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
     <section class="problem-card">
       <h2>79. 单词搜索</h2>
@@ -1887,50 +1887,50 @@ if __name__ == &quot;__main__&quot;:
 
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">from typing import List, Optional
+      <pre class="language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> <span class="token builtin">List</span>, Optional
 
 
-class Solution:
-    def exist(self, board: List[List[str]], word: str) -&gt; bool:
+<span class="token keyword">class</span> Solution:
+    <span class="token keyword">def</span> <span class="token function">exist</span>(self, board: <span class="token builtin">List</span>[<span class="token builtin">List</span>[<span class="token builtin">str</span>]], word: <span class="token builtin">str</span>) <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span>:
         
-        m, n = len(board), len(board[0])
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        def back_track(s, k, path_len):
-            # 如果找到符合 word 内容的路径，返回 True
-            if path_len == len(word):
-                return True
-            # 把已经添加到 path 的board[s][k]暂时置为 #， 避免
-            tmp = board[s][k]
-            board[s][k] = &#39;#&#39;
+        m, n <span class="token operator">=</span> <span class="token builtin">len</span>(board), <span class="token builtin">len</span>(board[<span class="token number">0</span>])
+        directions <span class="token operator">=</span> [(<span class="token operator">-</span><span class="token number">1</span>, <span class="token number">0</span>), (<span class="token number">1</span>, <span class="token number">0</span>), (<span class="token number">0</span>, <span class="token operator">-</span><span class="token number">1</span>), (<span class="token number">0</span>, <span class="token number">1</span>)]
+        <span class="token keyword">def</span> <span class="token function">back_track</span>(s, k, path_len):
+            <span class="token comment"># 如果找到符合 word 内容的路径，返回 True</span>
+            <span class="token keyword">if</span> path_len <span class="token operator">==</span> <span class="token builtin">len</span>(word):
+                <span class="token keyword">return</span> <span class="token keyword">True</span>
+            <span class="token comment"># 把已经添加到 path 的board[s][k]暂时置为 #， 避免</span>
+            tmp <span class="token operator">=</span> board[s][k]
+            board[s][k] <span class="token operator">=</span> <span class="token string">&#39;#&#39;</span>
 
-            for sk in directions:
-                s_, k_ = s+sk[0], k+sk[1]
-                if 0&lt;=s_&lt;m and 0&lt;=k_&lt;n and board[s_][k_] == word[path_len]:
-                    if back_track(s_, k_, path_len+1):
-                        return True
-            # 四个方向的遍历结果都没合适的
-            board[s][k] = tmp
+            <span class="token keyword">for</span> sk <span class="token keyword">in</span> directions:
+                s_, k_ <span class="token operator">=</span> s<span class="token operator">+</span>sk[<span class="token number">0</span>], k<span class="token operator">+</span>sk[<span class="token number">1</span>]
+                <span class="token keyword">if</span> <span class="token number">0</span><span class="token operator">&lt;=</span>s_<span class="token operator">&lt;</span>m <span class="token keyword">and</span> <span class="token number">0</span><span class="token operator">&lt;=</span>k_<span class="token operator">&lt;</span>n <span class="token keyword">and</span> board[s_][k_] <span class="token operator">==</span> word[path_len]:
+                    <span class="token keyword">if</span> back_track(s_, k_, path_len<span class="token operator">+</span><span class="token number">1</span>):
+                        <span class="token keyword">return</span> <span class="token keyword">True</span>
+            <span class="token comment"># 四个方向的遍历结果都没合适的</span>
+            board[s][k] <span class="token operator">=</span> tmp
 
-            return False
+            <span class="token keyword">return</span> <span class="token keyword">False</span>
 
-        # 遍历整个 board, 查找第一个开头字符匹配字符串的位置开始回溯
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] == word[0]:
-                    if back_track(i, j, 1):
-                        return True
+        <span class="token comment"># 遍历整个 board, 查找第一个开头字符匹配字符串的位置开始回溯</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+                <span class="token keyword">if</span> board[i][j] <span class="token operator">==</span> word[<span class="token number">0</span>]:
+                    <span class="token keyword">if</span> back_track(i, j, <span class="token number">1</span>):
+                        <span class="token keyword">return</span> <span class="token keyword">True</span>
         
-        return False
+        <span class="token keyword">return</span> <span class="token keyword">False</span>
 
 
 
         
 
-# 测试
-if __name__ == &quot;__main__&quot;:
-    sol = Solution()
-    # TODO: 添加测试用例
-    pass</code></pre>
+<span class="token comment"># 测试</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">&quot;__main__&quot;</span>:
+    sol <span class="token operator">=</span> Solution()
+    <span class="token comment"># TODO: 添加测试用例</span>
+    <span class="token keyword">pass</span></code></pre>
     </section>
   </main>
   <script>
@@ -1953,7 +1953,7 @@ if __name__ == &quot;__main__&quot;:
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;

@@ -18,6 +18,82 @@ function Get-HtmlEncoded {
     return [System.Net.WebUtility]::HtmlEncode($Text)
 }
 
+function Convert-PythonToHighlightedHtml {
+    param([string]$Text)
+
+    if ([string]::IsNullOrWhiteSpace($Text)) {
+        return ''
+    }
+
+    $keywords = @{}
+    @(
+        'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',
+        'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from',
+        'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass',
+        'raise', 'return', 'try', 'while', 'with', 'yield'
+    ) | ForEach-Object { $keywords[$_] = $true }
+
+    $builtins = @{}
+    @(
+        'abs', 'all', 'any', 'bool', 'dict', 'enumerate', 'filter', 'float', 'int', 'len',
+        'list', 'map', 'max', 'min', 'open', 'print', 'range', 'reversed', 'set', 'sorted',
+        'str', 'sum', 'tuple', 'type', 'zip'
+    ) | ForEach-Object { $builtins[$_] = $true }
+
+    $pattern = @'
+(#.*$|"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])
+'@.Trim()
+
+    $matches = [regex]::Matches($Text, $pattern, [System.Text.RegularExpressions.RegexOptions]::Multiline)
+    $builder = New-Object System.Text.StringBuilder
+    $lastIndex = 0
+    $functionPending = $false
+
+    foreach ($match in $matches) {
+        [void]$builder.Append((Get-HtmlEncoded $Text.Substring($lastIndex, $match.Index - $lastIndex)))
+
+        $value = $match.Value
+        $className = ''
+
+        if ($value.StartsWith('#')) {
+            $className = 'comment'
+        } elseif ($value.StartsWith('"""') -or $value.StartsWith("'''") -or $value.StartsWith('"') -or $value.StartsWith("'")) {
+            $className = 'string'
+        } elseif ($value.StartsWith('@')) {
+            $className = 'decorator'
+        } elseif ($value -match '^\d') {
+            $className = 'number'
+        } elseif ($keywords.ContainsKey($value)) {
+            $className = 'keyword'
+            $functionPending = ($value -eq 'def')
+        } elseif ($builtins.ContainsKey($value)) {
+            $className = 'builtin'
+        } elseif (($value -match '^[A-Za-z_][A-Za-z0-9_]*$') -and $functionPending) {
+            $className = 'function'
+            $functionPending = $false
+        } elseif ($value -match '^[+\-*/%=!<>]') {
+            $className = 'operator'
+        } elseif ($value -ne 'def') {
+            $functionPending = $false
+        }
+
+        if ($className) {
+            [void]$builder.Append('<span class="token ')
+            [void]$builder.Append($className)
+            [void]$builder.Append('">')
+            [void]$builder.Append((Get-HtmlEncoded $value))
+            [void]$builder.Append('</span>')
+        } else {
+            [void]$builder.Append((Get-HtmlEncoded $value))
+        }
+
+        $lastIndex = $match.Index + $match.Length
+    }
+
+    [void]$builder.Append((Get-HtmlEncoded $Text.Substring($lastIndex)))
+    return $builder.ToString()
+}
+
 function Get-ProblemStem {
     param([string]$ProblemText)
 
@@ -192,7 +268,7 @@ foreach ($group in $groups) {
       <h3>题目内容</h3>
       <pre>$([System.Net.WebUtility]::HtmlEncode($item.ProblemText))</pre>
       <h3>解答方案</h3>
-      <pre class="language-python"><code class="language-python">$([System.Net.WebUtility]::HtmlEncode($item.SolutionText))</code></pre>
+      <pre class="language-python"><code class="language-python">$(Convert-PythonToHighlightedHtml $item.SolutionText)</code></pre>
     </section>
 "@
     }
@@ -308,7 +384,7 @@ $(($cards -join "`r`n"))
       ]);
 
       const highlightPython = (source) => {
-        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*/%=!<>]=?|[(){}\[\]:.,])/gm;
+        const pattern = /(#.*$|\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_][A-Za-z0-9_]*|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b|[+\-*\/%=!<>]=?|[(){}\[\]:.,])/gm;
         let result = '';
         let lastIndex = 0;
         let functionPending = false;
@@ -483,4 +559,14 @@ $(($sections -join "`r`n"))
 
 Set-Content -LiteralPath (Join-Path $outputDir 'index.html') -Value $indexHtml -Encoding UTF8
 
-Write-Host ("Generated {0} html files in {1}" -f ($indexEntries.Count + 1), $outputDir)
+$repoRoot = Split-Path -Path $PSScriptRoot -Parent
+$docsDir = Join-Path $repoRoot 'docs'
+
+if (Test-Path -LiteralPath $docsDir) {
+    Remove-Item -LiteralPath $docsDir -Recurse -Force
+}
+
+Copy-Item -LiteralPath $outputDir -Destination $docsDir -Recurse -Force
+New-Item -ItemType File -Path (Join-Path $docsDir '.nojekyll') -Force | Out-Null
+
+Write-Host ("Generated {0} html files in {1} and mirrored to {2}" -f ($indexEntries.Count + 1), $outputDir, $docsDir)
