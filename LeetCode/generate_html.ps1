@@ -473,6 +473,21 @@ $(($links -join "`r`n"))
 "@
 }
 
+$repoRoot = Split-Path -Path $PSScriptRoot -Parent
+$llmDir = Join-Path $repoRoot 'LLM'
+$llmSection = if (Test-Path -LiteralPath $llmDir) {
+@"
+    <section class="tag-card">
+      <h2>LLM 笔记</h2>
+      <ul>
+        <li><a href="./LLM/index.html">LLM 页面索引</a> <span>HTML</span></li>
+      </ul>
+    </section>
+"@
+} else {
+    ''
+}
+
 $indexHtml = @"
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -550,6 +565,7 @@ $indexHtml = @"
     <h1>LeetCode 分类索引</h1>
     <p>按题目自带标签归类，再按难度拆分为独立 HTML 页面。</p>
     <div class="grid">
+$llmSection
 $(($sections -join "`r`n"))
     </div>
   </main>
@@ -559,7 +575,6 @@ $(($sections -join "`r`n"))
 
 Set-Content -LiteralPath (Join-Path $outputDir 'index.html') -Value $indexHtml -Encoding UTF8
 
-$repoRoot = Split-Path -Path $PSScriptRoot -Parent
 $docsDir = Join-Path $repoRoot 'docs'
 
 if (Test-Path -LiteralPath $docsDir) {
@@ -568,5 +583,131 @@ if (Test-Path -LiteralPath $docsDir) {
 
 Copy-Item -LiteralPath $outputDir -Destination $docsDir -Recurse -Force
 New-Item -ItemType File -Path (Join-Path $docsDir '.nojekyll') -Force | Out-Null
+
+if (Test-Path -LiteralPath $llmDir) {
+    $docsLlmDir = Join-Path $docsDir 'LLM'
+    New-Item -ItemType Directory -Path $docsLlmDir -Force | Out-Null
+
+    $llmHtmlFiles = Get-ChildItem -LiteralPath $llmDir -Recurse -File -Filter '*.html' |
+        Where-Object { $_.FullName -notmatch '\\\.claude\\' } |
+        Sort-Object FullName
+
+    foreach ($htmlFile in $llmHtmlFiles) {
+        $relativePath = $htmlFile.FullName.Substring($llmDir.Length + 1)
+        $targetPath = Join-Path $docsLlmDir $relativePath
+        $targetDir = Split-Path -Path $targetPath -Parent
+        New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
+        Copy-Item -LiteralPath $htmlFile.FullName -Destination $targetPath -Force
+
+        foreach ($assetDirName in @('images', 'katex', 'assets')) {
+            $assetDir = Join-Path $htmlFile.DirectoryName $assetDirName
+            if (Test-Path -LiteralPath $assetDir) {
+                Copy-Item -LiteralPath $assetDir -Destination (Join-Path $targetDir $assetDirName) -Recurse -Force
+            }
+        }
+    }
+
+    Get-ChildItem -LiteralPath $docsLlmDir -Recurse -Directory -Filter '__pycache__' |
+        Remove-Item -Recurse -Force
+    Get-ChildItem -LiteralPath $docsLlmDir -Recurse -File -Filter '*.pyc' |
+        Remove-Item -Force
+
+    $llmPages = Get-ChildItem -LiteralPath $docsLlmDir -Recurse -File -Filter '*.html' |
+        Where-Object { $_.Name -ne 'index.html' } |
+        Sort-Object FullName
+
+    $llmLinks = foreach ($page in $llmPages) {
+        $relativePath = $page.FullName.Substring($docsLlmDir.Length + 1).Replace('\', '/')
+        $label = [System.IO.Path]::GetFileNameWithoutExtension($page.Name) -replace '^summary_', ''
+@"
+        <li><a href="./$relativePath">$([System.Net.WebUtility]::HtmlEncode($label))</a><span>$([System.Net.WebUtility]::HtmlEncode((Split-Path $relativePath -Parent)))</span></li>
+"@
+    }
+
+    $llmIndexHtml = @"
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM 笔记索引</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d7deea;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 64px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 32px;
+    }
+    p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    li:last-child { border-bottom: 0; }
+    span {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="../index.html">返回首页</a>
+    <h1>LLM 笔记索引</h1>
+    <p>这里收录 LLM 目录下已经生成的 HTML 页面。</p>
+    <section class="panel">
+      <ul>
+$(($llmLinks -join "`r`n"))
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
+"@
+
+    Set-Content -LiteralPath (Join-Path $docsLlmDir 'index.html') -Value $llmIndexHtml -Encoding UTF8
+}
 
 Write-Host ("Generated {0} html files in {1} and mirrored to {2}" -f ($indexEntries.Count + 1), $outputDir, $docsDir)

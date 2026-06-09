@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MathJax Test</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<h3>Test 1: inline</h3>
+<p>This is inline math: $E = mc^2$ and $\hat{A}_i = \frac{r_i - \text{mean}}{\text{std}}$</p>
+
+<h3>Test 2: display</h3>
+<p>Display math:</p>
+$$\mathcal{L}_{\text{GRPO}} = -\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\min(r\hat A, \text{clip}(r, 1-\varepsilon, 1+\varepsilon)\hat A)\right] + \beta D_{\text{KL}}$$
+
+<h3>Test 3: simple</h3>
+<p>$a + b = c$ and $$x^2 + y^2 = z^2$$</p>
+</body>
+</html>

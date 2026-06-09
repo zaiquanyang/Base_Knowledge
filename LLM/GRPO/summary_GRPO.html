@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRPO 面试向总结</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: #f5f6f8;
+    color: #2d3748;
+    line-height: 1.85;
+    padding: 24px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 24px 0 6px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #a0aec0;
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 36px 0 12px;
+    padding-left: 14px;
+    border-left: 4px solid #3b82f6;
+  }
+  h2.green { border-left-color: #10b981; }
+  h2.orange { border-left-color: #f59e0b; }
+  h2.purple { border-left-color: #8b5cf6; }
+  h2.teal { border-left-color: #14b8a6; }
+  h2.indigo { border-left-color: #6366f1; }
+
+  p { font-size: 15px; margin-bottom: 10px; }
+
+  /* 公式块 — 仅核心公式用 */
+  .formula {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  /* 高亮块 — 仅关键总结用 */
+  .highlight {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 14.5px;
+  }
+  .highlight-blue { background: #eff6ff; border-left: 4px solid #3b82f6; }
+  .highlight-green { background: #f0fdf4; border-left: 4px solid #10b981; }
+  .highlight-amber { background: #fffbeb; border-left: 4px solid #f59e0b; }
+  .highlight-red { background: #fef2f2; border-left: 4px solid #ef4444; }
+
+  /* 表格 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0 16px;
+  }
+  th {
+    background: #f7fafc;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #4a5568;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #edf2f7;
+  }
+
+  /* 有序/无序列表 */
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { font-size: 15px; margin-bottom: 4px; }
+
+  /* 代码（行内） */
+  code {
+    background: #edf2f7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  }
+
+  /* 代码块 — 仅必要处用 */
+  .code-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    overflow-x: auto;
+    margin: 14px 0;
+  }
+  .code-block .cm { color: #64748b; }
+  .code-block .kw { color: #c084fc; }
+  .code-block .fn { color: #67e8f9; }
+  .code-block .n { color: #fbbf24; }
+
+  /* QA */
+  .qa { margin: 14px 0; }
+  .qa-q {
+    font-weight: 700;
+    font-size: 15px;
+    color: #1a202c;
+    margin-bottom: 4px;
+  }
+  .qa-a {
+    font-size: 14.5px;
+    color: #4a5568;
+    padding-left: 16px;
+    border-left: 3px solid #e2e8f0;
+  }
+
+  .hl-blue { color: #2563eb; font-weight: 600; }
+  .hl-green { color: #059669; font-weight: 600; }
+  .hl-red { color: #dc2626; font-weight: 600; }
+  .hl-orange { color: #d97706; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>GRPO 面试向总结</h1>
+<p class="subtitle">Group Relative Policy Optimization &mdash; 核心机制 &middot; 数学推导 &middot; 面试速答</p>
+
+<!-- 1 -->
+<h2>1. 一句话定义</h2>
+<p>GRPO（Group Relative Policy Optimization）= <span class="hl-blue">组内相对奖励</span> + <span class="hl-red">PPO-Clip 的 clip + min 悲观下界</span>，不需要单独的 value model。</p>
+
+<!-- 2 -->
+<h2 class="green">2. 解决的问题</h2>
+<ul>
+  <li>RL 微调中直接最大化高奖励样本概率会导致<span class="hl-red">更新过猛、训练不稳定</span>。</li>
+  <li>GRPO 对同一 prompt 下采样的多个回答做组内比较，用相对奖励构造优势，既降低价值建模成本，又保留 PPO 风格的稳定更新。</li>
+</ul>
+
+<!-- 3 -->
+<h2 class="green">3. 核心目标函数</h2>
+<p>对每个问题 $q$，从旧策略采样 $G$ 个回答，目标函数（<b>最大化</b>）：</p>
+
+<div class="formula">$$\mathcal{J}_{\mathrm{GRPO}}(\theta)=\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\frac{1}{|o_i|}\sum_{t=1}^{|o_i|}\min\left(r_{i,t}(\theta)\hat A_i,\ \text{clip}(r_{i,t}(\theta),1{-}\varepsilon,1{+}\varepsilon)\hat A_i\right)-\beta D_{\mathrm{KL}}\left[\pi_\theta\|\pi_{\mathrm{ref}}\right]\right]$$</div>
+
+<div class="highlight highlight-blue">
+  <b>符号方向</b>：代码中的 loss（<b>最小化</b>）：$\mathcal{L}_{\mathrm{GRPO}} = -\mathcal{J}_{\mathrm{GRPO}}$<br>
+  看到 $\mathcal{J}$、objective &rarr; 最大化 &nbsp;|&nbsp; 看到 $\mathcal{L}$、loss、<code>return -(...).mean()</code> &rarr; 最小化
+</div>
+
+<p><b>关键量：</b></p>
+<table>
+  <tr><td>$r_{i,t}(\theta) = \dfrac{\pi_\theta(o_{i,t}\mid q,o_{i,\lt t})}{\pi_{\theta_{\mathrm{old}}}(o_{i,t}\mid q,o_{i,\lt t})}$</td><td>新旧策略概率比</td></tr>
+  <tr><td>$\hat A_i = \dfrac{r_i - \text{mean}}{\text{std}}$</td><td>组内标准化优势</td></tr>
+  <tr><td>$\beta D_{\mathrm{KL}}$</td><td>与参考策略的偏离惩罚</td></tr>
+</table>
+
+<!-- 4 -->
+<h2 class="orange">4. clip + min 机制</h2>
+<p>核心项：</p>
+<div class="formula">$$\min\left(r\hat A,\ \text{clip}(r,\ 1{-}\varepsilon,\ 1{+}\varepsilon)\hat A\right)$$</div>
+<p><b>clip</b> 限制比值偏离 1 太多，避免步子迈大。<b>min</b> 取更保守的分支，构造悲观下界。</p>
+
+<p><b>正优势 $\hat A_i \gt 0$（鼓励提高概率）：</b></p>
+<ul>
+  <li>未越界：梯度正常，随 $r$ 上升而上升</li>
+  <li>$r \gt 1+\varepsilon$ 时：surrogate 退化为 $(1+\varepsilon)\hat A_i$（常数），<span class="hl-red">该 token 梯度变 0</span> &rarr; 防止奖励过头</li>
+</ul>
+
+<p><b>负优势 $\hat A_i \lt 0$（鼓励降低概率）：</b></p>
+<ul>
+  <li>未越界：梯度正常</li>
+  <li>$r \lt 1-\varepsilon$ 时：surrogate 退化为 $(1-\varepsilon)\hat A_i$（常数），<span class="hl-red">该 token 梯度变 0</span> &rarr; 防止惩罚过头（softmax 耦合会导致分布扭曲）</li>
+</ul>
+
+<div class="highlight highlight-amber">
+  <b>正负不对称</b>：正优势 clip 抑制过度乐观更新；负优势 clip 抑制过度惩罚，避免 token 概率被压过低引发分布崩溃。
+</div>
+
+<!-- 5 -->
+<h2 class="purple">5. 被 clip 的 token 梯度为什么是 0</h2>
+<p>越界后，<code>min</code> 选中的截断分支不包含 $r_{i,t}(\theta)$，即 surrogate 退化为与策略无关的常数：</p>
+<div class="formula">$$\frac{\partial s_{i,t}}{\partial \log \pi_\theta} = 0$$</div>
+
+<div class="highlight highlight-red">
+  <b>注意</b>：该 token 的 surrogate 项梯度为 0，但整个 batch 的总梯度不一定为 0（其他 token 和 KL 项仍在贡献梯度）。
+</div>
+
+<!-- 6 -->
+<h2 class="teal">6. KL 正则项</h2>
+<div class="formula">$$-\beta D_{\mathrm{KL}}[\pi_\theta \| \pi_{\mathrm{ref}}]$$</div>
+<ul>
+  <li>防止策略在追逐奖励时偏离初始模型太远，保持语言能力和安全边界</li>
+  <li>与 clip 互补：<span class="hl-blue">clip 管单步更新幅度</span>，<span class="hl-orange">KL 管长期分布漂移</span></li>
+  <li>工程中常用近似：$\mathrm{KL}_{\mathrm{approx}} = e^{\Delta} - \Delta - 1$，其中 $\Delta = \log \pi_{\mathrm{ref}} - \log \pi_\theta$（即 Schulman 推荐的 $k_3$ 估计器）</li>
+</ul>
+
+<!-- 7 -->
+<h2>7. 代码实现对应</h2>
+<ol>
+  <li>计算当前策略对 token 的 log-prob</li>
+  <li>组内 reward 均值/标准差 &rarr; 构造 advantage</li>
+  <li><code>r = exp(log p_&theta; - log p_old)</code></li>
+  <li><code>r_clip = clamp(r, 1-&epsilon;, 1+&epsilon;)</code></li>
+  <li>取 <code>min(r*A, r_clip*A)</code></li>
+  <li>减去 KL 正则项并求平均，返回 loss（注意有负号，做最小化）</li>
+</ol>
+
+<pre class="code-block">
+<span class="kw">def</span> <span class="fn">grpo_loss</span>(old_logprobs, new_logprobs, rewards, ref_logprobs, epsilon=<span class="n">0.2</span>, beta=<span class="n">0.04</span>):
+    <span class="cm"># 1. 组内标准化优势（替代 Critic）</span>
+    advantages = (rewards - rewards.mean()) / (rewards.std() + <span class="n">1e-8</span>)
+    <span class="cm"># 2. 策略概率比</span>
+    ratio = torch.exp(new_logprobs - old_logprobs)
+    <span class="cm"># 3. Clip 目标</span>
+    surr1 = ratio * advantages
+    surr2 = torch.clamp(ratio, <span class="n">1</span> - epsilon, <span class="n">1</span> + epsilon) * advantages
+    <span class="cm"># 4. KL 惩罚（k3 估计器）</span>
+    kl = torch.exp(new_logprobs - ref_logprobs) - (new_logprobs - ref_logprobs) - <span class="n">1</span>
+    <span class="cm"># 5. 最终 loss（最小化）</span>
+    <span class="kw">return</span> -torch.min(surr1, surr2).mean() + beta * kl.mean()
+</pre>
+
+<!-- 8 -->
+<h2 class="indigo">8. 面试速答</h2>
+
+<div class="qa">
+  <p class="qa-q">GRPO 和 PPO 的关系？</p>
+  <p class="qa-a">GRPO 是 PPO-Clip 在 LLM 场景的变体。保留 <span class="hl-blue">ratio + clip + min</span> 的稳定训练思想，但用组内相对奖励直接构造优势，不依赖单独的 value network。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">被 clip 的 token 梯度怎么算？</p>
+  <p class="qa-a"><span class="hl-red">clip + min 联合作用</span>：越界后 min 选中截断的常数分支，该 token 的 surrogate 项对策略概率的导数为 0，不再推动更新。但整个 batch 的总梯度不一定为 0（其他 token 和 KL 项仍在贡献）。关键不是单独由 clip 决定的，而是 clip 和悲观下界一起的结果。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">为什么按组归一化奖励？</p>
+  <p class="qa-a">同一 prompt 下不同回答的绝对奖励不可横向比较。组内标准化后优化的是<span class="hl-green">相对优劣</span>，降低奖励尺度波动带来的训练不稳定。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">正负优势的处理有什么不同？</p>
+  <p class="qa-a">正优势 clip 是<span class="hl-blue">防止奖励过头</span>（过度放大少数高奖励样本）；负优势 clip 是<span class="hl-red">防止惩罚过头</span>（softmax 耦合下压低一个 token 会间接抬高其他 token，造成分布扭曲）。</p>
+</div>
+
+<p style="text-align:center;margin:36px 0 16px;font-size:12px;color:#a0aec0">&mdash; END &mdash;</p>
+
+</div>
+
+<script>
+// MathJax auto-renders, no extra JS needed
+</script>
+</body>
+</html>

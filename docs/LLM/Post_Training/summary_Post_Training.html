@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后训练 RL 算法面试向总结</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: #f5f6f8;
+    color: #2d3748;
+    line-height: 1.85;
+    padding: 24px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 24px 0 6px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #a0aec0;
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 36px 0 12px;
+    padding-left: 14px;
+    border-left: 4px solid #3b82f6;
+  }
+  h2.green { border-left-color: #10b981; }
+  h2.purple { border-left-color: #8b5cf6; }
+  h2.orange { border-left-color: #f59e0b; }
+  h2.pink { border-left-color: #ec4899; }
+  h2.red { border-left-color: #ef4444; }
+  h2.teal { border-left-color: #14b8a6; }
+  h2.indigo { border-left-color: #6366f1; }
+
+  p { font-size: 15px; margin-bottom: 10px; }
+
+  .formula {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .highlight {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14.5px;
+  }
+  .hl-blue { background: #eff6ff; border-left: 4px solid #3b82f6; }
+  .hl-green { background: #f0fdf4; border-left: 4px solid #10b981; }
+  .hl-amber { background: #fffbeb; border-left: 4px solid #f59e0b; }
+  .hl-red { background: #fef2f2; border-left: 4px solid #ef4444; }
+  .hl-purple { background: #faf5ff; border-left: 4px solid #8b5cf6; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0 16px;
+  }
+  th {
+    background: #f7fafc;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #4a5568;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #edf2f7;
+    vertical-align: top;
+  }
+
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { font-size: 15px; margin-bottom: 4px; }
+
+  code {
+    background: #edf2f7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  }
+
+  .code-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.75;
+    overflow-x: auto;
+    margin: 14px 0;
+  }
+  .code-block .cm { color: #64748b; }
+  .code-block .kw { color: #c084fc; }
+  .code-block .fn { color: #67e8f9; }
+  .code-block .n { color: #fbbf24; }
+
+  .qa { margin: 14px 0; }
+  .qa-q {
+    font-weight: 700;
+    font-size: 15px;
+    color: #1a202c;
+    margin-bottom: 4px;
+  }
+  .qa-a {
+    font-size: 14.5px;
+    color: #4a5568;
+    padding-left: 16px;
+    border-left: 3px solid #e2e8f0;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag-red { background: #fee2e2; color: #991b1b; }
+  .tag-green { background: #d1fae5; color: #065f46; }
+
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  @media (max-width: 800px) { .vs { grid-template-columns: 1fr; } }
+
+  .vs > div {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .vs h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid;
+  }
+
+  .hlb { color: #2563eb; font-weight: 600; }
+  .hlg { color: #059669; font-weight: 600; }
+  .hlr { color: #dc2626; font-weight: 600; }
+  .hlo { color: #d97706; font-weight: 600; }
+  .hlp { color: #7c3aed; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>后训练 RL 算法面试向总结</h1>
+<p class="subtitle">PPO / DPO / GRPO &mdash; 核心概念 &middot; 公式推导 &middot; 高频问答</p>
+
+<!-- 1 -->
+<h2>1. 三大算法全景对比</h2>
+<table>
+  <thead>
+    <tr><th>维度</th><th style="color:#2563eb">PPO</th><th style="color:#7c3aed">DPO</th><th style="color:#059669">GRPO</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>On/Off-Policy</b></td><td>On-Policy</td><td>Off-Policy</td><td>On-Policy</td></tr>
+    <tr><td><b>奖励信号</b></td><td>显式 RM + 可验证奖励</td><td>隐式 RM（偏好对）</td><td>显式 RM + 可验证奖励</td></tr>
+    <tr><td><b>优势估计</b></td><td>Critic + GAE（token-level）</td><td>无（隐式表达 Loss）</td><td>Group-Relative（sequence-level）</td></tr>
+    <tr><td><b>模型数量</b></td><td><span class="tag tag-red">4 个</span> Policy+Ref+RM+Critic</td><td><span class="tag tag-green">2 个</span> Policy+Ref</td><td><span class="tag tag-green">2 个</span> Policy+Ref</td></tr>
+    <tr><td><b>适用场景</b></td><td>精细 token-level 奖励分配、复杂混合奖励、Agent 多轮交互</td><td>有偏好数据 / 资源受限</td><td>有可验证奖励 / Reasoning（如 DeepSeek-R1）</td></tr>
+    <tr><td><b>优势</b></td><td>灵活、token-level 信用分配</td><td>简单、无需 On-policy 采样</td><td>轻量、稳定</td></tr>
+    <tr><td><b>劣势</b></td><td>资源消耗大、训练复杂</td><td>Off-policy 分布偏移、数据覆盖受限</td><td>奖励设计复杂、超参调优难、奖励方差大</td></tr>
+  </tbody>
+</table>
+
+<!-- 2 -->
+<h2>2. PPO 详解</h2>
+
+<p><b>四个核心模型：</b></p>
+<ol>
+  <li><b>Policy Model（Actor）</b>：目标训练的模型，负责生成响应</li>
+  <li><b>Value Model（Critic）</b>：估计每个状态 $S_t$ 下的总奖励 $V_t$，通过 Value Head 实现</li>
+  <li><b>Reference Model</b>：SFT 阶段参数冻结的模型，通过 KL 散度约束 Policy 不偏离太远</li>
+  <li><b>Reward Model</b>：评估 Policy 生成的响应，在 Sequence-Level 输出标量奖励</li>
+</ol>
+
+<p><b>四步训练流程：</b> Reward Modeling &rarr; Rollout &rarr; Evaluation &rarr; Optimization</p>
+<ul>
+  <li><b>Reward Modeling</b>：训练奖励模型，用于评估 policy_model 生成的响应</li>
+  <li><b>Rollout</b>：根据 prompt，让 policy_model 生成 response</li>
+  <li><b>Evaluation</b>：用 reward_model 对 prompt-response 打分</li>
+  <li><b>Optimization</b>：结合经验数据、Ref 模型、旧 Actor/Critic，优化得到新 Actor/Critic</li>
+</ul>
+
+<p><b>两个核心 Loss：</b></p>
+<ul>
+  <li><b>pg_loss（Actor Loss）</b>：策略梯度损失，核心是 <span class="hlb">clip + min</span> 悲观下界机制</li>
+  <li><b>vf_loss（Critic Loss）</b>：价值函数损失，让 Critic 的预测更接近实际回报</li>
+</ul>
+
+<p><b>PPO 目标函数：</b></p>
+<div class="formula">$$L_{\text{PPO}}(\theta) = \mathbb{E}_t \left[ \min\left( r_t(\theta) \hat{A}_t,\ \text{clip}(r_t(\theta), 1{-}\varepsilon, 1{+}\varepsilon) \hat{A}_t \right) \right] - \beta \cdot \mathbb{E}_t \left[ D_{\text{KL}}(\pi_\theta \| \pi_{\text{ref}}) \right]$$</div>
+<ul>
+  <li>$r_t(\theta) = \dfrac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$ &mdash; 策略概率比</li>
+  <li>$\hat{A}_t$ &mdash; 优势估计（由 GAE 计算）</li>
+  <li>$\varepsilon$ &mdash; 裁剪范围（通常 0.1~0.2）</li>
+  <li>$\beta$ &mdash; KL 惩罚系数</li>
+</ul>
+
+<!-- 3 -->
+<h2 class="green">3. GRPO 详解</h2>
+
+<p><b>核心改动（相对 PPO）：</b><span class="hlr">移除 Critic（Value Model）</span>，用组内相对奖励直接构造优势：</p>
+<div class="formula">$$\hat{A}_i = \frac{r_i - \text{mean}(\{r_1, \dots, r_G\})}{\text{std}(\{r_1, \dots, r_G\})}$$</div>
+<p>对每个 prompt 采样 $G$ 条回复，优势直接用组内归一化计算，替代 PPO 的 Value Network + GAE。</p>
+
+<p><b>GRPO 目标函数：</b></p>
+<div class="formula">$$\mathcal{L}_{\text{GRPO}} = -\mathbb{E}\left[\frac{1}{G}\sum_{i=1}^{G}\frac{1}{|o_i|}\sum_{t=1}^{|o_i|}\min\left(r_{i,t}(\theta)\hat A_i,\ \text{clip}(r_{i,t}(\theta),1{-}\varepsilon,1{+}\varepsilon)\hat A_i\right)\right] + \beta \cdot D_{\text{KL}}\left[\pi_\theta\|\pi_{\text{ref}}\right]$$</div>
+
+<p><b>代码实现：</b></p>
+<pre class="code-block">
+<span class="kw">def</span> <span class="fn">grpo_loss</span>(old_logprobs, new_logprobs, rewards, ref_logprobs, epsilon=<span class="n">0.2</span>, beta=<span class="n">0.04</span>):
+    <span class="cm"># 1. 组内标准化优势（替代 Critic）</span>
+    advantages = (rewards - rewards.mean()) / (rewards.std() + <span class="n">1e-8</span>)
+    <span class="cm"># 2. 策略概率比</span>
+    ratio = torch.exp(new_logprobs - old_logprobs)
+    <span class="cm"># 3. Clip 目标</span>
+    surr1 = ratio * advantages
+    surr2 = torch.clamp(ratio, <span class="n">1</span> - epsilon, <span class="n">1</span> + epsilon) * advantages
+    <span class="cm"># 4. KL 惩罚（k3 估计器）</span>
+    kl = torch.exp(new_logprobs - ref_logprobs) - (new_logprobs - ref_logprobs) - <span class="n">1</span>
+    <span class="cm"># 5. 最终 loss（最小化）</span>
+    <span class="kw">return</span> -torch.min(surr1, surr2).mean() + beta * kl.mean()
+</pre>
+
+<!-- 4 -->
+<h2 class="purple">4. DPO 详解</h2>
+
+<p>通过偏好数据（<span class="hlg">chosen</span> vs <span class="hlr">rejected</span>）直接优化策略，<span class="hlp">无需显式奖励模型</span>。</p>
+
+<p><b>损失函数：</b></p>
+<div class="formula">$$\mathcal{L}_{\text{DPO}}(\theta) = -\mathbb{E}_{(x,y_w,y_l)} \left[ \log \frac{\pi_\theta(y_w|x)}{\pi_{\theta_{\text{ref}}}(y_w|x)} - \log \frac{\pi_\theta(y_l|x)}{\pi_{\theta_{\text{ref}}}(y_l|x)} \right]$$</div>
+
+<p><b>SFT 与 DPO 的冲突：</b></p>
+<ul>
+  <li><b>分布偏移</b>：Base model 未经指令风格训练，直接做 DPO 导致隐式奖励估计不准确</li>
+  <li><b>SFT 覆盖 DPO</b>：SFT 不具备偏好对齐能力，会无差别提升所有回复概率，覆盖 DPO 学到的偏好区分</li>
+  <li><b>拉力效应（Pull-up Effect）</b>：SFT 提升正例概率的同时也会提升非偏好回复的概率</li>
+</ul>
+
+<!-- 5 -->
+<h2 class="orange">5. Reference Model 与 KL 散度</h2>
+
+<p>Reference Model 是参数冻结的 SFT 模型，通过 KL 散度约束 Policy 不偏离太远。</p>
+
+<div class="highlight hl-red">
+  <b>缺失 Ref Model 的后果</b>：灾难性遗忘（忘记生成流畅文本）、模式坍缩（只输出少数高分答案）、奖励作弊（找到 RM 的"盲区"获取非预期高奖励）。
+</div>
+
+<p><b>Token-level KL 惩罚通过 reward shaping 实现：</b></p>
+<div class="formula">$$\tau_t \leftarrow \tau_t - \beta \log \frac{\pi_\theta(a_t|s_t)}{\pi_{\text{ref}}(a_t|s_t)}$$</div>
+<div class="formula">$$\text{KL}(\pi_\theta \| \pi_{\text{ref}}) = \mathbb{E}_{x \sim \pi_\theta} \left[ \log \frac{\pi_\theta(x)}{\pi_{\text{ref}}(x)} \right] = \log\text{probs} - \text{ref\_log\_probs}$$</div>
+
+<p><b>三种 KL 估计器（Schulman）：</b></p>
+<table>
+  <thead><tr><th>估计器</th><th>公式</th><th>无偏？</th><th>方差特性</th></tr></thead>
+  <tbody>
+    <tr><td>$k_1$</td><td>$-\log r$</td><td>是</td><td>对数增长，方差温和</td></tr>
+    <tr><td>$k_2$</td><td>$\frac{1}{2}(\log r)^2$</td><td>否</td><td>低方差，梯度有偏</td></tr>
+    <tr style="background:#ecfdf5"><td><span class="hlg">$k_3$</span>（推荐）</td><td>$(r - 1) - \log r$</td><td><span class="hlg">是</span></td><td><span class="hlg">方差比</span> $k_1$ <span class="hlg">低几个数量级</span></td></tr>
+  </tbody>
+</table>
+<p style="font-size:13.5px;color:#718096">主流选择：TRL / OpenRLHF / VeRL 默认使用 $k_3$。GRPO 中 <code>kl = exp(Δ) - Δ - 1</code> 正是 $k_3$。</p>
+
+<p><b>KL 惩罚系数 $\beta$ 的调整：</b>起始 $\beta$ 较小（0.01~0.05）让模型自由探索 &rarr; 训练中逐步增大（KL 退火自适应） &rarr; DeepSeek-V3 按 per-domain 调优（数学场景 &asymp; 0，通用对齐保留系数）。</p>
+
+<p><b>KL 项的争议：</b></p>
+<div class="vs">
+  <div>
+    <h3 style="color:#991b1b;border-color:#ef4444">去除 KL 项</h3>
+    <p style="font-size:13px;color:#718096;margin-bottom:6px">DAPO / VAPO / MiniMax CISPO</p>
+    <ul>
+      <li style="font-size:13.5px">Reasoning RL 鼓励探索，KL 会阻碍学习"反思""aha moment"</li>
+      <li style="font-size:13.5px">有可验证奖励，Reward Hacking 风险小</li>
+      <li style="font-size:13.5px">节约 Ref Model 显存和计算</li>
+    </ul>
+  </div>
+  <div>
+    <h3 style="color:#065f46;border-color:#10b981">保留 KL 项</h3>
+    <p style="font-size:13px;color:#718096;margin-bottom:6px">DeepSeek GRPO / Kimi / GLM</p>
+    <ul>
+      <li style="font-size:13.5px">基座模型统一 RL 中有传统 RLHF 对齐任务，KL 是必要的 Reward Hacking 防护</li>
+      <li style="font-size:13.5px">后续做动态 KL、per-domain 调优</li>
+    </ul>
+    <p style="font-size:12.5px;color:#718096;margin-top:6px"><b>DeepSeek V3.2</b>：在 $k_3$ 中加入重要性采样，解决低概率采样下的梯度低估。</p>
+  </div>
+</div>
+
+<!-- 6 -->
+<h2 class="pink">6. PPO-Clip 机制的改进变体</h2>
+<table>
+  <thead><tr><th>算法</th><th>改进方向</th><th>核心方法</th></tr></thead>
+  <tbody>
+    <tr><td><b>DAPO</b></td><td>解决梯度坍塌</td><td>放宽 token 概率上界（Clip-Higher），鼓励探索</td></tr>
+    <tr><td><b>GSPO</b></td><td>提升裁剪粒度</td><td>将裁剪从 token-level 提升到 sequence-level，用长度归一化定义比率</td></tr>
+    <tr><td><b>DCPO</b></td><td>动态裁剪边界</td><td>随先验概率自适应调整边界，越偏离先验的 token 有更大探索空间</td></tr>
+    <tr><td><b>SAPO</b></td><td>软门控</td><td>用平滑衰减权重替代硬裁剪，构造更柔和的信任区域</td></tr>
+  </tbody>
+</table>
+
+<!-- 7 -->
+<h2 class="red">7. 熵坍塌（Entropy Collapse）</h2>
+
+<p>策略熵在训练初期急剧下降并趋于零，模型过于自信，无法生成多样化响应，陷入局部最优。</p>
+
+<p><b>改进策略：</b></p>
+<ul>
+  <li><b>Clip-Higher</b>：放宽 token 概率比值的上界，允许低概率 token 获得更大提升空间</li>
+  <li><b>Clip-Cov（协方差裁剪）</b>：识别"概率 &times; 优势"高方差的 token，随机裁剪部分 token 梯度</li>
+  <li><b>KL-Cov（协方差 KL 惩罚）</b>：对协方差 top-k 的 token 施加 KL 惩罚，鼓励探索低概率 token</li>
+</ul>
+
+<!-- 8 -->
+<h2 class="teal">8. 重要性采样（Importance Sampling）</h2>
+
+<p><b>核心公式：</b></p>
+<div class="formula">$$\mathbb{E}_{x \sim p(x)}[f(x)] = \mathbb{E}_{x \sim q(x)}\left[f(x) \cdot \frac{p(x)}{q(x)}\right]$$</div>
+<p>用采样分布 $q(x)$ 的数据估计目标分布 $p(x)$ 下的期望，需乘以修正比率 $p(x)/q(x)$。</p>
+
+<p><b>两个关键性质：</b></p>
+<ul>
+  <li><b>无偏性</b>：只要 $q(x) \gt 0$ 在任意 $p(x) \gt 0$ 的地方成立，估计量无偏</li>
+  <li><b>方差取决于 $q$ 的选择</b>：若 $q$ 在 $f \cdot p$ 较大区域密度很小，重要性权重出现极端值，方差爆炸</li>
+</ul>
+
+<p><b>IS 权重的两层分解（Qwen 论文）：</b></p>
+<div class="formula">$$\frac{\pi_\theta(y_t | x, y_{\lt t})}{\mu_{\theta_{\text{old}}}(y_t | x, y_{\lt t})} = \underbrace{\frac{\pi_{\theta_{\text{old}}}(y_t | x, y_{\lt t})}{\mu_{\theta_{\text{old}}}(y_t | x, y_{\lt t})}}_{\text{训推不一致度}} \times \underbrace{\frac{\pi_\theta(y_t | x, y_{\lt t})}{\pi_{\theta_{\text{old}}}(y_t | x, y_{\lt t})}}_{\text{策略陈旧度}}$$</div>
+<ul>
+  <li><b>训推不一致度</b>：训练引擎（FSDP/Megatron）与推理引擎（vLLM/SGLang）的数值差异，源于 kernel 实现、精度格式等</li>
+  <li><b>策略陈旧度</b>：同一引擎内新旧策略差异，源于 off-policy 更新。<span class="hlg">PPO/GRPO 的 clip 机制优化这一项</span></li>
+</ul>
+
+<!-- 9 -->
+<h2 class="indigo">9. 高频面试问答</h2>
+
+<div class="qa">
+  <p class="qa-q">PPO 和 GRPO 的核心区别？</p>
+  <p class="qa-a">GRPO 移除了 Critic（Value Model），用组内相对奖励标准化直接构造优势，替代 PPO 的 Value Network + GAE。模型数量从 <span class="hlr">4 降到 2</span>，资源开销大幅降低，适合有可验证奖励的 Reasoning 场景。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">KL 散度在后训练 RL 中的作用？</p>
+  <p class="qa-a">约束策略不偏离参考模型太远，防止灾难性遗忘、模式坍缩和 Reward Hacking。与 clip 互补：clip 管单步更新幅度，KL 管长期分布漂移。主流使用 $k_3 = (r-1) - \log r$ 估计器，无偏且方差低。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">为什么要去除 KL 项？什么场景下去除？</p>
+  <p class="qa-a">Reasoning RL 场景（如数学推理），模型需要学会"反思"和"aha moment"，分布需要大幅漂移，KL 会阻碍学习。加上有可验证奖励，Reward Hacking 风险小，所以 DAPO/VAPO/CISPO 主张完全去除。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">熵坍塌是什么？怎么解决？</p>
+  <p class="qa-a">策略熵在训练初期急剧下降趋于零，模型过于自信，失去多样性。改进方案包括 <span class="hlb">Clip-Higher</span>（放宽概率上界鼓励探索）、<span class="hlb">Clip-Cov</span>（裁剪高方差 token 梯度）、<span class="hlb">KL-Cov</span>（对协方差 top-k token 施加 KL 惩罚）。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">重要性采样在 PPO/GRPO 中怎么用的？</p>
+  <p class="qa-a">用旧策略采集的数据评估新策略，需要乘以修正比率 $\pi_\theta / \pi_{\theta_{\text{old}}}$。Qwen 论文将 IS 权重分解为<span class="hlg">训推不一致度</span>和<span class="hlg">策略陈旧度</span>两项，分别来源于引擎差异和 off-policy 更新，clip 机制优化的是策略陈旧度这一项。</p>
+</div>
+
+<div class="qa">
+  <p class="qa-q">SFT 和 DPO 的冲突是什么？</p>
+  <p class="qa-a">分布偏移导致 DPO 隐式奖励估计不准；SFT 不具备偏好对齐能力，会无差别提升所有回复概率，覆盖 DPO 学到的偏好区分，产生<span class="hlr">拉力效应</span>。</p>
+</div>
+
+<p style="text-align:center;margin:36px 0 16px;font-size:12px;color:#a0aec0">&mdash; END &mdash;</p>
+
+</div>
+
+<script>
+// MathJax auto-renders, no extra JS needed
+</script>
+</body>
+</html>
